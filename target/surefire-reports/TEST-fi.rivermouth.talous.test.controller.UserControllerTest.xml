@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="fi.rivermouth.talous.test.controller.UserControllerTest" time="10.822" tests="4" errors="2" skipped="0" failures="1">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\bin"/>
+    <property name="java.vm.version" value="24.45-b08"/>
+    <property name="user.country.format" value="FI"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\asus\dev\apps\Talous"/>
+    <property name="java.runtime.version" value="1.7.0_45-b18"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\asus\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 8"/>
+    <property name="classworlds.conf" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\asus\AppData\Local\GitHub\PortableGit_054f2e797ebafd44a30203088cd3d58663c627ef\cmd;C:\Users\asus\AppData\Local\GitHub\PortableGit_054f2e797ebafd44a30203088cd3d58663c627ef\bin;C:\Users\asus\AppData\Local\Apps\2.0\ODBDMM5E.JAY\YL2VTTQO.4JK\gith..tion_317444273a93ac29_0002.0002_f44dcb2e9d4cde94;C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\asus\dev\tools\apache-maven-3.1.1\bin;C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files\nodejs\;C:\Users\asus\npm;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools;C:\Users\asus\dev\tools\apache-ant-1.9.4\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\tools;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools\;C:\Python27\;C:\Python27\Scripts\;C:\Program Files (x86)\Windows Live\Shared;C:\MinGW\bin;C:\MinGW\MSYS\1.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\asus\dev\tools\apache-maven-3.1.1\bin;C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files\nodejs\;C:\Users\asus\npm;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools;C:\Users\asus\dev\tools\apache-ant-1.9.4\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\tools;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools\;C:\Python27\;C:\Python27\Scripts\;C:\Program Files (x86)\Windows Live\Shared;C:\MinGW\bin;C:\MinGW\MSYS\1.0\bin;C:\google-cloud-sdk\bin;C:\Program Files (x86)\Google\google_appengine\;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.2"/>
+    <property name="user.home" value="C:\Users\asus"/>
+    <property name="user.timezone" value="Europe/Helsinki"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="asus"/>
+    <property name="java.class.path" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\..\boot\plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_45\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="user.language.format" value="fi"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_45"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_45\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testGetUserByEmail" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="10.38">
+    <error message="Request processing failed; nested exception is java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path &apos;http://localhost/users/%EC%B4%B1%E1%92%9C%E5%9B%B4%E1%BC%8B%E1%80%A2%E1%86%BF@rivermouth.fi&apos;: {public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.UserController.getByEmail(java.lang.String), public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.BaseController.get(java.io.Serializable)}" type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path 'http://localhost/users/%EC%B4%B1%E1%92%9C%E5%9B%B4%E1%BC%8B%E1%80%A2%E1%86%BF@rivermouth.fi': {public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.UserController.getByEmail(java.lang.String), public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.BaseController.get(java.io.Serializable)}
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:293)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:248)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:57)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:299)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1098)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.getHandler(TestDispatcherServlet.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:910)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:852)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:620)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.UserControllerTest.testGetUserByEmail(UserControllerTest.java:49)
+</error>
+    <system-out>00:32:44.547 [main] DEBUG o.s.t.c.j.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class fi.rivermouth.talous.test.controller.UserControllerTest].
+00:32:44.619 [main] DEBUG o.s.test.context.ContextLoaderUtils - Found explicit ContextLoader class [org.springframework.boot.test.SpringApplicationContextLoader] for context configuration attributes [ContextConfigurationAttributes@76eb235 declaringClass = 'fi.rivermouth.talous.test.controller.BaseControllerTest', classes = '{class fi.rivermouth.talous.Application}', locations = '{}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.boot.test.SpringApplicationContextLoader']
+00:32:44.628 [main] DEBUG o.s.test.context.ContextLoaderUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.632 [main] DEBUG o.s.test.context.TestContextManager - @TestExecutionListeners is not present for class [fi.rivermouth.talous.test.controller.UserControllerTest]: using defaults.
+00:32:44.682 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.683 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.685 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.686 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.693 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.694 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.UserControllerTest]
+00:32:44.894 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+00:32:44.901 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+00:32:44.902 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+00:32:44.904 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [integrationTest] PropertySource with search precedence immediately lower than [systemEnvironment]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.1.8.RELEASE)
+
+2014-11-08 00:32:51.279 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_t1v7cq3ks6e9u4fj0sughpwg0
+2014-11-08 00:32:51.285 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_t1v7cq3ks6e9u4fj0sughpwg0
+2014-11-08 00:32:51.285 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-11-08 00:32:51.286 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_6e9ggl5ygaic4vs0xyrj8np0t
+2014-11-08 00:32:51.286 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_6e9ggl5ygaic4vs0xyrj8np0t
+2014-11-08 00:32:51.286 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-11-08 00:32:51.287 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_qi968eqnfii75882kmb02xxms
+2014-11-08 00:32:51.287 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_qi968eqnfii75882kmb02xxms
+2014-11-08 00:32:51.287 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-11-08 00:32:51.287 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients drop constraint FK_rj885gjrf0ns13mbtacyi7hle
+2014-11-08 00:32:51.288 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_clients drop constraint FK_rj885gjrf0ns13mbtacyi7hle
+2014-11-08 00:32:51.288 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_CLIENTS
+2014-11-08 00:32:51.289 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients drop constraint FK_gom5aagsfa079pn86nnfa48k1
+2014-11-08 00:32:51.289 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_clients drop constraint FK_gom5aagsfa079pn86nnfa48k1
+2014-11-08 00:32:51.290 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_CLIENTS
+2014-11-08 00:32:51.290 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_files drop constraint FK_4h9wtn8h4bel4442qsfkov3hb
+2014-11-08 00:32:51.291 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_files drop constraint FK_4h9wtn8h4bel4442qsfkov3hb
+2014-11-08 00:32:51.291 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_FILES
+2014-11-08 00:32:51.291 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_files drop constraint FK_pwf1cpv1j0wxx0re29g48u4pq
+2014-11-08 00:32:51.292 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_files drop constraint FK_pwf1cpv1j0wxx0re29g48u4pq
+2014-11-08 00:32:51.292 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_FILES
+2014-11-08 00:32:51.292 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes drop constraint FK_nybx3gwo3vald7sbf51jxhyyl
+2014-11-08 00:32:51.293 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes drop constraint FK_nybx3gwo3vald7sbf51jxhyyl
+2014-11-08 00:32:51.293 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_NOTES
+2014-11-08 00:32:51.293 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.294 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.294 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_NOTES
+2014-11-08 00:32:51.294 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.294 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.295 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_NOTES
+2014-11-08 00:32:51.295 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.295 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes drop constraint FK_qxqc95ytljxl8wiks5hqg23b5
+2014-11-08 00:32:51.295 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_NOTES
+2014-11-08 00:32:51.296 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects drop constraint FK_jycuintxo4dqpnsvi3j54tmcd
+2014-11-08 00:32:51.296 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_projects drop constraint FK_jycuintxo4dqpnsvi3j54tmcd
+2014-11-08 00:32:51.297 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_PROJECTS
+2014-11-08 00:32:51.297 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects drop constraint FK_66bbmem7dipv4e9dgd1qo3y0m
+2014-11-08 00:32:51.298 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_projects drop constraint FK_66bbmem7dipv4e9dgd1qo3y0m
+2014-11-08 00:32:51.298 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_PROJECTS
+2014-11-08 00:32:51.299 DEBUG 13028 --- [           main] org.hibernate.SQL                        : drop table base_entity if exists
+2014-11-08 00:32:51.302 DEBUG 13028 --- [           main] org.hibernate.SQL                        : drop table base_entity_clients if exists
+2014-11-08 00:32:51.303 DEBUG 13028 --- [           main] org.hibernate.SQL                        : drop table base_entity_files if exists
+2014-11-08 00:32:51.304 DEBUG 13028 --- [           main] org.hibernate.SQL                        : drop table base_entity_notes if exists
+2014-11-08 00:32:51.306 DEBUG 13028 --- [           main] org.hibernate.SQL                        : drop table base_entity_projects if exists
+2014-11-08 00:32:51.306 DEBUG 13028 --- [           main] org.hibernate.SQL                        : create table base_entity (dtype varchar(31) not null, id bigint generated by default as identity (start with 1), name varchar(255), title varchar(255), content blob(255), mime_type varchar(255), size bigint, city varchar(255), country varchar(255), street varchar(255), zip varchar(255), vat_number varchar(255), email varchar(255), first_name varchar(255), last_name varchar(255), role varchar(255), tel varchar(255), facebook_id varchar(255), google_id varchar(255), client_id bigint, attached_to_id bigint, owner_id bigint, primary key (id))
+2014-11-08 00:32:51.311 DEBUG 13028 --- [           main] org.hibernate.SQL                        : create table base_entity_clients (base_entity_id bigint not null, clients_id bigint not null)
+2014-11-08 00:32:51.313 DEBUG 13028 --- [           main] org.hibernate.SQL                        : create table base_entity_files (base_entity_id bigint not null, files_id bigint not null)
+2014-11-08 00:32:51.315 DEBUG 13028 --- [           main] org.hibernate.SQL                        : create table base_entity_notes (base_entity_id bigint not null, notes_id bigint not null)
+2014-11-08 00:32:51.317 DEBUG 13028 --- [           main] org.hibernate.SQL                        : create table base_entity_projects (base_entity_id bigint not null, projects_id bigint not null)
+2014-11-08 00:32:51.320 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint UK_rj885gjrf0ns13mbtacyi7hle  unique (clients_id)
+2014-11-08 00:32:51.323 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_files add constraint UK_4h9wtn8h4bel4442qsfkov3hb  unique (files_id)
+2014-11-08 00:32:51.324 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes add constraint UK_nybx3gwo3vald7sbf51jxhyyl  unique (notes_id)
+2014-11-08 00:32:51.325 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint UK_jycuintxo4dqpnsvi3j54tmcd  unique (projects_id)
+2014-11-08 00:32:51.327 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_t1v7cq3ks6e9u4fj0sughpwg0 foreign key (client_id) references base_entity
+2014-11-08 00:32:51.330 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_6e9ggl5ygaic4vs0xyrj8np0t foreign key (attached_to_id) references base_entity
+2014-11-08 00:32:51.331 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_qi968eqnfii75882kmb02xxms foreign key (owner_id) references base_entity
+2014-11-08 00:32:51.333 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint FK_rj885gjrf0ns13mbtacyi7hle foreign key (clients_id) references base_entity
+2014-11-08 00:32:51.336 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint FK_gom5aagsfa079pn86nnfa48k1 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.339 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_files add constraint FK_4h9wtn8h4bel4442qsfkov3hb foreign key (files_id) references base_entity
+2014-11-08 00:32:51.341 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_files add constraint FK_pwf1cpv1j0wxx0re29g48u4pq foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.345 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes add constraint FK_nybx3gwo3vald7sbf51jxhyyl foreign key (notes_id) references base_entity
+2014-11-08 00:32:51.347 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.350 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.351 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.352 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : object name already exists: FK_QXQC95YTLJXL8WIKS5HQG23B5 in statement [alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity]
+2014-11-08 00:32:51.353 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.353 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:51.353 ERROR 13028 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : object name already exists: FK_QXQC95YTLJXL8WIKS5HQG23B5 in statement [alter table base_entity_notes add constraint FK_qxqc95ytljxl8wiks5hqg23b5 foreign key (base_entity_id) references base_entity]
+2014-11-08 00:32:51.354 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint FK_jycuintxo4dqpnsvi3j54tmcd foreign key (projects_id) references base_entity
+2014-11-08 00:32:51.355 DEBUG 13028 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint FK_66bbmem7dipv4e9dgd1qo3y0m foreign key (base_entity_id) references base_entity
+2014-11-08 00:32:54.841 DEBUG 13028 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city8_0_, user0_.country as country9_0_, user0_.street as street10_0_, user0_.zip as zip11_0_, user0_.email as email13_0_, user0_.first_name as first_n14_0_, user0_.last_name as last_na15_0_, user0_.role as role16_0_, user0_.tel as tel17_0_, user0_.facebook_id as faceboo18_0_, user0_.google_id as google_19_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-08 00:32:54.919 DEBUG 13028 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city8_0_, user0_.country as country9_0_, user0_.street as street10_0_, user0_.zip as zip11_0_, user0_.email as email13_0_, user0_.first_name as first_n14_0_, user0_.last_name as last_na15_0_, user0_.role as role16_0_, user0_.tel as tel17_0_, user0_.facebook_id as faceboo18_0_, user0_.google_id as google_19_0_ from base_entity user0_ where user0_.dtype='User' and (upper(user0_.email)=upper(?) or user0_.google_id is null or user0_.facebook_id is null)
+2014-11-08 00:32:54.975 DEBUG 13028 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.312"/>
+  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.098">
+    <failure message="Status expected:&lt;200&gt; but was:&lt;409&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<409>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:60)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:89)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:626)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:77)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]></failure>
+    <system-out>2014-11-08 00:32:55.398 DEBUG 13028 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city8_0_, user0_.country as country9_0_, user0_.street as street10_0_, user0_.zip as zip11_0_, user0_.email as email13_0_, user0_.first_name as first_n14_0_, user0_.last_name as last_na15_0_, user0_.role as role16_0_, user0_.tel as tel17_0_, user0_.facebook_id as faceboo18_0_, user0_.google_id as google_19_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-08 00:32:55.401 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-11-08 00:32:55.403 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-08 00:32:55.404 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-08 00:32:55.408 DEBUG 13028 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+JSON STRING: 
+{"id":3,"name":{"firstName":"??????","lastName":"??????????????"},"role":null,"address":null,"email":"??????@rivermouth.fi","tel":null,"company":{"id":null,"name":"Rivermouth Ltd","vatNumber":"???????","address":{"street":"Rautalammintie 3 C 710","zip":"00550","city":"Helsinki","country":"Finland"}},"clients":null,"notes":null,"googleId":null,"facebookId":null}
+2014-11-08 00:32:55.443 DEBUG 13028 --- [           main] org.hibernate.SQL                        : select count(*) as col_0_0_ from base_entity user0_ where user0_.dtype='User' and user0_.id=? and 1=1
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.032">
+    <error message="Request processing failed; nested exception is java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path &apos;http://localhost/users/4&apos;: {public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.UserController.getByEmail(java.lang.String), public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.BaseController.get(java.io.Serializable)}" type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path 'http://localhost/users/4': {public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.UserController.getByEmail(java.lang.String), public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.BaseController.get(java.io.Serializable)}
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:852)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:620)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Read(BaseControllerTest.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: java.lang.IllegalStateException: Ambiguous handler methods mapped for HTTP path 'http://localhost/users/4': {public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.UserController.getByEmail(java.lang.String), public fi.rivermouth.talous.model.Response fi.rivermouth.talous.controller.BaseController.get(java.io.Serializable)}
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:293)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:248)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:57)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:299)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1098)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.getHandler(TestDispatcherServlet.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:910)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:852)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:620)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Read(BaseControllerTest.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-11-08 00:32:55.508 DEBUG 13028 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city8_0_, user0_.country as country9_0_, user0_.street as street10_0_, user0_.zip as zip11_0_, user0_.email as email13_0_, user0_.first_name as first_n14_0_, user0_.last_name as last_na15_0_, user0_.role as role16_0_, user0_.tel as tel17_0_, user0_.facebook_id as faceboo18_0_, user0_.google_id as google_19_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-08 00:32:55.512 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-11-08 00:32:55.513 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-08 00:32:55.515 DEBUG 13028 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-08 00:32:55.523 DEBUG 13028 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+</system-out>
+  </testcase>
+</testsuite>
