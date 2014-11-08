@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import fi.rivermouth.talous.domain.UserNote;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.repository.UserRepository;
 
@@ -20,11 +21,6 @@ public class UserService extends BaseService<User, Long> {
 	@Override
 	public JpaRepository<User, Long> getRepository() {
 		return userRepository;
-	}
-	
-	@Override
-	public boolean isUnique(User user) {
-		return super.isUnique(user) && (userRepository.findByEmailIgnoreCase(user.getEmail()) == null);
 	}
 	
 }

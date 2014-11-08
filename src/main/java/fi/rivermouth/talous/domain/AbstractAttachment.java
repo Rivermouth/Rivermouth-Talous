@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-
-import org.hibernate.annotations.Type;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import fi.rivermouth.talous.model.Responsable;
 
@@ -15,11 +11,15 @@ import fi.rivermouth.talous.model.Responsable;
 public abstract class AbstractAttachment
 <PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable, // Parent
 ID extends Serializable> 
-extends BaseEntity<ID> implements Responsable {
+extends BaseEntity<ID> implements Responsable, AbstractAttachmentInterface<PARENT, PARENT_ID> {
 	
 	private String title;
-	@ManyToOne
-	private PARENT attachedTo;
+	
+	public AbstractAttachment() {}
+	
+	public AbstractAttachment(String title) {
+		this.title = title;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -27,14 +27,6 @@ extends BaseEntity<ID> implements Responsable {
 	
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	
-	public PARENT getAttachedTo() {
-		return attachedTo;
-	}
-	
-	public void setAttachedTo(PARENT attachedTo) {
-		this.attachedTo = attachedTo;
 	}
 
 	@Override

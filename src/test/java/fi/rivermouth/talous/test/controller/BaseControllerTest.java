@@ -2,7 +2,7 @@ package fi.rivermouth.talous.test.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
 
 import java.io.Serializable;
 
@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -44,12 +45,33 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		}
 	}
 	
-	private String apiPath(String url) {
+	protected String apiPath(String url) {
 		if (url == null) return getAPIPath();
 		return getAPIPath() + url;
 	}
-	private String apiPath() {
+	
+	protected String apiPath() {
 		return apiPath(null);
+	}
+	
+	protected MockHttpServletRequestBuilder getPut() {
+		return put(apiPath());
+	}
+	
+	protected MockHttpServletRequestBuilder getGet(T entity) {
+		return get(apiPath("/{id}"), entity.getId());
+	}
+	
+	protected MockHttpServletRequestBuilder getList() {
+		return get(apiPath());
+	}
+	
+	protected MockHttpServletRequestBuilder getPost(T entity) {
+		return post(apiPath("/{id}"), entity.getId());
+	}
+	
+	protected MockHttpServletRequestBuilder getDelete(T entity) {
+		return delete(apiPath("/{id}"), entity.getId());
 	}
 	
 	@Before
@@ -57,12 +79,14 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac)
 				//.alwaysExpect(content().contentType("application/json;charset=UTF-8"))
 				.build();
+		
+		getService().deleteAll();
 	}
 	
 	@Test
 	public void testCRUD_Create() throws Exception {
 		mockMvc.perform(
-				put(apiPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
+				getPut().content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.data.id").exists());
 	}
@@ -72,7 +96,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		T entity = getService().create(getRandomEntity());
 		
 		mockMvc.perform(
-				get(apiPath("/{id}"), entity.getId()))
+				getGet(entity))
 			.andExpect(status().isOk());
 	}
 	
@@ -83,7 +107,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		getService().create(getTotallyRandomEntity());
 		
 		mockMvc.perform(
-				get(apiPath()))
+				getList())
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data", hasSize(3)));
 	}
@@ -95,16 +119,10 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		T entity = getRandomEntity();
 		entity.setId(oldEntity.getId());
 
-		// Test update
 		mockMvc.perform(
-				post(apiPath("/{id}"), entity.getId()).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
+				getPost(entity).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.data.id").exists());
-
-		// Test do not allow create non-unique entity
-		mockMvc.perform(
-				put(apiPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isConflict());
+			.andExpect(jsonPath("$.data.id", hasToString(entity.getId().toString())));
 	}
 	
 	@Test
@@ -112,7 +130,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		T entity = getService().create(getRandomEntity());
 		
 		mockMvc.perform(
-				delete(apiPath("/{id}"), entity.getId()))
+				getDelete(entity))
 				.andExpect(status().isOk());
 	}
 

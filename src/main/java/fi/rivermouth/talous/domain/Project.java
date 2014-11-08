@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import fi.rivermouth.talous.model.Responsable;
 
 @Entity
@@ -19,7 +17,7 @@ public class Project extends BaseEntity<Long> implements Responsable {
 	private Client client;
 	
 	@OneToMany // has notes
-	private List<Note<Project, Long>> notes;
+	private List<ProjectNote> notes;
 
 	public String getName() {
 		return name;
@@ -37,11 +35,11 @@ public class Project extends BaseEntity<Long> implements Responsable {
 		this.client = client;
 	}
 
-	public List<Note<Project, Long>> getNotes() {
+	public List<ProjectNote> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note<Project, Long>> notes) {
+	public void setNotes(List<ProjectNote> notes) {
 		this.notes = notes;
 	}
 

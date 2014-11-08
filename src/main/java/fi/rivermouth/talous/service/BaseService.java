@@ -3,8 +3,6 @@ package fi.rivermouth.talous.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Entity;
-
 import org.springframework.stereotype.Service;
 
 import fi.rivermouth.talous.domain.BaseEntity;
@@ -50,30 +48,24 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	
 	public <S extends T> boolean exists(S entity) {
 		if (entity == null || entity.getId() == null) return false;
-		return getRepository().exists((ID) entity.getId());
+		return getRepository().exists(entity.getId());
 	}
 	
 	/**
-	 * Create entities that are unique
+	 * Create entities
 	 * @param entities
-	 * @return {@code Iterable<S>} of unique entities
+	 * @return {@code Iterable<S>}
 	 */
 	public <S extends T> Iterable<S> create(Iterable<S> entities) {
-		while (entities.iterator().hasNext()) {
-			if (!isUnique(entities.iterator().next())) {
-				entities.iterator().remove();
-			}
-		}
 		return getRepository().save(entities);
 	}
 	
 	/**
-	 * Create {@code entity} only if it is unique {@code isUnique(entity)}
+	 * Create {@code entity}
 	 * @param entity
-	 * @return {@code entity} or null if not unique
+	 * @return {@code entity}
 	 */
 	public <S extends T> S create(S entity) {
-		if (!isUnique(entity)) return null;
 		return getRepository().save(entity);
 	}
 	
@@ -117,10 +109,6 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	 */
 	public <S extends T> S save(S entity) {
 		return getRepository().save(entity);
-	}
-	
-	public <S extends T> boolean isUnique(S entity) {
-		return !exists(entity);
 	}
 	
 }

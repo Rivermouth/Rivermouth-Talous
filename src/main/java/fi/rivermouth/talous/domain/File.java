@@ -5,8 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
-@Entity // owned by note
-public class File extends AbstractAttachment<Note<File, Long>, Long, Long> {
+import org.springframework.stereotype.Component;
+
+//@Entity // owned by note
+@Component
+public abstract class File {} /*extends AbstractAttachment<AbstractNote<File, Long>, Long, Long> {
+	
+	private AbstractNote<File, Long> attachedTo;
 
 	private String mimeType;
 	private Long size;
@@ -43,5 +48,16 @@ public class File extends AbstractAttachment<Note<File, Long>, Long, Long> {
 	public String getKind() {
 		return "attachment:file";
 	}
+
+	@Override
+	public AbstractNote<File, Long> getAttachedTo() {
+		return attachedTo;
+	}
+
+	@Override
+	public void setAttachedTo(AbstractNote<File, Long> attachedTo) {
+		this.attachedTo = attachedTo;
+	}
 	
 }
+*/

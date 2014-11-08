@@ -7,18 +7,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import fi.rivermouth.talous.model.Address;
+
 @Entity
-public class Client extends AbstractCompany<Long> implements ChildEntityInterface<User, Long> {
+public class Client extends AbstractCompany<Long> {
 	
 	@ManyToOne // owned by user
-	@NotNull
 	private User owner;
 	
 	@OneToMany // has projects
 	private List<Project> projects;
 	
 	@OneToMany // has notes
-	private List<Note<Client, Long>> notes;
+	private List<ClientNote> notes;
+	
+	public Client() {
+		super();
+	}
+	
+	public Client(String name) {
+		super(name);
+	}
+	
+	public Client(String name, String vatNumber, Address address) {
+		super(name, vatNumber, address);
+	}
 	
 	public User getOwner() {
 		return owner;
@@ -36,27 +49,17 @@ public class Client extends AbstractCompany<Long> implements ChildEntityInterfac
 		this.projects = projects;
 	}
 
-	public List<Note<Client, Long>> getNotes() {
+	public List<ClientNote> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note<Client, Long>> notes) {
+	public void setNotes(List<ClientNote> notes) {
 		this.notes = notes;
 	}
 
 	@Override
 	public String getKind() {
 		return "client";
-	}
-
-	@Override
-	public User getParent() {
-		return getOwner();
-	}
-
-	@Override
-	public void setParent(User parent) {
-		setOwner(parent);
 	}
 	
 }

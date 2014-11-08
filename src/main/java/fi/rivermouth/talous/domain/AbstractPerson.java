@@ -5,10 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.model.Responsable;

@@ -13,12 +13,15 @@ import fi.rivermouth.talous.model.Responsable;
 @Entity
 public abstract class BaseEntity<ID extends Serializable> extends AbstractPersistable<ID> implements Responsable {
 	
+	public static final String path = "";
+
 	@Override
 	@JsonIgnore
 	public boolean isNew() {
 		return super.isNew();
 	}
 	
+	@Override
 	public void setId(ID id) {
 		super.setId(id);
 	}

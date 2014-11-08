@@ -2,17 +2,16 @@ package fi.rivermouth.talous.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import fi.rivermouth.talous.model.Address;
-import fi.rivermouth.talous.model.Responsable;
 
 @Entity
 public class User extends AbstractPerson<Long> {
@@ -25,9 +24,11 @@ public class User extends AbstractPerson<Long> {
 	private List<Client> clients;
 	
 	@OneToMany // has notes
-	private List<Note<User, Long>> notes;
+	private List<UserNote> notes;
 
+	@Column(unique = true)
 	private String googleId;
+	@Column(unique = true)
 	private String facebookId;
 	
 	public User() {
@@ -56,11 +57,11 @@ public class User extends AbstractPerson<Long> {
 		this.clients = clients;
 	}
 
-	public List<Note<User, Long>> getNotes() {
+	public List<UserNote> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note<User, Long>> notes) {
+	public void setNotes(List<UserNote> notes) {
 		this.notes = notes;
 	}
 	
@@ -82,6 +83,7 @@ public class User extends AbstractPerson<Long> {
 	
 	@Override
 	@NotBlank
+	@Column(unique = true)
 	public String getEmail() {
 		return super.getEmail();
 	}

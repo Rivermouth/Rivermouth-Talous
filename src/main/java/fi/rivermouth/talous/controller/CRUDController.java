@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fi.rivermouth.talous.domain.BaseEntity;
 import fi.rivermouth.talous.domain.User;
-import fi.rivermouth.talous.model.Responsable;
 import fi.rivermouth.talous.model.Response;
-import fi.rivermouth.talous.model.Response.Message;
 
 @RestController
 public abstract class CRUDController<T extends BaseEntity<ID>, ID extends Serializable> implements CRUDControllerInterface<T, ID> {
@@ -98,6 +95,10 @@ public abstract class CRUDController<T extends BaseEntity<ID>, ID extends Serial
 		}
 		
 	}
+	
+	protected Response listResponse(List<T> entities) {
+		return new Response(HttpStatus.OK, new User().getKind(), entities);
+	}
 
 	/**
 	 * PUT: /
@@ -166,7 +167,7 @@ public abstract class CRUDController<T extends BaseEntity<ID>, ID extends Serial
 	@RequestMapping(method = RequestMethod.GET)
 	public Response list() {
 		List<T> entities = getService().list();
-		return new Response(HttpStatus.OK, new User().getKind(), entities);
+		return listResponse(entities);
 	}
 	
 	/**

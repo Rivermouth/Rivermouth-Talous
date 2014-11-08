@@ -46,16 +46,15 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		userService.deleteAll();
 	}
 	
 	@Test
 	public void testGetUserByEmail() throws Exception {
-		userService.create(getRandomEntity());
+		User user = userService.create(getRandomEntity());
 		
-		mockMvc.perform(get("/users/findBy/email/{email}", email))
+		mockMvc.perform(get("/users/findBy/email/{email}", user.getEmail()))
 			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.data.email", is(email)));
+			.andExpect(jsonPath("$.data.email", is(user.getEmail())));
 	}
 
 	@Override

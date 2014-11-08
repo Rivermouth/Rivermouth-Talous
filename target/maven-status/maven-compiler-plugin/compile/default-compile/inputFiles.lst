@@ -6,6 +6,7 @@ C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\model\Address.j
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\Application.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\repository\NullBehavior.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\service\UserService.java
+C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\controller\ChildCRUDControllerInterface.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\controller\UserController.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\Note.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\service\ClientService.java
@@ -21,8 +22,11 @@ C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\File.jav
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\AbstractPerson.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\repository\ProjectRepository.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\Company.java
+C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\controller\ChildCRUDController.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\controller\CRUDController.java
+C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\ChildEntityInterface.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\model\AppInfo.java
+C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\BaseChildEntity.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\Client.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\domain\AbstractCompany.java
 C:\Users\asus\dev\apps\Talous\src\main\java\fi\rivermouth\talous\model\ResponseBody.java
