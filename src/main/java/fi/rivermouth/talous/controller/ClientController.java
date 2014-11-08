@@ -22,7 +22,7 @@ import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping("/clients")
-public class ClientController extends BaseController<Client, Long> {
+public class ClientController extends CRUDController<Client, Long> {
 	
 	private User user;
 	
@@ -33,7 +33,7 @@ public class ClientController extends BaseController<Client, Long> {
 	ClientService clientService;
 	
 	@Autowired
-	UserService<User, Long> userService;
+	UserService userService;
 	
 	private Response userFoundConditional(Long userId, Response response) {
 		user = userService.get(userId);
@@ -42,28 +42,33 @@ public class ClientController extends BaseController<Client, Long> {
 				ifTrue(user == null, new Response(HttpStatus.NO_CONTENT, 
 						new ErrorMessage(String.format(USER_NOT_FOUND_WITH_ID_S, userId)))));
 	}
+
+	@RequestMapping("/{userId}")
+	public class ByOwner {
 		
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public Response list(@PathVariable Long userId) {
-		Response response = userFoundConditional(userId, null);
-		if (response != null) return response;
+		@RequestMapping(method = RequestMethod.GET)
+		public Response list(@PathVariable Long userId) {
+			Response response = userFoundConditional(userId, null);
+			if (response != null) return response;
+			
+			return new Response(HttpStatus.OK, new Client().getKind(), clientService.getByOwner(user));
+		}
 		
-		List<Client> clients = clientService.getByOwner(user);
-		return conditionalResponse(
-				new Response(HttpStatus.OK, new Client().getKind(), clients),
-				ifListEmptyNotFoundCondition(clients, new Client().getKind()));
-	}
-	
-	@RequestMapping(value = "/{userId}", method = RequestMethod.POST)
-	public Response create(@PathVariable Long userId, @RequestBody Client client) {
-		return userFoundConditional(userId, conditionalResponse(
-				new Response(HttpStatus.CREATED, clientService.save(client)),
-				ifNullAlreadyExistsCondition(client.getKind())));
+		@RequestMapping(method = RequestMethod.POST)
+		public Response create(@PathVariable Long userId, @RequestBody Client client) {
+			Response response = userFoundConditional(userId, null);
+			if (response != null) return response;
+			
+			return userFoundConditional(userId, conditionalResponse(
+					new Response(HttpStatus.CREATED, clientService.save(client)),
+					ifNullAlreadyExistsCondition(client.getKind())));
+		}
+		
 	}
 
 	@Override
-	public UserService getService() {
-		return userService;
+	public ClientService getService() {
+		return clientService;
 	}
 	
 }

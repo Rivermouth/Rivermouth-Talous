@@ -8,17 +8,17 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Client extends AbstractCompany {
+public class Client extends AbstractCompany<Long> implements ChildEntityInterface<User, Long> {
 	
-	@ManyToOne
+	@ManyToOne // owned by user
 	@NotNull
 	private User owner;
 	
-	@OneToMany
+	@OneToMany // has projects
 	private List<Project> projects;
 	
-	@OneToMany
-	private List<Note> notes;
+	@OneToMany // has notes
+	private List<Note<Client, Long>> notes;
 	
 	public User getOwner() {
 		return owner;
@@ -36,17 +36,27 @@ public class Client extends AbstractCompany {
 		this.projects = projects;
 	}
 
-	public List<Note> getNotes() {
+	public List<Note<Client, Long>> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note> notes) {
+	public void setNotes(List<Note<Client, Long>> notes) {
 		this.notes = notes;
 	}
 
 	@Override
 	public String getKind() {
 		return "client";
+	}
+
+	@Override
+	public User getParent() {
+		return getOwner();
+	}
+
+	@Override
+	public void setParent(User parent) {
+		setOwner(parent);
 	}
 	
 }

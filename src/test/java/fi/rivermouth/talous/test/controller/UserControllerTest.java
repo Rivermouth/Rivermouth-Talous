@@ -29,6 +29,13 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 		
 		return user;
 	}
+
+	@Override
+	public User getTotallyRandomEntity() {
+		User user = getRandomEntity();
+		user.setEmail(RandomStringUtils.random(6) + "@rivermouth.fi");
+		return user;
+	}
 	
 	@Override
 	public String getAPIPath() {
@@ -44,9 +51,9 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	
 	@Test
 	public void testGetUserByEmail() throws Exception {
-		userService.save(getRandomEntity());
+		userService.create(getRandomEntity());
 		
-		mockMvc.perform(get("/users/{email}", email))
+		mockMvc.perform(get("/users/findBy/email/{email}", email))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data.email", is(email)));
 	}

@@ -11,15 +11,15 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import fi.rivermouth.talous.model.Responsable;
 
 @Entity
-public class Project extends BaseEntity implements Responsable {
+public class Project extends BaseEntity<Long> implements Responsable {
 
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne // owned by client
 	private Client client;
 	
-	@OneToMany
-	private List<Note> notes;
+	@OneToMany // has notes
+	private List<Note<Project, Long>> notes;
 
 	public String getName() {
 		return name;
@@ -37,11 +37,11 @@ public class Project extends BaseEntity implements Responsable {
 		this.client = client;
 	}
 
-	public List<Note> getNotes() {
+	public List<Note<Project, Long>> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note> notes) {
+	public void setNotes(List<Note<Project, Long>> notes) {
 		this.notes = notes;
 	}
 

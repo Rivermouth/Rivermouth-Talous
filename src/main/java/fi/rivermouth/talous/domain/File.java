@@ -5,10 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
-@Entity
-public class File extends AbstractAttachment {
+@Entity // owned by note
+public class File extends AbstractAttachment<Note<File, Long>, Long, Long> {
 
 	private String mimeType;
 	private Long size;

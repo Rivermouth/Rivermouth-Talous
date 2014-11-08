@@ -3,12 +3,14 @@ package fi.rivermouth.talous.service;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.springframework.stereotype.Service;
 
 import fi.rivermouth.talous.domain.BaseEntity;
 
 @Service
-public abstract class BaseService<T extends BaseEntity, ID extends Serializable> implements BaseServiceInterface<T, ID> {
+public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable> implements BaseServiceInterface<T, ID> {
 
 	public long count() {
 		return getRepository().count();
@@ -22,8 +24,10 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
 		return getRepository().findAll();
 	}
 
-	public void delete(ID id) {
+	public boolean delete(ID id) {
+		if (!exists(id)) return false;
 		getRepository().delete(id);
+		return true;
 	}
 	
 	public void delete(Iterable<? extends T> entities) {
@@ -44,20 +48,19 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
 		return getRepository().exists(id);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public <S extends T> boolean exists(S entity) {
 		if (entity == null || entity.getId() == null) return false;
 		return getRepository().exists((ID) entity.getId());
 	}
 	
 	/**
-	 * Create entities that does not already exists @see exists()
+	 * Create entities that are unique
 	 * @param entities
-	 * @return
+	 * @return {@code Iterable<S>} of unique entities
 	 */
 	public <S extends T> Iterable<S> create(Iterable<S> entities) {
 		while (entities.iterator().hasNext()) {
-			if (exists(entities.iterator().next())) {
+			if (!isUnique(entities.iterator().next())) {
 				entities.iterator().remove();
 			}
 		}
@@ -65,19 +68,19 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
 	}
 	
 	/**
-	 * Create entity only if it does not already exists @see exists()
+	 * Create {@code entity} only if it is unique {@code isUnique(entity)}
 	 * @param entity
-	 * @return
+	 * @return {@code entity} or null if not unique
 	 */
 	public <S extends T> S create(S entity) {
-		if (exists(entity)) return null;
+		if (!isUnique(entity)) return null;
 		return getRepository().save(entity);
 	}
 	
 	/**
-	 * Update entities that already exists @see exists()
-	 * @param entities
-	 * @return Iterable<S>
+	 * Update entities that already exists {@code exists(entity)}
+	 * @param {@code Iterable<S>}
+	 * @return {@code Iterable<S>}
 	 */
 	public <S extends T> Iterable<S> update(Iterable<S> entities) {
 		while (entities.iterator().hasNext()) {
@@ -89,9 +92,9 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
 	}
 
 	/**
-	 * Update entity only if entity already exists @see exists()
-	 * @param entity
-	 * @return <S> or null if entity does not exists
+	 * Update {@code entity} only if entity already exists {@code exists(entity)}
+	 * @param {@code S entity}
+	 * @return {@code S entity} or null if entity does not exists
 	 */
 	public <S extends T> S update(S entity) {
 		if (!exists(entity)) return null;
@@ -99,26 +102,20 @@ public abstract class BaseService<T extends BaseEntity, ID extends Serializable>
 	}
 	
 	/**
-	 * Update or create entities that are unique @see isUnique()
+	 * Update or create entities
 	 * @param entities
-	 * @return
+	 * @return {@code Iterable<S>}
 	 */
 	public <S extends T> Iterable<S> save(Iterable<S> entities) {
-		while (entities.iterator().hasNext()) {
-			if (!isUnique(entities.iterator().next())) {
-				entities.iterator().remove();
-			}
-		}
 		return getRepository().save(entities);
 	}
 
 	/**
-	 * Update or create entity if unique @see isUnique()
+	 * Update or create entity
 	 * @param entity
-	 * @return <S> or null if not unique
+	 * @return {@code S entity}
 	 */
 	public <S extends T> S save(S entity) {
-		if (!isUnique(entity)) return null;
 		return getRepository().save(entity);
 	}
 	

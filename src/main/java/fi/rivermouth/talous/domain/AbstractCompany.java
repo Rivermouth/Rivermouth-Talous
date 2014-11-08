@@ -1,5 +1,7 @@
 package fi.rivermouth.talous.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.model.Responsable;
 
 @Entity
-public abstract class AbstractCompany extends BaseEntity implements Responsable {
+public abstract class AbstractCompany<ID extends Serializable> extends BaseEntity<ID> implements Responsable {
 
 	private String name;
 	private String vatNumber;

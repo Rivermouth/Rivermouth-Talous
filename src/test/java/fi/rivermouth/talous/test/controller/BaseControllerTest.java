@@ -2,6 +2,7 @@ package fi.rivermouth.talous.test.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.hamcrest.Matchers.hasSize;
 
 import java.io.Serializable;
 
@@ -25,7 +26,7 @@ import fi.rivermouth.talous.domain.BaseEntity;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
-public abstract class BaseControllerTest<T extends BaseEntity, ID extends Serializable> implements BaseControllerTestInterface<T, ID> {
+public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Serializable> implements BaseControllerTestInterface<T, ID> {
 	
 	@Autowired
     private WebApplicationContext wac;
@@ -43,6 +44,14 @@ public abstract class BaseControllerTest<T extends BaseEntity, ID extends Serial
 		}
 	}
 	
+	private String apiPath(String url) {
+		if (url == null) return getAPIPath();
+		return getAPIPath() + url;
+	}
+	private String apiPath() {
+		return apiPath(null);
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac)
@@ -53,7 +62,7 @@ public abstract class BaseControllerTest<T extends BaseEntity, ID extends Serial
 	@Test
 	public void testCRUD_Create() throws Exception {
 		mockMvc.perform(
-				post(getAPIPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
+				put(apiPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.data.id").exists());
 	}
@@ -63,25 +72,48 @@ public abstract class BaseControllerTest<T extends BaseEntity, ID extends Serial
 		T entity = getService().create(getRandomEntity());
 		
 		mockMvc.perform(
-				get(getAPIPath() + "/{id}", entity.getId()))
+				get(apiPath("/{id}"), entity.getId()))
 			.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void testCRUD_CreateMultiply_And_List() throws Exception {
+		getService().create(getTotallyRandomEntity());
+		getService().create(getTotallyRandomEntity());
+		getService().create(getTotallyRandomEntity());
+		
+		mockMvc.perform(
+				get(apiPath()))
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.data", hasSize(3)));
 	}
 	
 	@Test
 	public void testCRUD_Update() throws Exception {
 		T oldEntity = getService().create(getRandomEntity());
-		T entity = getRandomEntity();
 		
+		T entity = getRandomEntity();
 		entity.setId(oldEntity.getId());
 
+		// Test update
 		mockMvc.perform(
-				post(getAPIPath()).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
+				post(apiPath("/{id}"), entity.getId()).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data.id").exists());
 
+		// Test do not allow create non-unique entity
 		mockMvc.perform(
-				post(getAPIPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
+				put(apiPath()).content(asJsonString(getRandomEntity())).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isConflict());
+	}
+	
+	@Test
+	public void testCRUD_Delete() throws Exception {
+		T entity = getService().create(getRandomEntity());
+		
+		mockMvc.perform(
+				delete(apiPath("/{id}"), entity.getId()))
+				.andExpect(status().isOk());
 	}
 
 }

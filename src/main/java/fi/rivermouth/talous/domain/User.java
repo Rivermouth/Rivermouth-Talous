@@ -15,17 +15,17 @@ import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.model.Responsable;
 
 @Entity
-public class User extends AbstractPerson {
+public class User extends AbstractPerson<Long> {
 	
 	@Embedded
 	@NotNull
 	private Company company;
 	
-	@OneToMany
+	@OneToMany // has clients
 	private List<Client> clients;
 	
-	@OneToMany
-	private List<Note> notes;
+	@OneToMany // has notes
+	private List<Note<User, Long>> notes;
 
 	private String googleId;
 	private String facebookId;
@@ -56,11 +56,11 @@ public class User extends AbstractPerson {
 		this.clients = clients;
 	}
 
-	public List<Note> getNotes() {
+	public List<Note<User, Long>> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Note> notes) {
+	public void setNotes(List<Note<User, Long>> notes) {
 		this.notes = notes;
 	}
 	
@@ -92,7 +92,7 @@ public class User extends AbstractPerson {
 	}
 	
 	@Embeddable
-	public static class Company extends AbstractCompany {
+	public static class Company extends AbstractCompany<Long> {
 		public Company() {
 			super();
 		}
