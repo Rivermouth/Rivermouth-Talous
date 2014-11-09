@@ -19,5 +19,5 @@ T extends BaseEntity<ID>, ID extends Serializable> {
 	 */
 	public PARENT getTotallyRandomParent();
 	public BaseService<PARENT, PARENT_ID> getParentService();
-	public void setEntityParent(T entity, PARENT parent);
+//	public void setEntityParent(T entity, PARENT parent);
 }

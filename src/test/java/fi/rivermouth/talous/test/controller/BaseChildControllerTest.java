@@ -35,11 +35,12 @@ extends BaseControllerTest<T, ID> implements BaseChildControllerTestInterface<PA
 //		return apiPath(null);
 //	}
 	
-	@Before
-	public void setUp2() throws Exception {
+	@Override
+	public void setUp() throws Exception {
 		getParentService().deleteAll();
 		parent = getRandomParent();
 		getParentService().save(parent);
+		super.setUp();
 	}
 	
 	@Override
@@ -49,7 +50,7 @@ extends BaseControllerTest<T, ID> implements BaseChildControllerTestInterface<PA
 
 	@Override
 	protected MockHttpServletRequestBuilder getGet(T entity) {
-		setEntityParent(entity, parent);
+//		setEntityParent(entity, parent);
 		return get(apiPath("/{id}"), parent.getId(), entity.getId());
 	}
 	
@@ -60,13 +61,13 @@ extends BaseControllerTest<T, ID> implements BaseChildControllerTestInterface<PA
 
 	@Override
 	protected MockHttpServletRequestBuilder getPost(T entity) {
-		setEntityParent(entity, parent);
+//		setEntityParent(entity, parent);
 		return post(apiPath("/{id}"), parent.getId(), entity.getId());
 	}
 	
 	@Override
 	protected MockHttpServletRequestBuilder getDelete(T entity) {
-		setEntityParent(entity, parent);
+//		setEntityParent(entity, parent);
 		return delete(apiPath("/{id}"), parent.getId(), entity.getId());
 	}
 

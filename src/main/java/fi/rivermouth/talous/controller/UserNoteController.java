@@ -14,7 +14,7 @@ import fi.rivermouth.talous.service.UserNoteService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
-@RequestMapping("/users{parentId}/notes")
+@RequestMapping("/users/{parentId}/notes")
 public class UserNoteController extends ChildCRUDController<User, Long, UserNote, Long> {
 
 	@Autowired
@@ -40,12 +40,17 @@ public class UserNoteController extends ChildCRUDController<User, Long, UserNote
 
 	@Override
 	public List<UserNote> listByParentId(Long parentId)  {
-		return noteService.getByParentId(parentId);
+		return userService.get(parentId).getNotes();
 	}
 
 	@Override
 	public BaseService<UserNote, Long> getService() {
 		return noteService;
+	}
+
+	@Override
+	public String getEntityKind() {
+		return "note";
 	}
 
 }

@@ -20,5 +20,4 @@ import fi.rivermouth.talous.domain.AbstractNote;
 @Repository
 public abstract interface AbstractNoteRepository<T extends AbstractNote<V, V_ID>, V extends BaseEntity<V_ID>, V_ID extends Serializable> 
 extends JpaRepository<T, Long> {
-	public List<T> findByParentId(V_ID parentId);
 }

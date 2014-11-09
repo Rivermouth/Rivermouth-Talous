@@ -48,6 +48,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	private void joinEntityAndParent(PARENT_ID parentId, T entity) {
 		PARENT parent = getParentService().get(parentId);
 		addEntityToParent(entity, parent);
+		getParentService().update(parent);
 		getParentService().getRepository().flush();
 	}
 	

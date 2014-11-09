@@ -33,10 +33,10 @@ public class UserNoteControllerTest extends BaseChildControllerTest<User, Long, 
 		return userService;
 	}
 
-	@Override
-	public void setEntityParent(UserNote entity, User parent) {
-		entity.setAttachedTo(parent);
-	}
+//	@Override
+//	public void setEntityParent(UserNote entity, User parent) {
+//		entity.setParentId(parent.getId());
+//	}
 
 	@Override
 	public UserNote getRandomEntity() {
@@ -54,7 +54,7 @@ public class UserNoteControllerTest extends BaseChildControllerTest<User, Long, 
 
 	@Override
 	public String getAPIPath() {
-		return "/notes";
+		return "/users/{parentId}/notes";
 	}
 
 	@Override

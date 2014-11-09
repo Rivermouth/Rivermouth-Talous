@@ -2,7 +2,9 @@ package fi.rivermouth.talous.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -14,7 +16,7 @@ public class Project extends BaseEntity<Long> implements Responsable {
 
 	private String name;
 	
-	@OneToMany // has notes
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has notes
 	private List<ProjectNote> notes;
 
 	public String getName() {

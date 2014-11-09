@@ -29,7 +29,10 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	}
 	
 	public void delete(Iterable<? extends T> entities) {
-		getRepository().delete(entities);
+//		getRepository().delete(entities);
+		for(T entity : entities) {
+			delete(entity);
+		}
 	}
 	
 	public boolean delete(T entity) {

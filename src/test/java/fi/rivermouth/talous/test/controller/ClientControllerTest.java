@@ -61,9 +61,9 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 		return clientService;
 	}
 
-	@Override
-	public void setEntityParent(Client entity, User parent) {
-		entity.setOwner(parent);
-	}
+//	@Override
+//	public void setEntityParent(Client entity, User parent) {
+//		entity.setParentId(parent.getId());
+//	}
 
 }

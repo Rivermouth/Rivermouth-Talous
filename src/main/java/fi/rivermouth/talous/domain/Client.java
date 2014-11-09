@@ -2,7 +2,10 @@ package fi.rivermouth.talous.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -11,13 +14,11 @@ import fi.rivermouth.talous.model.Address;
 
 @Entity
 public class Client extends AbstractCompany<Long> {
-
-	private Long parentId;
 	
-	@OneToMany // has projects
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has projects
 	private List<Project> projects;
 	
-	@OneToMany // has notes
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // has notes
 	private List<ClientNote> notes;
 	
 	public Client() {
@@ -48,14 +49,6 @@ public class Client extends AbstractCompany<Long> {
 		this.notes = notes;
 	}
 	
-	public Long getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
-
 	@Override
 	public String getKind() {
 		return "client";

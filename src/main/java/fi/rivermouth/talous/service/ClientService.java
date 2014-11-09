@@ -16,10 +16,6 @@ public class ClientService extends BaseService<Client, Long> {
 	
 	@Autowired
 	ClientRepository clientRepository;
-	
-	public List<Client> getByOwnerId(Long parentId) {
-		return clientRepository.findByParentId(parentId);
-	}
 
 	@Override
 	public JpaRepository<Client, Long> getRepository() {

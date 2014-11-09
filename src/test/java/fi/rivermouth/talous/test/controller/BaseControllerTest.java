@@ -74,6 +74,13 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 		return delete(apiPath("/{id}"), entity.getId());
 	}
 	
+	protected void createTotallyRandomEntity() throws Exception {
+		mockMvc.perform(
+				getPut().content(asJsonString(getTotallyRandomEntity())).contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isCreated())
+			.andExpect(jsonPath("$.data.id").exists());
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac)
@@ -102,9 +109,9 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	@Test
 	public void testCRUD_CreateMultiply_And_List() throws Exception {
-		getService().create(getTotallyRandomEntity());
-		getService().create(getTotallyRandomEntity());
-		getService().create(getTotallyRandomEntity());
+		createTotallyRandomEntity();
+		createTotallyRandomEntity();
+		createTotallyRandomEntity();
 		
 		mockMvc.perform(
 				getList())
@@ -114,10 +121,8 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	@Test
 	public void testCRUD_Update() throws Exception {
-		T oldEntity = getService().create(getRandomEntity());
-		
-		T entity = getRandomEntity();
-		entity.setId(oldEntity.getId());
+		createTotallyRandomEntity();
+		T entity = getService().list().get(0);
 
 		mockMvc.perform(
 				getPost(entity).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
@@ -127,7 +132,8 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	@Test
 	public void testCRUD_Delete() throws Exception {
-		T entity = getService().create(getRandomEntity());
+		createTotallyRandomEntity();
+		T entity = getService().list().get(0);
 		
 		mockMvc.perform(
 				getDelete(entity))

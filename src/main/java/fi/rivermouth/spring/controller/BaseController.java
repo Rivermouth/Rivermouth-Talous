@@ -49,11 +49,11 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	}
 	
 	protected Response notFoundWithIdResponse(ID id) {
-		return notFoundWithIdResponse("entity", id);
+		return notFoundWithIdResponse(getEntityKind(), id);
 	}
 	
 	protected Response notFoundWithIdResponse(T entity) {
-		return notFoundWithIdResponse(entity.getKind(), entity.getId());
+		return notFoundWithIdResponse(getEntityKind(), entity.getId());
 	}
 	
 	protected Condition ifNullAlreadyExistsCondition(String kind) {
@@ -97,7 +97,7 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	}
 	
 	protected Response listResponse(List<T> entities) {
-		return new Response(HttpStatus.OK, new User().getKind(), entities);
+		return new Response(HttpStatus.OK, getEntityKind(), entities);
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	public Response create(T entity) {
 		return conditionalResponse(
 				new Response(HttpStatus.CREATED, getService().create(entity)), 
-				ifNullAlreadyExistsCondition(entity.getKind()));
+				ifNullAlreadyExistsCondition(getEntityKind()));
 	}
 	
 	/**
@@ -178,7 +178,7 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	public Response delete(ID id) {
 		boolean isDeleted = getService().delete(id);
 		return conditionalResponse(
-				new Response(HttpStatus.OK, new Response.Message(S_WITH_ID_S_DELETED, "entity", id)), 
+				new Response(HttpStatus.OK, new Response.Message(S_WITH_ID_S_DELETED, getEntityKind(), id)), 
 				ifTrue(!isDeleted, notFoundWithIdResponse(id)));
 	}
 	

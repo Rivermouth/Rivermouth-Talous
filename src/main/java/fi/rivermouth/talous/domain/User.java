@@ -2,15 +2,17 @@ package fi.rivermouth.talous.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.context.annotation.Lazy;
 
 import fi.rivermouth.talous.model.Address;
 
@@ -21,12 +23,10 @@ public class User extends AbstractPerson<Long> {
 	@NotNull
 	private Company company;
 	
-	@OneToMany // has clients
-	@JoinColumn(name = "parentId")
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has clients
 	private List<Client> clients;
 	
-	@OneToMany // has notes
-	@JoinColumn(name = "parentId")
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has notes
 	private List<UserNote> notes;
 
 	@Column(unique = true)

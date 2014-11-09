@@ -21,9 +21,5 @@ public class UserNoteService extends BaseService<UserNote, Long> {
 	public UserNoteRepository getRepository() {
 		return noteRepository;
 	}
-	
-	public List<UserNote> getByParentId(Long parentId) {
-		return noteRepository.findByParentId(parentId);
-	}
 
 }

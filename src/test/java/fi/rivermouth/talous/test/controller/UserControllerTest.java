@@ -17,14 +17,14 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	@Autowired
 	UserService userService;
 	
-	private String email = RandomStringUtils.random(6) + "@rivermouth.fi";
+	private String email = RandomStringUtils.random(6).toString() + "@rivermouth.fi";
 	
 	@Override
 	public User getRandomEntity() {
 		User user = new User();
-		user.setName(new User.Name(RandomStringUtils.random(6), RandomStringUtils.random(14)));
+		user.setName(new User.Name(RandomStringUtils.random(6).toString(), RandomStringUtils.random(14).toString()));
 		user.setEmail(email);
-		user.setCompany(new User.Company("Rivermouth Ltd", RandomStringUtils.random(7),
+		user.setCompany(new User.Company("Rivermouth Ltd", RandomStringUtils.random(7).toString(),
 				new Address("Rautalammintie 3 C 710", "00550", "Helsinki", "Finland")));
 		
 		return user;
@@ -33,7 +33,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	@Override
 	public User getTotallyRandomEntity() {
 		User user = getRandomEntity();
-		user.setEmail(RandomStringUtils.random(6) + "@rivermouth.fi");
+		user.setEmail(RandomStringUtils.random(6).toString() + "@rivermouth.fi");
 		return user;
 	}
 	

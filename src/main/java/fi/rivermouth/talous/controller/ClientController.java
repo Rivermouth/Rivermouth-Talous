@@ -35,7 +35,7 @@ public class ClientController extends ChildCRUDController<User, Long, Client, Lo
 
 	@Override
 	public List<Client> listByParentId(Long parentId) {
-		return clientService.getByOwnerId(parentId);
+		return userService.get(parentId).getClients();
 	}
 
 	@Override
@@ -46,6 +46,11 @@ public class ClientController extends ChildCRUDController<User, Long, Client, Lo
 	@Override
 	public void removeEntityFromParent(Client entity, User parent) {
 		parent.getClients().remove(entity);
+	}
+
+	@Override
+	public String getEntityKind() {
+		return "client";
 	}
 	
 }

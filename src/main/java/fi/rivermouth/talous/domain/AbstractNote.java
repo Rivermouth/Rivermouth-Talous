@@ -16,7 +16,6 @@ import fi.rivermouth.spring.entity.BaseEntity;
 public abstract class AbstractNote<PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable> 
 extends AbstractAttachment<PARENT, PARENT_ID, Long> {
 
-	private PARENT_ID parentId;
 	private String content;
 	
 //	@OneToMany
@@ -50,14 +49,6 @@ extends AbstractAttachment<PARENT, PARENT_ID, Long> {
 //	public void setFiles(List<File> files) {
 //		this.files = files;
 //	}
-	
-	public PARENT_ID getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(PARENT_ID parentId) {
-		this.parentId = parentId;
-	}
 
 	@Override
 	public String getKind() {

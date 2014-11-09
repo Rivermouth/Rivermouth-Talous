@@ -7,4 +7,5 @@ import fi.rivermouth.spring.service.BaseService;
 
 public interface CRUDControllerInterface<T extends BaseEntity<ID>, ID extends Serializable> {
 	public BaseService<T, ID> getService();
+	public String getEntityKind();
 }

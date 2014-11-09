@@ -22,7 +22,7 @@ public class UserController extends CRUDController<User, Long> {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/findBy/email/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/findBy/email/{email:.+}", method = RequestMethod.GET)
 	public Response findByEmail(@PathVariable String email) {
 		return conditionalResponse(
 				new Response(HttpStatus.OK, userService.getByEmail(email)),
@@ -33,6 +33,11 @@ public class UserController extends CRUDController<User, Long> {
 	@Override
 	public UserService getService() {
 		return userService;
+	}
+
+	@Override
+	public String getEntityKind() {
+		return "user";
 	}
 	
 }
