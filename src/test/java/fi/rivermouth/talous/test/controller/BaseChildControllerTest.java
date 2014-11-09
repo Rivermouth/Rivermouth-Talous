@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.talous.Application;
-import fi.rivermouth.talous.domain.BaseEntity;
 
 public abstract class BaseChildControllerTest
 <PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable,  // Parent
@@ -23,17 +23,17 @@ T extends BaseEntity<ID>, ID extends Serializable>  					// Child (this)
 extends BaseControllerTest<T, ID> implements BaseChildControllerTestInterface<PARENT, PARENT_ID, T, ID> {
 	
 	PARENT parent;
-	
-	@Override
-	protected String apiPath(String url) {
-		if (url == null) return getAPIPath();
-		return getAPIPath() + "/{parentId}" + url;
-	}
-	
-	@Override
-	protected String apiPath() {
-		return apiPath(null);
-	}
+//	
+//	@Override
+//	protected String apiPath(String url) {
+//		if (url == null) return getAPIPath();
+//		return getAPIPath() + "/{parentId}" + url;
+//	}
+//	
+//	@Override
+//	protected String apiPath() {
+//		return apiPath(null);
+//	}
 	
 	@Before
 	public void setUp2() throws Exception {

@@ -5,13 +5,14 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-import fi.rivermouth.talous.model.Responsable;
+import fi.rivermouth.spring.entity.BaseEntity;
+import fi.rivermouth.spring.entity.Responsable;
 
 @Entity
 public abstract class AbstractAttachment
 <PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable, // Parent
 ID extends Serializable> 
-extends BaseEntity<ID> implements Responsable, AbstractAttachmentInterface<PARENT, PARENT_ID> {
+extends BaseEntity<ID> implements Responsable {
 	
 	private String title;
 	

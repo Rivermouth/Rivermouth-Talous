@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.UserNote;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.repository.UserRepository;

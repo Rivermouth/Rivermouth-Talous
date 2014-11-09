@@ -6,8 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
+import fi.rivermouth.spring.entity.BaseEntity;
+import fi.rivermouth.spring.entity.Responsable;
 import fi.rivermouth.talous.model.Address;
-import fi.rivermouth.talous.model.Responsable;
 
 @Entity
 public abstract class AbstractCompany<ID extends Serializable> extends BaseEntity<ID> implements Responsable {

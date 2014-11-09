@@ -6,14 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import fi.rivermouth.spring.controller.ChildCRUDController;
+import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.UserNote;
 import fi.rivermouth.talous.domain.User;
-import fi.rivermouth.talous.service.BaseService;
 import fi.rivermouth.talous.service.UserNoteService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
-@RequestMapping("/notes")
+@RequestMapping("/users{parentId}/notes")
 public class UserNoteController extends ChildCRUDController<User, Long, UserNote, Long> {
 
 	@Autowired
@@ -28,11 +29,6 @@ public class UserNoteController extends ChildCRUDController<User, Long, UserNote
 	}
 
 	@Override
-	public void setEntityParent(UserNote entity, User parent) {
-		entity.setAttachedTo(parent);
-	}
-
-	@Override
 	public void addEntityToParent(UserNote entity, User parent) {
 		parent.getNotes().add(entity);
 	}
@@ -43,13 +39,8 @@ public class UserNoteController extends ChildCRUDController<User, Long, UserNote
 	}
 
 	@Override
-	public User getEntityParent(UserNote entity) {
-		return entity.getAttachedTo();
-	}
-
-	@Override
-	public List<UserNote> listByParent(User parent) {
-		return noteService.getByAttachedTo(parent);
+	public List<UserNote> listByParentId(Long parentId)  {
+		return noteService.getByParentId(parentId);
 	}
 
 	@Override

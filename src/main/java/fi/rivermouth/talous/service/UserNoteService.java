@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.domain.UserNote;
 import fi.rivermouth.talous.repository.UserNoteRepository;
@@ -21,8 +22,8 @@ public class UserNoteService extends BaseService<UserNote, Long> {
 		return noteRepository;
 	}
 	
-	public List<UserNote> getByAttachedTo(User user) {
-		return noteRepository.findByAttachedTo(user);
+	public List<UserNote> getByParentId(Long parentId) {
+		return noteRepository.findByParentId(parentId);
 	}
 
 }

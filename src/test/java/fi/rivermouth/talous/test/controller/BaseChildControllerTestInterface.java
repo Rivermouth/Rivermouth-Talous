@@ -2,8 +2,8 @@ package fi.rivermouth.talous.test.controller;
 
 import java.io.Serializable;
 
-import fi.rivermouth.talous.domain.BaseEntity;
-import fi.rivermouth.talous.service.BaseService;
+import fi.rivermouth.spring.entity.BaseEntity;
+import fi.rivermouth.spring.service.BaseService;
 
 public interface BaseChildControllerTestInterface
 <PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable,

@@ -3,10 +3,10 @@ package fi.rivermouth.talous.test.controller;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.Client;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
-import fi.rivermouth.talous.service.BaseService;
 import fi.rivermouth.talous.service.ClientService;
 import fi.rivermouth.talous.service.UserService;
 
@@ -53,7 +53,7 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 
 	@Override
 	public String getAPIPath() {
-		return "/clients";
+		return "/users/{parentId}/clients";
 	}
 
 	@Override

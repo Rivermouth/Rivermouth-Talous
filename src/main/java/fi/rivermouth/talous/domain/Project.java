@@ -6,15 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import fi.rivermouth.talous.model.Responsable;
+import fi.rivermouth.spring.entity.BaseEntity;
+import fi.rivermouth.spring.entity.Responsable;
 
 @Entity
 public class Project extends BaseEntity<Long> implements Responsable {
 
 	private String name;
-	
-	@ManyToOne // owned by client
-	private Client client;
 	
 	@OneToMany // has notes
 	private List<ProjectNote> notes;
@@ -25,14 +23,6 @@ public class Project extends BaseEntity<Long> implements Responsable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
 	}
 
 	public List<ProjectNote> getNotes() {

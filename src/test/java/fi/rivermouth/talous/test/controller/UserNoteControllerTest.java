@@ -3,10 +3,10 @@ package fi.rivermouth.talous.test.controller;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.UserNote;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.repository.UserRepository;
-import fi.rivermouth.talous.service.BaseService;
 import fi.rivermouth.talous.service.UserNoteService;
 import fi.rivermouth.talous.service.UserService;
 

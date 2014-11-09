@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="fi.rivermouth.talous.test.controller.ClientControllerTest" time="11.165" tests="5" errors="0" skipped="0" failures="0">
+<testsuite name="fi.rivermouth.talous.test.controller.ClientControllerTest" time="11.116" tests="5" errors="3" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\bin"/>
@@ -62,9 +62,111 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="10.645"/>
-  <testcase name="testCRUD_Delete" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.219"/>
-  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.141"/>
-  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.07"/>
-  <testcase name="testCRUD_CreateMultiply_And_List" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.09"/>
+  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="10.915"/>
+  <testcase name="testCRUD_Delete" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.052">
+    <error message="fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V" type="java.lang.NoSuchMethodError">java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:66)
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:13)
+</error>
+    <system-out>2014-11-09 23:13:00.192 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city4_0_, client0_.country as country5_0_, client0_.street as street6_0_, client0_.zip as zip7_0_, client0_.name as name3_0_, client0_.vat_number as vat_numb8_0_, client0_.parent_id as parent_i9_0_ from base_entity client0_ where client0_.dtype='Client'
+2014-11-09 23:13:00.200 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-09 23:13:00.203 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_projects where base_entity_id=?
+2014-11-09 23:13:00.205 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.210 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email12_0_, user0_.first_name as first_n13_0_, user0_.last_name as last_na14_0_, user0_.role as role15_0_, user0_.tel as tel16_0_, user0_.facebook_id as faceboo17_0_, user0_.google_id as google_18_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-09 23:13:00.213 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.215 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.216 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.227 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-11-09 23:13:00.231 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.033">
+    <error message="fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V" type="java.lang.NoSuchMethodError">java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:66)
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:13)
+</error>
+    <system-out>2014-11-09 23:13:00.247 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city4_0_, client0_.country as country5_0_, client0_.street as street6_0_, client0_.zip as zip7_0_, client0_.name as name3_0_, client0_.vat_number as vat_numb8_0_, client0_.parent_id as parent_i9_0_ from base_entity client0_ where client0_.dtype='Client'
+2014-11-09 23:13:00.249 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-09 23:13:00.250 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_projects where base_entity_id=?
+2014-11-09 23:13:00.251 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.253 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email12_0_, user0_.first_name as first_n13_0_, user0_.last_name as last_na14_0_, user0_.role as role15_0_, user0_.tel as tel16_0_, user0_.facebook_id as faceboo17_0_, user0_.google_id as google_18_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-09 23:13:00.257 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.258 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.260 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.264 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-11-09 23:13:00.269 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.036">
+    <error message="fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V" type="java.lang.NoSuchMethodError">java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.Client.setOwner(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:66)
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.setEntityParent(ClientControllerTest.java:13)
+</error>
+    <system-out>2014-11-09 23:13:00.282 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city4_0_, client0_.country as country5_0_, client0_.street as street6_0_, client0_.zip as zip7_0_, client0_.name as name3_0_, client0_.vat_number as vat_numb8_0_, client0_.parent_id as parent_i9_0_ from base_entity client0_ where client0_.dtype='Client'
+2014-11-09 23:13:00.285 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-09 23:13:00.286 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_projects where base_entity_id=?
+2014-11-09 23:13:00.287 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.292 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email12_0_, user0_.first_name as first_n13_0_, user0_.last_name as last_na14_0_, user0_.role as role15_0_, user0_.tel as tel16_0_, user0_.facebook_id as faceboo17_0_, user0_.google_id as google_18_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-09 23:13:00.295 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.296 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.297 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.300 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-11-09 23:13:00.305 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_CreateMultiply_And_List" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.08">
+    <failure message="JSON path$.data&#10;Expected: a collection with size &lt;3&gt;&#10;     but: collection size was &lt;0&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: JSON path$.data
+Expected: a collection with size <3>
+     but: collection size was <0>
+	at org.springframework.test.util.MatcherAssertionErrors.assertThat(MatcherAssertionErrors.java:76)
+	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:65)
+	at org.springframework.test.web.servlet.result.JsonPathResultMatchers$1.match(JsonPathResultMatchers.java:55)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_CreateMultiply_And_List(BaseControllerTest.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+]]></failure>
+    <system-out>2014-11-09 23:13:00.314 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city4_0_, client0_.country as country5_0_, client0_.street as street6_0_, client0_.zip as zip7_0_, client0_.name as name3_0_, client0_.vat_number as vat_numb8_0_, client0_.parent_id as parent_i9_0_ from base_entity client0_ where client0_.dtype='Client'
+2014-11-09 23:13:00.318 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
+2014-11-09 23:13:00.319 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity_projects where base_entity_id=?
+2014-11-09 23:13:00.319 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.321 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email12_0_, user0_.first_name as first_n13_0_, user0_.last_name as last_na14_0_, user0_.role as role15_0_, user0_.tel as tel16_0_, user0_.facebook_id as faceboo17_0_, user0_.google_id as google_18_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-09 23:13:00.324 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.326 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.326 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.329 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-11-09 23:13:00.332 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+2014-11-09 23:13:00.334 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+2014-11-09 23:13:00.337 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, parent_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, 'Client')
+2014-11-09 23:13:00.345 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select count(*) as col_0_0_ from base_entity user0_ where user0_.dtype='User' and user0_.id=? and 1=1
+2014-11-09 23:13:00.367 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city4_0_, client0_.country as country5_0_, client0_.street as street6_0_, client0_.zip as zip7_0_, client0_.name as name3_0_, client0_.vat_number as vat_numb8_0_, client0_.parent_id as parent_i9_0_ from base_entity client0_ where client0_.dtype='Client' and client0_.parent_id=?
+</system-out>
+  </testcase>
 </testsuite>

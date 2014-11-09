@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import fi.rivermouth.spring.controller.CRUDController;
+import fi.rivermouth.spring.entity.Response;
 import fi.rivermouth.talous.domain.User;
-import fi.rivermouth.talous.model.Response;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController

@@ -10,5 +10,5 @@ import fi.rivermouth.talous.domain.User;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-	public List<Client> findByOwner(User owner);
+	public List<Client> findByParentId(Long parentId);
 }

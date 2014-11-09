@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.talous.domain.AbstractNote;
-import fi.rivermouth.talous.domain.BaseEntity;
 
 /**
  * 
@@ -20,5 +20,5 @@ import fi.rivermouth.talous.domain.BaseEntity;
 @Repository
 public abstract interface AbstractNoteRepository<T extends AbstractNote<V, V_ID>, V extends BaseEntity<V_ID>, V_ID extends Serializable> 
 extends JpaRepository<T, Long> {
-	public List<T> findByAttachedTo(V attachedTo);
+	public List<T> findByParentId(V_ID parentId);
 }

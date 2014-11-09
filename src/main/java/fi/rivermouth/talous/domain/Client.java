@@ -11,9 +11,8 @@ import fi.rivermouth.talous.model.Address;
 
 @Entity
 public class Client extends AbstractCompany<Long> {
-	
-	@ManyToOne // owned by user
-	private User owner;
+
+	private Long parentId;
 	
 	@OneToMany // has projects
 	private List<Project> projects;
@@ -32,16 +31,8 @@ public class Client extends AbstractCompany<Long> {
 	public Client(String name, String vatNumber, Address address) {
 		super(name, vatNumber, address);
 	}
-	
-	public User getOwner() {
-		return owner;
-	}
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
-
-	public List<Project> getProject() {
+	public List<Project> getProjects() {
 		return projects;
 	}
 
@@ -55,6 +46,14 @@ public class Client extends AbstractCompany<Long> {
 
 	public void setNotes(List<ClientNote> notes) {
 		this.notes = notes;
+	}
+	
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
 	}
 
 	@Override

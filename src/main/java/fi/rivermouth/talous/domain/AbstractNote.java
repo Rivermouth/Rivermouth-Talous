@@ -10,12 +10,13 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.ManyToAny;
 
+import fi.rivermouth.spring.entity.BaseEntity;
+
 @Entity
 public abstract class AbstractNote<PARENT extends BaseEntity<PARENT_ID>, PARENT_ID extends Serializable> 
 extends AbstractAttachment<PARENT, PARENT_ID, Long> {
 
-	@ManyToOne
-	protected PARENT attachedTo;
+	private PARENT_ID parentId;
 	private String content;
 	
 //	@OneToMany
@@ -50,6 +51,14 @@ extends AbstractAttachment<PARENT, PARENT_ID, Long> {
 //		this.files = files;
 //	}
 	
+	public PARENT_ID getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(PARENT_ID parentId) {
+		this.parentId = parentId;
+	}
+
 	@Override
 	public String getKind() {
 		return "note:attachment";

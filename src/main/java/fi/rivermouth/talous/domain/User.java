@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -21,9 +22,11 @@ public class User extends AbstractPerson<Long> {
 	private Company company;
 	
 	@OneToMany // has clients
+	@JoinColumn(name = "parentId")
 	private List<Client> clients;
 	
 	@OneToMany // has notes
+	@JoinColumn(name = "parentId")
 	private List<UserNote> notes;
 
 	@Column(unique = true)

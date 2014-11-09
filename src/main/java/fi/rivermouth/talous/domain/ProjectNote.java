@@ -15,14 +15,4 @@ public class ProjectNote extends AbstractNote<Project, Long> {
 		super(title, content);
 	}
 
-	@Override
-	public Project getAttachedTo() {
-		return attachedTo;
-	}
-
-	@Override
-	public void setAttachedTo(Project attachedTo) {
-		this.attachedTo = attachedTo;
-	}
-
 }

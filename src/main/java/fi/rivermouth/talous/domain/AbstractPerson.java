@@ -7,8 +7,9 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
+import fi.rivermouth.spring.entity.BaseEntity;
+import fi.rivermouth.spring.entity.Responsable;
 import fi.rivermouth.talous.model.Address;
-import fi.rivermouth.talous.model.Responsable;
 
 @Entity
 public abstract class AbstractPerson<ID extends Serializable> extends BaseEntity<ID> implements Responsable {

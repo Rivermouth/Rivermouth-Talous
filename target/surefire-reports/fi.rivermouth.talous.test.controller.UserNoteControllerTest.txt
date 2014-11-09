@@ -1,4 +1,93 @@
 -------------------------------------------------------------------------------
 Test set: fi.rivermouth.talous.test.controller.UserNoteControllerTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.272 sec - in fi.rivermouth.talous.test.controller.UserNoteControllerTest
+Tests run: 5, Failures: 2, Errors: 3, Skipped: 0, Time elapsed: 0.151 sec <<< FAILURE! - in fi.rivermouth.talous.test.controller.UserNoteControllerTest
+testCRUD_Create(fi.rivermouth.talous.test.controller.UserNoteControllerTest)  Time elapsed: 0.043 sec  <<< FAILURE!
+java.lang.AssertionError: Status expected:<201> but was:<404>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:60)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:89)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:626)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Create(BaseControllerTest.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+
+testCRUD_Delete(fi.rivermouth.talous.test.controller.UserNoteControllerTest)  Time elapsed: 0.023 sec  <<< ERROR!
+java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.UserNote.setAttachedTo(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:38)
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:13)
+
+testCRUD_Update(fi.rivermouth.talous.test.controller.UserNoteControllerTest)  Time elapsed: 0.027 sec  <<< ERROR!
+java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.UserNote.setAttachedTo(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:38)
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:13)
+
+testCRUD_Read(fi.rivermouth.talous.test.controller.UserNoteControllerTest)  Time elapsed: 0.026 sec  <<< ERROR!
+java.lang.NoSuchMethodError: fi.rivermouth.talous.domain.UserNote.setAttachedTo(Lfi/rivermouth/talous/domain/User;)V
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:38)
+	at fi.rivermouth.talous.test.controller.UserNoteControllerTest.setEntityParent(UserNoteControllerTest.java:13)
+
+testCRUD_CreateMultiply_And_List(fi.rivermouth.talous.test.controller.UserNoteControllerTest)  Time elapsed: 0.032 sec  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:60)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:89)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:626)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_CreateMultiply_And_List(BaseControllerTest.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+

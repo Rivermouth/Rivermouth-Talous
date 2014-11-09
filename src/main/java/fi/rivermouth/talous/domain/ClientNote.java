@@ -14,15 +14,5 @@ public class ClientNote extends AbstractNote<Client, Long> {
 	public ClientNote(String title, String content) {
 		super(title, content);
 	}
-
-	@Override
-	public Client getAttachedTo() {
-		return attachedTo;
-	}
-
-	@Override
-	public void setAttachedTo(Client attachedTo) {
-		this.attachedTo = attachedTo;
-	}
 	
 }

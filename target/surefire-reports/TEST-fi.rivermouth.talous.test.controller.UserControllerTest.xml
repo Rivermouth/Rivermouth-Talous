@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.377" tests="6" errors="0" skipped="0" failures="1">
+<testsuite name="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.183" tests="6" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\bin"/>
@@ -62,25 +62,24 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testGetUserByEmail" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.076">
-    <failure message="Status expected:&lt;200&gt; but was:&lt;204&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<204>
+  <testcase name="testGetUserByEmail" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.014">
+    <failure message="Status expected:&lt;200&gt; but was:&lt;404&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<200> but was:<404>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:60)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:89)
 	at org.springframework.test.web.servlet.result.StatusResultMatchers$10.match(StatusResultMatchers.java:626)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
 	at fi.rivermouth.talous.test.controller.UserControllerTest.testGetUserByEmail(UserControllerTest.java:55)
 ]]></failure>
-    <system-out>2014-11-08 22:42:05.481 DEBUG 15504 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email11_0_, user0_.first_name as first_n12_0_, user0_.last_name as last_na13_0_, user0_.role as role14_0_, user0_.tel as tel15_0_, user0_.facebook_id as faceboo16_0_, user0_.google_id as google_17_0_ from base_entity user0_ where user0_.dtype='User'
-2014-11-08 22:42:05.484 DEBUG 15504 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
-2014-11-08 22:42:05.486 DEBUG 15504 --- [           main] org.hibernate.SQL                        : delete from base_entity_notes where base_entity_id=?
-2014-11-08 22:42:05.487 DEBUG 15504 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
-2014-11-08 22:42:05.493 DEBUG 15504 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
-2014-11-08 22:42:05.548 DEBUG 15504 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email11_0_, user0_.first_name as first_n12_0_, user0_.last_name as last_na13_0_, user0_.role as role14_0_, user0_.tel as tel15_0_, user0_.facebook_id as faceboo16_0_, user0_.google_id as google_17_0_ from base_entity user0_ where user0_.dtype='User' and upper(user0_.email)=upper(?)
+    <system-out>2014-11-09 23:13:00.417 DEBUG 4156 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city4_0_, user0_.country as country5_0_, user0_.street as street6_0_, user0_.zip as zip7_0_, user0_.email as email12_0_, user0_.first_name as first_n13_0_, user0_.last_name as last_na14_0_, user0_.role as role15_0_, user0_.tel as tel16_0_, user0_.facebook_id as faceboo17_0_, user0_.google_id as google_18_0_ from base_entity user0_ where user0_.dtype='User'
+2014-11-09 23:13:00.421 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.422 DEBUG 4156 --- [           main] org.hibernate.SQL                        : update base_entity set parent_id=null where parent_id=?
+2014-11-09 23:13:00.425 DEBUG 4156 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-11-09 23:13:00.427 DEBUG 4156 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, facebook_id, google_id, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
 </system-out>
   </testcase>
-  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.038"/>
-  <testcase name="testCRUD_Delete" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.048"/>
-  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.052"/>
-  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.048"/>
-  <testcase name="testCRUD_CreateMultiply_And_List" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.115"/>
+  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.02"/>
+  <testcase name="testCRUD_Delete" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.034"/>
+  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.039"/>
+  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.03"/>
+  <testcase name="testCRUD_CreateMultiply_And_List" classname="fi.rivermouth.talous.test.controller.UserControllerTest" time="0.046"/>
 </testsuite>

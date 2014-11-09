@@ -21,8 +21,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.talous.Application;
-import fi.rivermouth.talous.domain.BaseEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
