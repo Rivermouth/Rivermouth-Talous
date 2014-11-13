@@ -3,11 +3,16 @@ package fi.rivermouth.spring.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import fi.rivermouth.spring.entity.BaseEntity;
@@ -28,7 +33,7 @@ extends BaseController<T, ID> {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	public Response create(@RequestBody T entity) {
+	public Response create(@Valid @RequestBody T entity) {
 		return super.create(entity);
 	}
 	
@@ -44,7 +49,7 @@ extends BaseController<T, ID> {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public Response update(@PathVariable ID id, @RequestBody T entity) {
+	public Response update(@Valid @PathVariable ID id, @RequestBody T entity) {
 		return super.update(id, entity);
 	}
 	
@@ -87,5 +92,11 @@ extends BaseController<T, ID> {
 	public Response delete(@PathVariable ID id) {
 		return super.delete(id);
 	}
+	
+	@ExceptionHandler
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public Response handleException(MethodArgumentNotValidException exception) {
+        return new Response(HttpStatus.BAD_REQUEST, "error", exception.getBindingResult());
+    }
 	
 }

@@ -3,6 +3,7 @@ package fi.rivermouth.spring.controller;
 import java.io.Serializable;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -73,7 +74,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
-	public Response create(@PathVariable PARENT_ID parentId, @RequestBody T entity) {
+	public Response create(@PathVariable PARENT_ID parentId, @Valid @RequestBody T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
 		joinEntityAndParent(parentId, entity);
@@ -94,7 +95,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public Response update(@PathVariable PARENT_ID parentId, @PathVariable ID id, @RequestBody T entity) {
+	public Response update(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @RequestBody T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.update(id, entity);
 	}

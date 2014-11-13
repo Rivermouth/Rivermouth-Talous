@@ -10,15 +10,27 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import fi.rivermouth.talous.model.Address;
 
 @Entity
 public class User extends AbstractPerson<Long> {
 	
+	public static String ROLE = "USER";
+	
+	@NotNull
+	@Size(min = 8)
+	//@Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")
+	private String password;
+
 	@Embedded
 	@NotNull
 	private Company company;
@@ -42,6 +54,18 @@ public class User extends AbstractPerson<Long> {
 		super(name);
 		this.company = company;
 		setEmail(email);
+	}
+	
+	public boolean passwordEquals(String plaintextPassword) {
+		return BCrypt.checkpw(plaintextPassword, password);
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 
 	public Company getCompany() {

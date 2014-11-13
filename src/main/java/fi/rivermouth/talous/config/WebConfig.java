@@ -1,4 +1,4 @@
-package fi.rivermouth.talous;
+package fi.rivermouth.talous.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

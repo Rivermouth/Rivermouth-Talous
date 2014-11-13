@@ -126,7 +126,7 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	 * @param entity
 	 * @return
 	 */
-	public Response update(@PathVariable ID id, T entity) {
+	public Response update(ID id, T entity) {
 		if (entity.getId() == null) {
 			entity.setId(id);
 		}
