@@ -1,0 +1,18 @@
+@import "elements.less";
+
+#container { display: table; width: 100%; border-spacing: 1em; }
+
+.holder { .Card; display: table-cell; width: 100%; min-width: 260px;
+	.holder-tab { .Card(0); display: inline-block; position: absolute; left: @CardPadding; top: -(@CardMargin * 2.4); border-bottom: 0; }
+	
+	.holder-inner {  }
+}
+
+.holder.info { width: 260px; 
+	.field {
+		label { display: block; }
+	}
+}
+
+
+.card { .Card; }

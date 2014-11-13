@@ -1,0 +1,13 @@
+.rounded() { border-radius: 3px; }
+
+/* Card */
+
+@CardBg: #fff;
+@CardMargin: 1.4em;
+@CardPadding: 0.6em;
+@CardBorderColor: #ccc;
+@CardShadowColor: lighten(@CardBorderColor, 5%);
+
+.Card(@shadowSize: 3px;) { position: relative; background: @CardBg; margin: @CardMargin 0; padding: @CardPadding; border: 1px solid @CardBorderColor; box-shadow: 0 (@shadowSize * 0.8) @shadowSize @CardShadowColor; .rounded(); }
+
+
