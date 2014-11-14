@@ -29,8 +29,7 @@ public class AuthController {
 	
 	@RequestMapping(value = "/auth", method = RequestMethod.POST)
 	public Response auth(@Valid @RequestBody LoginData loginData) {
-		User user = userService.getByEmailPassword(loginData.getEmail(), loginData.getPassword());
-		if (userService.authenticate(user.getEmail(), user.getPassword())) {
+		if (userService.authenticate(loginData.getEmail(), loginData.getPassword())) {
 			return new Response(HttpStatus.OK, userService.getAuthenticatedUser());
 		}
 		return new Response(HttpStatus.BAD_REQUEST, new Response.ErrorMessage("Auth failed."));

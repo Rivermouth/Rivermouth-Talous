@@ -42,6 +42,9 @@ public class UserService extends BaseService<User, Long> {
 	}
 	
 	public boolean authenticate(String email, String password) {
+		User user = getByEmailPassword(email, password);
+		if (user == null) return false;
+		
 		try {
 			AuthenticationManager am = new UserAuthenticationManager();
 			Authentication request = new UsernamePasswordAuthenticationToken(email, password);
