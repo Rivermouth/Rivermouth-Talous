@@ -1,10 +1,5 @@
 package fi.rivermouth.talous.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-
 import org.springframework.stereotype.Component;
 
 //@Entity // owned by note

@@ -3,8 +3,6 @@ package fi.rivermouth.talous.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-
 import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.spring.entity.Responsable;
 

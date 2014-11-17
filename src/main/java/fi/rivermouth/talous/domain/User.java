@@ -9,15 +9,14 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.validation.executable.ValidateOnExecution;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.validation.annotation.Validated;
 
 import fi.rivermouth.talous.model.Address;
 
@@ -35,10 +34,10 @@ public class User extends AbstractPerson<Long> {
 	@NotNull
 	private Company company;
 	
-	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has clients
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has clients
 	private List<Client> clients;
 	
-	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has notes
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has notes
 	private List<UserNote> notes;
 
 	@Column(unique = true)
@@ -47,7 +46,6 @@ public class User extends AbstractPerson<Long> {
 	private String facebookId;
 	
 	public User() {
-		this.company = new Company();
 	}
 	
 	public User(Name name, Company company, String email) {
@@ -106,13 +104,6 @@ public class User extends AbstractPerson<Long> {
 	
 	public void setFacebookId(String facebookId) {
 		this.facebookId = facebookId;
-	}
-	
-	@Override
-	@NotBlank
-	@Column(unique = true)
-	public String getEmail() {
-		return super.getEmail();
 	}
 	
 	@Override

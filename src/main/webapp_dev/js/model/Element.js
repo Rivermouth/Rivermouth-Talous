@@ -36,6 +36,22 @@
 		},
 		
 		render: function() {
+			var outer = doc.createElement("div");
+			outer.className = this.className;
+			
+			var inner = this.contentArea;
+			inner.className = this.className + "-inner";
+			
+			this.update();
+			
+			outer.appendChild(inner);
+			
+			outer.onclick = this.onClick;
+			
+			return outer;
+		},
+		
+		update: function() {
 			var d = doc.createDocumentFragment();
 			for (var i = 0, l = this.elements.length; i < l; ++i) {
 				var el = this.elements[i];
@@ -46,20 +62,7 @@
 					d.appendChild(el);
 				}
 			}
-			
-			var outer = doc.createElement("div");
-			outer.className = this.className;
-			
-			var inner = this.contentArea;
-			inner.className = this.className + "-inner";
-			
-			inner.appendChild(d);
-			
-			outer.appendChild(inner);
-			
-			outer.onclick = this.onClick;
-			
-			return outer;
+			this.contentArea.appendChild(d);
 		},
 		
 		text: function(text) {

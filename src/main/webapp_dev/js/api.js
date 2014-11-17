@@ -1,27 +1,94 @@
 (function(bn) {
 	
+	var me = null;
 	var baseUrl = "http://localhost:8080";
 	
 	function path(url) {
 		return baseUrl + url;
 	}
 	
-	function ApiRequestBuilder(params) {
+	function objectToFormSerialized(obj, prefix) {
+		var buffer = null;
+		for (var k in obj) {
+			var val = obj[k];
+			
+			if (buffer === null) buffer = "";
+			else buffer += "&";
+			
+			if (typeof val == "object") {
+				buffer += objectToFormSerialized(val, k);
+			}
+			else {
+				if (prefix) buffer += prefix + ".";
+				buffer += k + "=" + obj[k];
+			}
+		}
+		return buffer;
+	}
+	
+	function ApiRequestBuilder(params, proxyCallback) {
 		this.params = params;
+		this.proxyCallback = proxyCallback;
 	}
 	
 	ApiRequestBuilder.prototype = {
 		
-		execute: function(callback) {
-			bn.ajaxJSON({
+		done: function(resp, callback) {
+			if (this.proxyCallback) {
+				this.proxyCallback(resp, callback);
+			}
+			else {
+				callback(resp);
+			}
+		},
+		
+		execute: function(callback, errorCallback) {			
+			var self = this;
+			
+			var options = {
 				url: this.params.url,
-				type: this.params.type
-			}, callback);
+				type: this.params.type,
+				contentType: "application/x-www-form-urlencoded;charset=UTF-8", //"application/json;charset=UTF-8",
+				error: function(resp) {
+					self.done(resp, errorCallback);
+				},
+				cache: this.params.cache
+			};
+			
+			if (this.params.data) options.data = objectToFormSerialized(this.params.data);
+			
+			bn.ajaxJSON(options, function(resp) {
+				self.done(resp, callback);
+			});
 		}
 		
 	};
 	
-	bn.api = {
+	var api = {
+		auth: function(data) {
+			return new ApiRequestBuilder({
+				url: path("/auth"),
+				type: "POST",
+				data: data
+			});
+		},
+		register: function(data) {
+			return new ApiRequestBuilder({
+				url: path("/register"),
+				type: "POST",
+				data: data
+			});
+		},
+		me: function() {			
+			return new ApiRequestBuilder({
+				url: path("/auth"),
+				type: "GET",
+				cache: true
+			}, function(resp, callback) {
+				me = resp.data;
+				callback(resp);
+			});
+		},
 		users: {
 			get: function(userId) {
 				return new ApiRequestBuilder({
@@ -30,14 +97,64 @@
 				});
 			},
 			save: function(user) {
+				var p, t;
+				
+				if (!user.id) {
+					p = path("/users");
+					t = "PUT";
+				}
+				else {
+					p = path("/users/" + user.id);
+					t = "POST";
+				}
+				
 				return new ApiRequestBuilder({
-					url: path("/users"),
-					type: (user.id === null ? "PUT" : "POST"),
+					url: p,
+					type: t,
 					data: user
+				});
+			}
+		},
+		clients: {
+			path: function(clientId) {
+				if (!clientId) clientId = "";
+				else clientId = "/" + clientId;
+				return path("/users/" + me.id + "/clients" + clientId);
+			},
+			get: function(clientId) {
+				return new ApiRequestBuilder({
+					url: api.clients.path(clientId),
+					type: "GET"
+				});
+			},
+			list: function() {
+				return new ApiRequestBuilder({
+					url: api.clients.path(),
+					type: "GET"
+				});
+			},
+			save: function(client) {
+				var p, t;
+				
+				if (!client.id) {
+					p = api.clients.path();
+					t = "POST";
+				}
+				else {
+					p = api.clients.path(client.id);
+					t = "POST";
+				}
+				
+				return new ApiRequestBuilder({
+					url: p,
+					type: t,
+					data: client
 				});
 			}
 		}
 	};
+	
+	bn.api = api;
 	
 	// Example data
 	bn.user = {

@@ -2,10 +2,13 @@ package fi.rivermouth.talous.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.spring.entity.Responsable;
@@ -20,11 +23,12 @@ public abstract class AbstractPerson<ID extends Serializable> extends BaseEntity
 	private String role;
 	@Embedded
 	private Address address;
-	private String email;
+	@NotBlank
+	@Column(unique = true) 
+	protected String email;
 	private String tel;
 	
 	public AbstractPerson() {
-		this.name = new Name();
 	}
 
 	public AbstractPerson(Name name) {

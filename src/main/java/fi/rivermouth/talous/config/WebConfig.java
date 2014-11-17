@@ -12,7 +12,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		super.configureContentNegotiation(configurer);
-		configurer.defaultContentType(MediaType.APPLICATION_JSON);
+		configurer
+			.ignoreAcceptHeader(true)
+			.useJaf(true)
+			.defaultContentType(MediaType.APPLICATION_JSON)
+			.mediaType("json", MediaType.APPLICATION_JSON)
+			.mediaType("x-www-form-urlencoded", MediaType.APPLICATION_FORM_URLENCODED);
 	}
 	
 	@Override

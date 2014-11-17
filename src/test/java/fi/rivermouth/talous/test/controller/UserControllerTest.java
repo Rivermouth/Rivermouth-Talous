@@ -24,6 +24,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 		User user = new User();
 		user.setName(new User.Name(RandomStringUtils.random(6).toString(), RandomStringUtils.random(14).toString()));
 		user.setEmail(email);
+		user.setPassword("5gY7jMn9H");
 		user.setCompany(new User.Company("Rivermouth Ltd", RandomStringUtils.random(7).toString(),
 				new Address("Rautalammintie 3 C 710", "00550", "Helsinki", "Finland")));
 		

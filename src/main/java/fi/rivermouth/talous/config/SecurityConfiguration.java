@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
 import fi.rivermouth.talous.auth.UserAuthenticationProvider;
-import fi.rivermouth.talous.domain.User;
-import fi.rivermouth.talous.service.UserService;
 
 @Configuration
 @EnableWebMvcSecurity

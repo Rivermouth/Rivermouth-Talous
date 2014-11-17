@@ -1,7 +1,5 @@
 package fi.rivermouth.talous.model;
 
-import javax.persistence.Entity;
-
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 

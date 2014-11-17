@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,8 +74,15 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @param entity
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.PUT)
-	public Response create(@PathVariable PARENT_ID parentId, @Valid @RequestBody T entity) {
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, consumes = "application/json")
+	public Response createWjson(@PathVariable PARENT_ID parentId, @Valid @RequestBody T entity) {
+		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
+		Response response = super.create(entity);
+		joinEntityAndParent(parentId, entity);
+		return response;
+	}
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, consumes = "application/x-www-form-urlencoded")
+	public Response create(@PathVariable PARENT_ID parentId, @Valid @ModelAttribute T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
 		joinEntityAndParent(parentId, entity);
@@ -94,8 +102,13 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @param entity
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public Response update(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @RequestBody T entity) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/json")
+	public Response updateWjson(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @RequestBody T entity) {
+		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
+		return super.update(id, entity);
+	}
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
+	public Response update(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @ModelAttribute T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.update(id, entity);
 	}
