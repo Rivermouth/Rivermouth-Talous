@@ -38,7 +38,7 @@ public class User extends AbstractPerson<Long> {
 	private List<Client> clients;
 	
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has notes
-	private List<UserNote> notes;
+	private List<File> notes;
 
 	@Column(unique = true)
 	private String googleId;
@@ -82,11 +82,11 @@ public class User extends AbstractPerson<Long> {
 		this.clients = clients;
 	}
 
-	public List<UserNote> getNotes() {
+	public List<File> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<UserNote> notes) {
+	public void setNotes(List<File> notes) {
 		this.notes = notes;
 	}
 	

@@ -16,7 +16,7 @@ public class Project extends BaseEntity<Long> implements Responsable {
 	private String name;
 	
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has notes
-	private List<ProjectNote> notes;
+	private List<File> notes;
 
 	public String getName() {
 		return name;
@@ -26,11 +26,11 @@ public class Project extends BaseEntity<Long> implements Responsable {
 		this.name = name;
 	}
 
-	public List<ProjectNote> getNotes() {
+	public List<File> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<ProjectNote> notes) {
+	public void setNotes(List<File> notes) {
 		this.notes = notes;
 	}
 

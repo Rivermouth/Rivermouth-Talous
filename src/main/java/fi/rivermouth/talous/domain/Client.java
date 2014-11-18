@@ -19,7 +19,7 @@ public class Client extends AbstractCompany<Long> {
 	private List<Project> projects;
 	
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // has notes
-	private List<ClientNote> notes;
+	private List<File> notes;
 	
 	public Client() {
 		super();
@@ -41,11 +41,11 @@ public class Client extends AbstractCompany<Long> {
 		this.projects = projects;
 	}
 
-	public List<ClientNote> getNotes() {
+	public List<File> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<ClientNote> notes) {
+	public void setNotes(List<File> notes) {
 		this.notes = notes;
 	}
 	

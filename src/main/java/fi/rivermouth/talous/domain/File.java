@@ -1,19 +1,38 @@
 package fi.rivermouth.talous.domain;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 
-//@Entity // owned by note
-@Component
-public abstract class File {} /*extends AbstractAttachment<AbstractNote<File, Long>, Long, Long> {
+import fi.rivermouth.spring.entity.BaseEntity;
+
+@Entity
+public class File extends BaseEntity<Long> {
 	
-	private AbstractNote<File, Long> attachedTo;
-
+	private String title;
 	private String mimeType;
 	private Long size;
-	
+	private String collection;
+
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] content;
+	
+	public File() {
+	}
+	
+	public File(String title) {
+		this.title = title;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	
 	public String getMimeType() {
 		return mimeType;
@@ -39,20 +58,17 @@ public abstract class File {} /*extends AbstractAttachment<AbstractNote<File, Lo
 		this.content = content;
 	}
 	
+	public String getCollection() {
+		return collection;
+	}
+
+	public void setCollection(String collection) {
+		this.collection = collection;
+	}
+
 	@Override
 	public String getKind() {
-		return "attachment:file";
-	}
-
-	@Override
-	public AbstractNote<File, Long> getAttachedTo() {
-		return attachedTo;
-	}
-
-	@Override
-	public void setAttachedTo(AbstractNote<File, Long> attachedTo) {
-		this.attachedTo = attachedTo;
+		return "file";
 	}
 	
 }
-*/
