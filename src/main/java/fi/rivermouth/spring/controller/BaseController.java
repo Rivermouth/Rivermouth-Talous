@@ -38,7 +38,7 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 		return defaultResponse;
 	}
 
-	protected Response notFoundWithIdResponse(String kind, ID id) {
+	protected Response notFoundWithIdResponse(String kind, Serializable id) {
 		return new Response(HttpStatus.NOT_FOUND, new Response.ErrorMessage(S_NOT_FOUND_WITH_ID_S, kind.toUpperCase(), id));
 	}
 	

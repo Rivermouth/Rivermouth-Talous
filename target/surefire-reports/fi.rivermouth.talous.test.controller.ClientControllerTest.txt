@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: fi.rivermouth.talous.test.controller.ClientControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.445 sec - in fi.rivermouth.talous.test.controller.ClientControllerTest

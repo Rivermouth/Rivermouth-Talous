@@ -17,9 +17,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.talous.Application;
@@ -37,6 +39,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	protected String asJsonString(final Object obj) {
 		try {
 			final ObjectMapper mapper = new ObjectMapper();
+			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 			final String jsonContent = mapper.writeValueAsString(obj);
 			System.out.println("JSON STRING: \n" + jsonContent);
 			return jsonContent;
@@ -118,16 +121,20 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data", hasSize(3)));
 	}
-	
-	@Test
-	public void testCRUD_Update() throws Exception {
-		createTotallyRandomEntity();
+
+	@Transactional(readOnly=true)
+	private void performCRUD_Update() throws Exception {
 		T entity = getService().list().get(0);
 
 		mockMvc.perform(
 				getPost(entity).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(jsonPath("$.data.id", hasToString(entity.getId().toString())));
+			.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void testCRUD_Update() throws Exception {
+		createTotallyRandomEntity();
+		performCRUD_Update();
 	}
 	
 	@Test

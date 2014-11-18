@@ -18,10 +18,11 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.validation.annotation.Validated;
 
+import fi.rivermouth.spring.entity.FileHavingEntityInterface;
 import fi.rivermouth.talous.model.Address;
 
 @Entity
-public class User extends AbstractPerson<Long> {
+public class User extends AbstractPerson<Long> implements FileHavingEntityInterface {
 	
 	public static String ROLE = "USER";
 	
@@ -38,7 +39,7 @@ public class User extends AbstractPerson<Long> {
 	private List<Client> clients;
 	
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has notes
-	private List<File> notes;
+	private List<File> files;
 
 	@Column(unique = true)
 	private String googleId;
@@ -82,12 +83,12 @@ public class User extends AbstractPerson<Long> {
 		this.clients = clients;
 	}
 
-	public List<File> getNotes() {
-		return notes;
+	public List<File> getFiles() {
+		return files;
 	}
 
-	public void setNotes(List<File> notes) {
-		this.notes = notes;
+	public void setFiles(List<File> files) {
+		this.files = files;
 	}
 	
 	public String getGoogleId() {
