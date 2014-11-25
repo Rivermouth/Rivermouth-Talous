@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import fi.rivermouth.spring.controller.ChildCRUDController;
 import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.Client;
+import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.service.ClientService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping(value = "/users/{parentId}/clients")
-public class ClientController extends ChildCRUDController<User, Long, Client, Long> {
+public class ClientController extends AbstractFileHavingChildController<User, Long, Client, Long> {
 
 	@Autowired
 	ClientService clientService;
@@ -51,6 +52,21 @@ public class ClientController extends ChildCRUDController<User, Long, Client, Lo
 	@Override
 	public String getEntityKind() {
 		return "client";
+	}
+
+	@Override
+	public void addFileToParent(File file, Client parent) {
+		parent.getNotes().add(file);
+	}
+
+	@Override
+	public void removeFileFromParent(File file, Client parent) {
+		parent.getNotes().remove(file);
+	}
+
+	@Override
+	public List<File> listFilesByParentId(Long parentId) {
+		return clientService.get(parentId).getNotes();
 	}
 	
 }

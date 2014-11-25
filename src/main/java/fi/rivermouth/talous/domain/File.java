@@ -14,7 +14,6 @@ public class File extends BaseEntity<Long> {
 	private String mimeType;
 	private Long size;
 	private String collection;
-
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] content;

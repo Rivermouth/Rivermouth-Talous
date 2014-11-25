@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.io.Serializable;
 
+import org.hibernate.Hibernate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,8 +37,10 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	public MockMvc mockMvc;
 
+	@Transactional(readOnly=true)
 	protected String asJsonString(final Object obj) {
 		try {
+			Hibernate.initialize(obj);
 			final ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 			final String jsonContent = mapper.writeValueAsString(obj);

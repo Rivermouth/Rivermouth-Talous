@@ -25,70 +25,10 @@ import fi.rivermouth.talous.service.FileService;
 
 @RestController
 public abstract class AbstractFileHavingController<T extends BaseEntity<ID>, ID extends Serializable> 
-extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T, ID> {
-	
-	@Autowired
-	private FileService fileService;
-	
-	@Transactional
-	private void joinFileAndParent(ID parentId, File entity) {
-		T parent = getService().get(parentId);
-		addFileToParent(entity, parent);
-		getService().update(parent);
-		getService().getRepository().flush();
-	}
-	
-	@Transactional
-	private boolean seperateFileAndParent(ID parentId, Long id) {
-		File entity = fileService.get(id);
-		T parent = getService().get(parentId);
-		removeFileFromParent(entity, parent);
-		Boolean res = fileService.delete(entity);
-		getService().getRepository().flush();
-		return res;
-	}
-	
-	private Response _createFile(ID parentId, File file) {
-		File justCreated = fileService.create(file);
-		if (justCreated != null) joinFileAndParent(parentId, file);
-		return conditionalResponse(
-				new Response(HttpStatus.CREATED, justCreated), 
-				ifNullAlreadyExistsCondition(getEntityKind()));
-	}
-	
-	private Response _updateFile(Long id, File file) {
-		if (file.getId() == null) {
-			file.setId(id);
-		}
-		else if (file.getId() != id) {
-			return new Response(HttpStatus.BAD_REQUEST, 
-					new Response.Message(ID_S_DOES_NOT_MATCH_WITH_ID_S, file.getId(), id));
-		}
-		return conditionalResponse(
-				new Response(HttpStatus.OK, fileService.update(file)), 
-				ifNull(new Response(HttpStatus.NOT_MODIFIED, new Response.Message(FAILED_TO_UPDATE_ENTITY_WITH_ID_S, id))));
-	}
-	
-	private Response _getFile(Long id) {
-		return conditionalResponse(
-				new Response(HttpStatus.OK, fileService.get(id)),
-				ifNull(notFoundWithIdResponse("file", id)));
-	}
-	
-	private Response _listFiles(ID parentId) {
-		List<File> files = listFilesByParentId(parentId);
-		return new Response(HttpStatus.OK, "file", files);
-	}
-	
-	private Response _deleteFile(ID parentId, Long id) {
-		boolean isDeleted = seperateFileAndParent(parentId, id);
-		return conditionalResponse(
-				new Response(HttpStatus.OK, new Response.Message(S_WITH_ID_S_DELETED, "file", id)), 
-				ifTrue(!isDeleted, notFoundWithIdResponse("file", id)));
-	}
+extends BaseFileHavingController<T, ID> {
 	
 	/**
-	 * PUT: /{parentId}
+	 * PUT: /{parentId}/files
 	 * success: {@value HttpStatus#CREATED}
 	 * error  : {@value HttpStatus#CONFLICT}
 	 *   parent not found: {@value HttpStatus#BAD_REQUEST}
@@ -111,7 +51,7 @@ extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T
 	}
 	
 	/**
-	 * POST: /{parentId}/{id}
+	 * POST: /{parentId}/files/{id}
 	 * success: {@value HttpStatus#OK}
 	 * error  : {@value HttpStatus#NOT_MODIFIED}
 	 *   parent mismatch  : {@value HttpStatus#BAD_REQUEST}
@@ -135,7 +75,7 @@ extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T
 	}
 	
 	/**
-	 * GET: /{parentId}/{id}
+	 * GET: /{parentId}/files/{id}
 	 * success: {@value HttpStatus#OK}
 	 * error  : {@value HttpStatus#NOT_FOUND}
 	 *   parent not found: {@value HttpStatus#BAD_REQUEST}
@@ -151,7 +91,7 @@ extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T
 	}
 	
 	/**
-	 * GET: /{parentId}
+	 * GET: /{parentId}/files
 	 * success: {@value HttpStatus#OK}
 	 * error  :
 	 *   parent not found: {@value HttpStatus#BAD_REQUEST}
@@ -166,7 +106,7 @@ extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T
 	}
 	
 	/**
-	 * DELETE: /{parentId}/{id}
+	 * DELETE: /{parentId}/files/{id}
 	 * success: {@value HttpStatus#OK}
 	 * error  : {@value HttpStatus#NOT_FOUND}
 	 *   parent not found: {@value HttpStatus#BAD_REQUEST}

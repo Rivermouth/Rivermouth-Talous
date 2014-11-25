@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: fi.rivermouth.talous.test.controller.UserControllerTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 2.288 sec <<< FAILURE! - in fi.rivermouth.talous.test.controller.UserControllerTest
-testGetUserByEmail(fi.rivermouth.talous.test.controller.UserControllerTest)  Time elapsed: 0.197 sec  <<< FAILURE!
+Tests run: 6, Failures: 1, Errors: 1, Skipped: 0, Time elapsed: 3.484 sec <<< FAILURE! - in fi.rivermouth.talous.test.controller.UserControllerTest
+testGetUserByEmail(fi.rivermouth.talous.test.controller.UserControllerTest)  Time elapsed: 0.412 sec  <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<204>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:60)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:89)
@@ -10,11 +10,11 @@ java.lang.AssertionError: Status expected:<200> but was:<204>
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:149)
 	at fi.rivermouth.talous.test.controller.UserControllerTest.testGetUserByEmail(UserControllerTest.java:57)
 
-testCRUD_Update(fi.rivermouth.talous.test.controller.UserControllerTest)  Time elapsed: 0.312 sec  <<< ERROR!
+testCRUD_Update(fi.rivermouth.talous.test.controller.UserControllerTest)  Time elapsed: 0.424 sec  <<< ERROR!
 java.lang.RuntimeException: com.fasterxml.jackson.databind.JsonMappingException: failed to lazily initialize a collection of role: fi.rivermouth.talous.domain.User.clients, could not initialize proxy - no Session (through reference chain: fi.rivermouth.talous.domain.User["clients"])
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:47)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:130)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:137)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:50)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:133)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:140)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -53,9 +53,9 @@ Caused by: com.fasterxml.jackson.databind.JsonMappingException: failed to lazily
 	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:114)
 	at com.fasterxml.jackson.databind.ObjectMapper._configAndWriteValue(ObjectMapper.java:2818)
 	at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:2275)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:43)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:130)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:137)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:46)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:133)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:140)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -100,9 +100,9 @@ Caused by: org.hibernate.LazyInitializationException: failed to lazily initializ
 	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:114)
 	at com.fasterxml.jackson.databind.ObjectMapper._configAndWriteValue(ObjectMapper.java:2818)
 	at com.fasterxml.jackson.databind.ObjectMapper.writeValueAsString(ObjectMapper.java:2275)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:43)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:130)
-	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:137)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.asJsonString(BaseControllerTest.java:46)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:133)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:140)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
