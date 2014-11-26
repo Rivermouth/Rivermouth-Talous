@@ -3,6 +3,7 @@ package fi.rivermouth.talous.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +12,9 @@ import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.Client;
 import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
+import fi.rivermouth.talous.service.AbstractFileHavingService;
 import fi.rivermouth.talous.service.ClientService;
+import fi.rivermouth.talous.service.FileService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
@@ -55,18 +58,8 @@ public class ClientController extends AbstractFileHavingChildController<User, Lo
 	}
 
 	@Override
-	public void addFileToParent(File file, Client parent) {
-		parent.getNotes().add(file);
-	}
-
-	@Override
-	public void removeFileFromParent(File file, Client parent) {
-		parent.getNotes().remove(file);
-	}
-
-	@Override
-	public List<File> listFilesByParentId(Long parentId) {
-		return clientService.get(parentId).getNotes();
+	public AbstractFileHavingService<Client, Long> getFileHavingService() {
+		return clientService;
 	}
 	
 }

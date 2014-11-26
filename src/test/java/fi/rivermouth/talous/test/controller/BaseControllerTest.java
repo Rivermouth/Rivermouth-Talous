@@ -44,7 +44,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 			final ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 			final String jsonContent = mapper.writeValueAsString(obj);
-			System.out.println("JSON STRING: \n" + jsonContent);
+			System.out.println("\n\nJSON STRING: \n" + jsonContent);
 			return jsonContent;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -87,6 +87,11 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 			.andExpect(jsonPath("$.data.id").exists());
 	}
 	
+	protected T createEntity() throws Exception {
+		createTotallyRandomEntity();
+		return getService().list().get(0);
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac)
@@ -106,7 +111,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	@Test
 	public void testCRUD_Read() throws Exception {
-		T entity = getService().create(getRandomEntity());
+		T entity = createEntity();
 		
 		mockMvc.perform(
 				getGet(entity))
@@ -125,9 +130,8 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 			.andExpect(jsonPath("$.data", hasSize(3)));
 	}
 
-	@Transactional(readOnly=true)
 	private void performCRUD_Update() throws Exception {
-		T entity = getService().list().get(0);
+		T entity = createEntity();
 
 		mockMvc.perform(
 				getPost(entity).content(asJsonString(entity)).contentType(MediaType.APPLICATION_JSON))
@@ -136,14 +140,12 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	@Test
 	public void testCRUD_Update() throws Exception {
-		createTotallyRandomEntity();
 		performCRUD_Update();
 	}
 	
 	@Test
 	public void testCRUD_Delete() throws Exception {
-		createTotallyRandomEntity();
-		T entity = getService().list().get(0);
+		T entity = createEntity();
 		
 		mockMvc.perform(
 				getDelete(entity))

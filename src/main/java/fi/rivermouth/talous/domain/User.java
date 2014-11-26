@@ -18,6 +18,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import fi.rivermouth.spring.entity.FileHavingEntityInterface;
 import fi.rivermouth.talous.model.Address;
 
@@ -34,10 +36,10 @@ public class User extends AbstractPerson<Long> implements FileHavingEntityInterf
 	@Embedded
 	@NotNull
 	private Company company;
-	
+
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has clients
 	private List<Client> clients;
-	
+
 	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.LAZY) // has notes
 	private List<File> files;
 
@@ -74,20 +76,24 @@ public class User extends AbstractPerson<Long> implements FileHavingEntityInterf
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	
+
+	@JsonIgnore
 	public List<Client> getClients() {
 		return clients;
 	}
 
 	public void setClients(List<Client> clients) {
+		if (clients == null) clients = getClients();
 		this.clients = clients;
 	}
 
+	@JsonIgnore
 	public List<File> getFiles() {
 		return files;
 	}
 
 	public void setFiles(List<File> files) {
+		if (files == null) files = getFiles();
 		this.files = files;
 	}
 	

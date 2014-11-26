@@ -53,8 +53,13 @@ public class File extends BaseEntity<Long> {
 		return content;
 	}
 	
+	/**
+	 * Set content of File and update its size
+	 * @param content
+	 */
 	public void setContent(byte[] content) {
 		this.content = content;
+		this.size = (long) content.length;
 	}
 	
 	public String getCollection() {

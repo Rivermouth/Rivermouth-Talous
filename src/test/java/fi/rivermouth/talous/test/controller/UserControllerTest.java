@@ -4,7 +4,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 
+import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.service.UserService;
@@ -38,9 +40,22 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 		return user;
 	}
 	
+	private File getRandomFile() {
+		File file = new File();
+		file.setTitle(RandomStringUtils.random(8));
+		file.setMimeType("text/plain");
+		file.setContent(RandomStringUtils.random(287).getBytes());
+		return file;
+	}
+	
 	@Override
 	public String getAPIPath() {
 		return "/users";
+	}
+
+	@Override
+	public UserService getService() {
+		return userService;
 	}
 
 	@Before
@@ -53,14 +68,20 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	public void testGetUserByEmail() throws Exception {
 		User user = userService.create(getRandomEntity());
 		
-		mockMvc.perform(get("/users/findBy/email/{email}", user.getEmail()))
+		mockMvc.perform(get("/users/findBy/email/" + user.getEmail()))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data.email", is(user.getEmail())));
 	}
-
-	@Override
-	public UserService getService() {
-		return userService;
+	
+	@Test
+	public void testSaveFile() throws Exception {
+		User user = userService.create(getRandomEntity());
+		
+		mockMvc.perform(
+				put("/users/" + user.getId() + "/files")
+				.content(asJsonString(getRandomFile())).contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isCreated())
+			.andExpect(jsonPath("$.data.id").exists());
 	}
 	
 }

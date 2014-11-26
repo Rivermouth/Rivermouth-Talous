@@ -3,12 +3,18 @@ package fi.rivermouth.spring.service;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Service;
 
 import fi.rivermouth.spring.entity.BaseEntity;
 
 @Service
 public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable> implements BaseServiceInterface<T, ID> {
+	
+	@PersistenceContext
+	private EntityManager em;
 
 	public long count() {
 		return getRepository().count();
@@ -93,7 +99,7 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	 */
 	public <S extends T> S update(S entity) {
 		if (!exists(entity)) return null;
-		return getRepository().save(entity);
+		return em.merge(entity);
 	}
 	
 	/**
@@ -111,7 +117,9 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	 * @return {@code S entity}
 	 */
 	public <S extends T> S save(S entity) {
-		return getRepository().save(entity);
+		S updated = update(entity);
+		if (updated == null) return create(entity);
+		else return updated;
 	}
 	
 }

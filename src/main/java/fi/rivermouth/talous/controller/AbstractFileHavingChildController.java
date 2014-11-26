@@ -20,6 +20,7 @@ import fi.rivermouth.spring.entity.FileHavingEntityInterface;
 import fi.rivermouth.spring.entity.Response;
 import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.File;
+import fi.rivermouth.talous.service.FileService;
 
 @RestController
 public abstract class AbstractFileHavingChildController
@@ -144,7 +145,7 @@ extends BaseFileHavingController<T, ID> implements ChildCRUDControllerInterface<
 	public Response delete(@PathVariable PARENT_ID parentId, @PathVariable ID entityId, @PathVariable Long id) {
 		Response err = checkExists(parentId, entityId);
 		if (err != null) return err;
-		if (!fileService.exists(id)) return notFoundWithIdResponse("file", id);
+		if (!getFileService().exists(id)) return notFoundWithIdResponse("file", id);
 		return _deleteFile(entityId, id);
 	}
 	

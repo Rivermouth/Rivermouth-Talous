@@ -26,31 +26,20 @@ import fi.rivermouth.talous.service.FileService;
 @RestController
 public abstract class BaseFileHavingController<T extends BaseEntity<ID>, ID extends Serializable> 
 extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T, ID> {
-	
+
 	@Autowired
-	protected FileService fileService;
-	
-	@Transactional
-	protected void joinFileAndParent(ID parentId, File entity) {
-		T parent = getService().get(parentId);
-		addFileToParent(entity, parent);
-		getService().update(parent);
-		getService().getRepository().flush();
+	public FileService<T, ID> fileService;
+
+	public BaseFileHavingController() {
+		this.fileService = new FileService<T, ID>();
 	}
 	
-	@Transactional
-	protected boolean seperateFileAndParent(ID parentId, Long id) {
-		File entity = fileService.get(id);
-		T parent = getService().get(parentId);
-		removeFileFromParent(entity, parent);
-		Boolean res = fileService.delete(entity);
-		getService().getRepository().flush();
-		return res;
+	public FileService<T, ID> getFileService() {
+		return fileService;
 	}
 	
 	protected Response _createFile(ID parentId, File file) {
-		File justCreated = fileService.create(file);
-		if (justCreated != null) joinFileAndParent(parentId, file);
+		File justCreated = getFileService().create(getFileHavingService(), parentId, file);
 		return conditionalResponse(
 				new Response(HttpStatus.CREATED, justCreated), 
 				ifNullAlreadyExistsCondition(getEntityKind()));
@@ -65,26 +54,25 @@ extends CRUDController<T, ID> implements AbstractFileHavingControllerInterface<T
 					new Response.Message(ID_S_DOES_NOT_MATCH_WITH_ID_S, file.getId(), id));
 		}
 		return conditionalResponse(
-				new Response(HttpStatus.OK, fileService.update(file)), 
+				new Response(HttpStatus.OK, getFileService().update(id, file)), 
 				ifNull(new Response(HttpStatus.NOT_MODIFIED, new Response.Message(FAILED_TO_UPDATE_ENTITY_WITH_ID_S, id))));
 	}
 	
 	protected Response _getFile(Long id) {
 		return conditionalResponse(
-				new Response(HttpStatus.OK, fileService.get(id)),
+				new Response(HttpStatus.OK, getFileService().get(id)),
 				ifNull(notFoundWithIdResponse("file", id)));
 	}
 	
 	protected Response _listFiles(ID parentId) {
-		List<File> files = listFilesByParentId(parentId);
+		List<File> files = getFileService().list(getFileHavingService(), parentId);
 		return new Response(HttpStatus.OK, "file", files);
 	}
 	
 	protected Response _deleteFile(ID parentId, Long id) {
-		boolean isDeleted = seperateFileAndParent(parentId, id);
 		return conditionalResponse(
 				new Response(HttpStatus.OK, new Response.Message(S_WITH_ID_S_DELETED, "file", id)), 
-				ifTrue(!isDeleted, notFoundWithIdResponse("file", id)));
+				ifTrue(!getFileService().delete(getFileHavingService(), parentId, id), notFoundWithIdResponse("file", id)));
 	}
 	
 }

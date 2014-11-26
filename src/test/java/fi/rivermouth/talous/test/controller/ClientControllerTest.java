@@ -1,10 +1,17 @@
 package fi.rivermouth.talous.test.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 
 import fi.rivermouth.spring.service.BaseService;
 import fi.rivermouth.talous.domain.Client;
+import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.service.ClientService;
@@ -50,6 +57,14 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 		
 		return client;
 	}
+	
+	private File getRandomFile() {
+		File file = new File();
+		file.setTitle(RandomStringUtils.random(8));
+		file.setMimeType("text/plain");
+		file.setContent(RandomStringUtils.random(287).getBytes());
+		return file;
+	}
 
 	@Override
 	public String getAPIPath() {
@@ -60,10 +75,16 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 	public BaseService<Client, Long> getService() {
 		return clientService;
 	}
-
-//	@Override
-//	public void setEntityParent(Client entity, User parent) {
-//		entity.setParentId(parent.getId());
-//	}
+	
+	@Test
+	public void testSaveFile() throws Exception {
+		Client client = createEntity();
+		
+		mockMvc.perform(
+				put("/users/" + parent.getId() + "/clients/" + client.getId() + "/files")
+				.content(asJsonString(getRandomFile())).contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isCreated())
+			.andExpect(jsonPath("$.data.id").exists());
+	}
 
 }

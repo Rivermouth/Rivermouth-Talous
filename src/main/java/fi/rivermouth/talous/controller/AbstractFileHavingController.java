@@ -118,7 +118,7 @@ extends BaseFileHavingController<T, ID> {
 	@RequestMapping(value = "/{parentId}/files/{id}", method = RequestMethod.DELETE)
 	public Response delete(@PathVariable ID parentId, @PathVariable Long id) {
 		if (!getService().exists(parentId)) return notFoundWithIdResponse(parentId);
-		if (!fileService.exists(id)) return notFoundWithIdResponse("file", id);
+		if (!getFileService().exists(id)) return notFoundWithIdResponse("file", id);
 		return _deleteFile(parentId, id);
 	}
 	
