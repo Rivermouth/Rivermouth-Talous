@@ -3,6 +3,7 @@
 	function Element(params) {
 		// Default params
 		this.className = "element";
+		this.element = null;
 		this.elements = [];
 		this.onClick = undefined;
 		
@@ -36,22 +37,31 @@
 		},
 		
 		render: function() {
+			var self = this;
+			
 			var outer = doc.createElement("div");
 			outer.className = this.className;
 			
 			var inner = this.contentArea;
 			inner.className = this.className + "-inner";
 			
-			this.update();
+			this.update(true);
 			
 			outer.appendChild(inner);
 			
-			outer.onclick = this.onClick;
+			outer.onclick = function() {
+				if (self.onClick) {
+					self.onClick(self, this);
+				}
+			};
 			
+			this.element = outer;
 			return outer;
 		},
 		
-		update: function() {
+		update: function(doNotClear) {
+			if (this.onRender) this.onRender(this, this.data);
+			
 			var d = doc.createDocumentFragment();
 			for (var i = 0, l = this.elements.length; i < l; ++i) {
 				var el = this.elements[i];
@@ -62,6 +72,7 @@
 					d.appendChild(el);
 				}
 			}
+			if (!doNotClear) this.contentArea.innerHTML = "";
 			this.contentArea.appendChild(d);
 		},
 		

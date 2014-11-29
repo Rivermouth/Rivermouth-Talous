@@ -24,4 +24,15 @@
 }
 
 
-.card { .Card; }
+.card { .Card;
+	.field {
+		label { display: block; }
+		input, textarea { display: block; width: 100%!important; box-sizing: border-box; }
+	}
+	.card-footer { position: absolute; left: 0; bottom: 0; right: 0; background: #fff; padding: 0.1em 0.8em; }
+}
+
+.card.note { max-height: 4.6em; overflow: hidden; 
+	&:after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0.4em; background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); }
+	&.opened { max-height: none; }
+}

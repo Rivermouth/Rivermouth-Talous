@@ -14,6 +14,15 @@
 		return elem;
 	}
 	
+	function createNewNoteButton() {
+		var elem = doc.createElement("button");
+		elem.textContent = "New note";
+		elem.onclick = function() {
+			
+		};
+		return elem;
+	}
+	
 	function addClientsHolder() {
 		var clientsHolder = new Holder({className: "clients"});
 		clientsHolder.tab.text("Clients");
@@ -39,10 +48,10 @@
 		notesHolder.tab.text("Notes");
 
 		for (var i = 0; i < 7; i++) {
-			var card = new Card({clasName: "note"});
-			card.header.text("Muista laskutus");
-			notesHolder.body.add(card);
+			notesHolder.body.add(bn.newNoteCard());
 		}
+		
+		notesHolder.footer.add(createNewNoteButton());
 
 		main.container.appendChild(notesHolder.render());
 	}

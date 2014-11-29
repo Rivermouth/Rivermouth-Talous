@@ -6,14 +6,21 @@
 		this.label = params.label || null;
 		this.placeholder = params.placeholder || "";
 		this.value = params.value || null;
-		
-		this.input = doc.createElement("input");
-		this.input.value = this.value;
 	}
 	
 	Field.prototype = {
 		
 		render: function() {
+			this.input = (function(type) {
+				if (type == "textarea") {
+					var elem = doc.createElement("textarea");
+					elem.rows = 3;
+					return elem;
+				}
+				return doc.createElement("input");
+			})(this.type);
+			this.input.value = this.value;
+			
 			var inputId = "input-" + (new Date()).getTime() + Math.round(Math.random() * 1000);
 			
 			var elem = doc.createElement("div");
