@@ -74,14 +74,14 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @param entity
 	 * @return
 	 */
-	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, consumes = "application/json")
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public Response createWjson(@PathVariable PARENT_ID parentId, @Valid @RequestBody T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
 		joinEntityAndParent(parentId, entity);
 		return response;
 	}
-	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, consumes = "application/x-www-form-urlencoded")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response create(@PathVariable PARENT_ID parentId, @Valid @ModelAttribute T entity) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
@@ -124,7 +124,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Response get(@PathVariable PARENT_ID parentId, @PathVariable ID id) {
+	public Response get(@PathVariable("parentId") PARENT_ID parentId, @PathVariable("id") ID id) {
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.get(id);
 	}

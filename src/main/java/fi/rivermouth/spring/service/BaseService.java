@@ -1,10 +1,8 @@
 package fi.rivermouth.spring.service;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Service;
 
@@ -13,8 +11,23 @@ import fi.rivermouth.spring.entity.BaseEntity;
 @Service
 public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializable> implements BaseServiceInterface<T, ID> {
 	
-	@PersistenceContext
-	private EntityManager em;
+	private T merge(T obj1, T obj2) {
+		for (Field field : obj1.getClass().getDeclaredFields()) {
+			field.setAccessible(true);
+			try {
+				if (field.get(obj1) == null) {
+					field.set(obj1, field.get(obj2));
+				}
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return obj1;
+	}
 
 	public long count() {
 		return getRepository().count();
@@ -99,7 +112,8 @@ public abstract class BaseService<T extends BaseEntity<ID>, ID extends Serializa
 	 */
 	public <S extends T> S update(S entity) {
 		if (!exists(entity)) return null;
-		return em.merge(entity);
+		merge(entity, get(entity.getId()));
+		return getRepository().save(entity);
 	}
 	
 	/**

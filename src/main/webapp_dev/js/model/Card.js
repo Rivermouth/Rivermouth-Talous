@@ -1,38 +1,90 @@
-(function(win, doc, Element, Info) {
+(function(win, doc, Element, Info, bn, hbel) {
 	
-	function Card(params, data) {
-		params.className = params.className || "";
-		params.className += " card";
+	function createHeader() {
+		return hbel("div", {"class": "header card-header"}, true, null);
+	}
+	
+	function createBody() {
+		return hbel("div", {"class": "body card-body"}, true, null);
+	}
+	
+	function createFooter() {
+		return hbel("div", {"class": "footer card-footer"}, true, null);
+	}
+	
+	function Card(data, props) {
+		Element.call(this, props);
 		
-		Element.call(this, params);
+		this.props.class += " card";
 		
-		this.header = new Element({className: "header card-header"});
-		this.body = new Element({className: "body card-body"});
-		this.footer = new Element({className: "body card-footer"});
+		var elem = hbel("div", this.props, data, null);
 		
-		this.elements = [this.header, this.body, this.footer];
-		this.elementsBackup = null;
+		elem.header = createHeader();
+		elem.body = createBody();
+		elem.footer = createFooter();
 		
-		this.data = data;
+		elem.set(elem.header, elem.body, elem.footer);
+		
+		return elem;
 	}
 	
 	Card.prototype = Object.create(Element.prototype);
 	
-	Card.prototype.toggleEditMode = function() {
-		if (this.elementsBackup) {
-			this.elements = this.elementsBackup;
-			this.elementsBackup = null;
-		}
-		else {		
-			this.elementsBackup = this.elements;
-			var info = new Info(this.data, -1);
-			this.elements = [info];
-			if (this.onEdit) this.onEdit(this, info);
-		}
+	
+	
+	function CardEditable(data, props) {
+		var elem = new Card(data, props);
+		elem.onSave = function() {};
 		
-		this.update();
-	};
+		var editElem = {
+			header: createHeader(),
+			body: createBody(),
+			footer: createFooter()
+		};
+		
+		var info = new Info(null, -1);
+		
+		editElem.header.set("Editing");
+		editElem.body.set(info);
+		editElem.footer.set([
+			hbel("a", {
+				onclick: function(evt) {
+					evt.preventDefault();
+					elem.data = bn.clone(info.data);
+					elem.onSave(elem.data);
+					elem.toggleEditMode();
+				},
+				href: "#"
+			}, null, "Save"),
+			hbel("a", {
+				onclick: function(evt) {
+					evt.preventDefault();
+					elem.toggleEditMode();
+				},
+				href: "#"
+			}, null, "Cancel")
+		]);
+		
+		elem.isEditMode = false;
+		elem.toggleEditMode = function() {
+			this.element.classList.toggle("opened");
+			this.isEditMode = !this.isEditMode;
+			
+			if (this.isEditMode) {
+				info.data = bn.clone(this.data);
+				this.set(editElem.header, editElem.body, editElem.footer);
+			}
+			else {
+				this.set(this.header, this.body, this.footer);
+			}
+			
+			this.render();
+		};
+		
+		return elem;
+	}
 	
 	window.bn.Card = Card;
+	window.bn.CardEditable = CardEditable;
 	
-})(window, document, bn.Element, bn.Info);
+})(window, document, bn.Element, bn.Info, bn, hbel);

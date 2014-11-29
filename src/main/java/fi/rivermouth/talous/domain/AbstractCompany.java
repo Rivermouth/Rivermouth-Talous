@@ -21,7 +21,6 @@ public abstract class AbstractCompany<ID extends Serializable> extends BaseEntit
 	private Address address;
 	
 	public AbstractCompany() {
-		this.address = new Address();
 	}
 	
 	public AbstractCompany(String name) {

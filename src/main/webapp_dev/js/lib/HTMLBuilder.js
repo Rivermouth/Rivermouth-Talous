@@ -1,5 +1,39 @@
 (function(doc) {
 	
+	function clone(obj) {
+		var copy;
+
+		// Handle the 3 simple types, and null or undefined
+		if (null == obj || "object" != typeof obj) return obj;
+
+		// Handle Date
+		if (obj instanceof Date) {
+			copy = new Date();
+			copy.setTime(obj.getTime());
+			return copy;
+		}
+
+		// Handle Array
+		if (obj instanceof Array) {
+			copy = [];
+			for (var i = 0, len = obj.length; i < len; i++) {
+				copy[i] = clone(obj[i]);
+			}
+			return copy;
+		}
+
+		// Handle Object
+		if (obj instanceof Object) {
+			copy = {};
+			for (var attr in obj) {
+				if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+			}
+			return copy;
+		}
+
+		throw new Error("Unable to copy obj! Its type isn't supported.");
+	}
+	
 	function isFunction(obj) {
 		return (typeof obj === "function");
 	}
@@ -12,7 +46,32 @@
 		return (typeof obj === "string");
 	}
 	
-	function HBElement(tag, props, data) {
+	function isNumber(obj) {
+		return (typeof obj === "number");
+	}
+	
+	function isArray(obj) {
+		return (obj instanceof Array);
+	}
+	
+	function getVar(data, string) {
+		var parts = string.split(".");
+		var out = data;
+		for (var i = 0, l = parts.length; i < l; ++i) {
+			out = out[parts[i]];
+		}
+		return out;
+	}
+	
+	function HBElement(tag, props, data, inners) {
+		this._tag = tag;
+		this._props = clone(props);
+		this._data = clone(data);
+		
+		this._id = (new Date().getTime() + "" + Math.round(Math.random() * 1000));
+		
+		this._inners = [];
+		
 		this.parent = null;
 		this.elements = [];
 		this.data = data;
@@ -22,30 +81,73 @@
 		
 		if (props !== null) {
 			for (var i in props) {
-				this.element.setAttribute(i, props[i]);
+				if (i.substring(0, 2) == "on") {
+					this.element[i] = props[i];
+				}
+				else {
+					this.element.setAttribute(i, props[i]);
+				}
 			}
 		}
+		
+		this.set(inners);
 	}
+	
+	/* Statics */
 	
 	HBElement.isHBElement = function(obj) {
 		return (obj instanceof HBElement);
 	};
 	
-	HBElement.prototype._parseHTMLString = function(htmlElem) {
-		for (var k in this.data) {
-			var reg = new RegExp("{{" + k + "}}", "g");
-			htmlElem = htmlElem.replace(reg, this.data[k]);
+	
+	/* User overridables */
+	
+	HBElement.prototype.onRender = function() {};
+	HBElement.prototype.hasNewParent = function() {};
+	
+	
+	/* Privates */
+	
+	HBElement.prototype._forEachHBElement = function(fn) {
+		for (var i = 0, l = this._inners.length; i < l; ++i) {
+			if (HBElement.isHBElement(this._inners[i])) {
+				fn(this._inners[i], i);
+			}
 		}
+	}
+	
+	HBElement.prototype._notifyChilds = function(fnName) {
+		this._forEachHBElement(function(element) {
+			element[fnName]();
+		});
+	};
+	
+	HBElement.prototype._hasNewParent = function() {
+		this.getData();
+		this._notifyChilds("_hasNewParent");
+		this.hasNewParent();
+	};
+	
+	HBElement.prototype._parseHTMLString = function(htmlElem) {
+		var self = this;
+		function replacer(match, p1, offset, string) {
+			return getVar(self.data, p1);
+		}
+		var reg = new RegExp("{{(.*?)}}", "g");
+		htmlElem = htmlElem.replace(reg, replacer);
 		return htmlElem;
 	};
 	
+	/**
+	 * Render child elements
+	 */
 	HBElement.prototype._renderElements = function() {
 		var d = doc.createDocumentFragment();
 
 		for (var i = 0, l = this.elements.length; i < l; ++i) {
 			var obj = this.elements[i];
 			var htmlElem = null;
-
+			
 			if (HBElement.isHBElement(obj)) {
 				htmlElem = obj.render();
 			}
@@ -61,29 +163,38 @@
 		return d;
 	};
 	
-	HBElement.prototype.render = function(targetElement) {
-		if (this.elements.length > 0) {
-			
-			var oldElements = this.elements;
-			this.elements = [];
-
-			for (var i = 0, l = oldElements.length; i < l; ++i) {
-				var obj = oldElements[i];
-
-				if (isFunction(obj)) {
-					obj.call(this);
-				}
-				else {
-					this.add(obj);
-				}
-			}
-			
-			this.element.innerHTML = "";
-			this.element.appendChild(this._renderElements());
-
-			this.elements = oldElements;
-			
+	HBElement.prototype._addInner = function(obj) {		
+		this._inners.push(obj);
+	};
+	
+	
+	/* Publics */
+	
+	HBElement.prototype.getData = function() {
+		if (this.data === true && this.parent !== null) {
+			this.data = this.parent.getData();
 		}
+		return this.data;
+	};
+	
+	HBElement.prototype.render = function(targetElement) {
+		this.onRender();
+		
+		this.elements = [];
+		
+		for (var i = 0, l = this._inners.length; i < l; ++i) {
+			var obj = this._inners[i];
+			
+			if (isFunction(obj)) {
+				obj.call(this);
+			}
+			else {
+				this.add(obj);
+			}
+		}
+
+		this.element.innerHTML = "";
+		this.element.appendChild(this._renderElements());
 		
 		if (this.rawElement !== null) {
 			if (isString(this.rawElement)) {
@@ -106,23 +217,109 @@
 		}
 		
 		if (HBElement.isHBElement(obj)) {
-			obj.parent = this;
+			obj.addTo(this);
 		}
 		
 		this.elements.push(obj);
 	};
 	
+	HBElement.prototype.addTo = function(parent) {
+		if (!HBElement.isHBElement(parent)) {
+			throw parent.toString() + " is not HBElement";
+		}
+		
+		if (this.parent === null || this.parent._id != parent._id) {
+			this.parent = parent;
+			this.getData();
+			this._hasNewParent();
+		}
+	};
+	
+	/**
+     * Detach HBElement from parent
+	 * @param obj :(HBElement|index(num)|null)
+	 * 
+	 * if HBElement, detach HBElement from parent
+	 * if index:num, detach nth element from parent
+	 * if null, detach this from parent
+	 */
+	HBElement.prototype.detach = function(obj) {
+		var elem = null;
+		if (obj === null) {
+			this.parent.detach(this);
+		}
+		else if (HBElement.isHBElement(obj)) {
+			var self = this;
+			this._forEachHBElement(function(element, i) {
+				if (element.id == obj.id) {
+					self.detach(i);
+					return;
+				}
+			});
+		}
+		else if (isNumber(obj)) {
+			elem = this._inners.splice(obj, 1)[0];
+		}
+		
+		if (HBElement.isHBElement(elem)) {
+			elem.parent = null;
+			elem.data = elem._data;
+		}
+	};
+	
+	HBElement.prototype.detachAll = function() {
+		for (var i = this._inners.length - 1; i >= 0; --i) {
+			this.detach(i);
+		}
+		if (this._inners.length > 0) {
+			console.warn("Error with detaching items");
+		}
+		this.rawElement = null;
+	};
+	
+	HBElement.prototype.set = function() {
+		this.detachAll();
+		
+		var inners = [];
+		if (isArray(arguments[0])) {
+			inners = arguments[0];
+		}
+		else {
+			inners = arguments;
+		}
+		
+		for (var i = 0, l = inners.length; i < l; ++i) {
+			var inner = inners[i];
+			this._addInner(inner);
+		}
+	};
+	
 	
 	var HTMLBuilder = {
+		
+		/**
+		 * @param tag :str, HTML tag name
+		 * @param props :{}, HTML element properties
+		 * @param data, data to bind. If true, inherit parent data
+		 * @param childs, element's childs (HBElement|HTMLElement|RawHTMLElement(HTML string))
+		 */
 		element: function() {
-			var elem = new HBElement(arguments[0], arguments[1], arguments[2]);
+			var inners = [];
 			
-			for (var i = 3, l = arguments.length; i < l; ++i) {
-				var inner = arguments[i];
-				elem.add(inner);
+			function loopInners(arr, startFrom) {
+				for (var i = startFrom, l = arr.length; i < l; ++i) {
+					inners.push(arr[i]);
+				}
 			}
 			
-			return elem;
+			if (isArray(arguments[3])) {
+				loopInners(arguments[3], 0);
+			}
+			else {
+				loopInners(arguments, 3);
+			}
+			
+			return new HBElement(arguments[0], arguments[1], arguments[2], inners);
 		}
 	};
 	

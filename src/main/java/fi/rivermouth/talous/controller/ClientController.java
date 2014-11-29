@@ -18,7 +18,7 @@ import fi.rivermouth.talous.service.FileService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
-@RequestMapping(value = "/users/{parentId}/clients")
+@RequestMapping("/users/{parentId}/clients")
 public class ClientController extends AbstractFileHavingChildController<User, Long, Client, Long> {
 
 	@Autowired

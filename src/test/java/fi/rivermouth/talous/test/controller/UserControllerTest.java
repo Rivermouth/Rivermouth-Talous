@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
+import fi.rivermouth.talous.domain.Company;
 import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
@@ -27,7 +28,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 		user.setName(new User.Name(RandomStringUtils.random(6).toString(), RandomStringUtils.random(14).toString()));
 		user.setEmail(email);
 		user.setPassword("5gY7jMn9H");
-		user.setCompany(new User.Company("Rivermouth Ltd", RandomStringUtils.random(7).toString(),
+		user.setCompany(new Company("Rivermouth Ltd", RandomStringUtils.random(7).toString(),
 				new Address("Rautalammintie 3 C 710", "00550", "Helsinki", "Finland")));
 		
 		return user;

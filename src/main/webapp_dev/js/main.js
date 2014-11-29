@@ -1,5 +1,7 @@
 (function(win, doc, Holder, Card, Info, api, bn) {
 	
+	var IS_AUTHORIZED = false;
+	
 	var body = doc.body;
 	
 	var container = doc.getElementById("container");
@@ -21,6 +23,9 @@
 				bn.clientView(pathParts[1]);
 				break;
 			case "login":
+				if (IS_AUTHORIZED) {
+					open("");
+				}
 				bn.loginView();
 				break;
 			case "signup":
@@ -45,11 +50,13 @@
 		api.me().execute(
 			function(resp) {
 				console.log(resp);
+				IS_AUTHORIZED = true;
 				loadDone();
 			},
 			function(errorResp) {
 				console.warn(errorResp);
 				open("login");
+				IS_AUTHORIZED = false;
 				loadDone();
 			}
 		);

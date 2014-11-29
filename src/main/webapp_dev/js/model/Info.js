@@ -1,118 +1,81 @@
-(function(win, doc, Element) {
+(function(win, doc, Element, hbel) {
 	
-	function Field(params) {
-		this.type = params.type || "text";
-		this.name = params.name || "";
-		this.label = params.label || null;
-		this.placeholder = params.placeholder || "";
-		this.value = params.value || null;
-	}
-	
-	Field.prototype = {
+	function Field(label, props) {
+		Element.call(this, props);
 		
-		render: function() {
-			this.input = (function(type) {
-				if (type == "textarea") {
-					var elem = doc.createElement("textarea");
-					elem.rows = 3;
-					return elem;
+		if (this.props.value === null) this.props.value = "";
+		
+		this.props.class = "inp";
+		this.props.id = "input-" + Math.round(new Date().getTime() + Math.random() * 1000);
+		
+		var elem =  hbel("div", {"class": "field"}, true, [
+			hbel("label", {"class": "label", "for": this.props.id}, null, label),
+			hbel("input", this.props, true, function() {
+				var self = this;
+				this.element.onchange = function() {
+					self.data[this.name] = this.value;
 				}
-				return doc.createElement("input");
-			})(this.type);
-			this.input.value = this.value;
+			})
+		]);
 			
-			var inputId = "input-" + (new Date()).getTime() + Math.round(Math.random() * 1000);
-			
-			var elem = doc.createElement("div");
-			elem.className = "field";
-			
-			var label = doc.createElement("label");
-			label.setAttribute("for", inputId);
-			label.textContent = this.label;
-			
-			this.input.id = inputId;
-			this.input.setAttribute("name", this.name);
-			this.input.setAttribute("type", this.type);
-			this.input.setAttribute("placeholder", this.placeholder);
-			
-			elem.appendChild(label);
-			elem.appendChild(this.input);
-			
-			return elem;
-		}
-		
-	};
-	
-	function Subtitle(text) {
-		this.text = text;
+		return elem;
 	}
 	
-	Subtitle.prototype = {
-		
-		render: function() {
-			if (!this.text) {
-				return doc.createDocumentFragment();
-			}
-			
-			var elem = doc.createElement("div");
-			elem.className = "info-subtitle subtitle";
-			elem.textContent = this.text;
-			
-			return elem;
-		}
-		
-	};
+	Field.prototype = Object.create(Element.prototype);
+	
+	
 	
 	function Info(data, deepness) {
-		Element.call(this, {className: "info-block"});
+		Element.call(this, {"class": "info-block"});
 		
-		this.contentArea = doc.createElement("form");
+		var elem = hbel("form", this.props, data, function() {console.log(this);
+			if (this.label) {
+				this.add(hbel("div", {"class": "info-subtitle"}, null, this.label));
+			}
+			this.renderFields(this.deepness);
+		});
 		
-		if (deepness === null) deepness = 0;
-		if (deepness < 0) deepness = 999;
+		if (deepness === null) elem.deepness = 0;
+		else if (deepness < 0) elem.deepness = 999;
 		
-		this.label = new Subtitle();
-		this.field = {};
-		
-		this.elements.push(this.label);
-		
-		for (var k in data) {
-			var dat = data[k];
-			var field;
+		elem.renderFields = function(deepness) {
+			var data = this.data;
 			
-			if (dat !== null && typeof dat === "object") {
-				if (deepness > 0) {
-					field = new Info(dat, deepness-1);
-					field.label.text = k;
-					
-					this.elements.push(field);
+			for (var k in data) {
+				var dat = data[k];
+				var field;
+
+				if (dat !== null && typeof dat === "object") {
+					if (deepness > 0) {
+						field = new Info(dat, deepness-1);
+						field.label = k;
+					}
 				}
-			}
-			else {
-				field = new Field({
-					type: "text",
-					name: k,
-					label: k,
-					value: dat
-				});
-				this.elements.push(field);
+				else {
+					field = new Field(k, {
+						type: this.field[k].type,
+						name: k,
+						value: dat
+					});
+				}
 				
-				var fieldBnO = new bn.O();
-				fieldBnO.name = field.name;
-				fieldBnO.onChange = function(value) {
-					data[this.name] = value;
-				};
-				var fieldBn = new bn(field.input, fieldBnO);
+				this.add(field);
 			}
-			
-			this.field[k] = field;
-		}
+		};
+		
+		elem.hasNewParent = function() {
+			this.field = {};
+			for (var k in this.data) {
+				this.field[k] = { type: "text" };
+			}
+		};
+		
+		return elem;
 	}
 	
-	Info.prototype = Object.create(Element.prototype, {
-	});
+	Info.prototype = Object.create(Element.prototype);
 	
 	win.bn.Field = Field;
 	win.bn.Info = Info;
 	
-})(window, document, bn.Element);
+})(window, document, bn.Element, hbel);

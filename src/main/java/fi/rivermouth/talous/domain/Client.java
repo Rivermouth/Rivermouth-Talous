@@ -10,15 +10,19 @@ import javax.validation.Validation;
 import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;
 
+import org.hibernate.annotations.Cascade;
+
 import fi.rivermouth.talous.model.Address;
 
 @Entity
 public class Client extends AbstractCompany<Long> {
-	
-	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER) // has projects
+
+	@OneToMany(fetch = FetchType.LAZY) // has clients
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Project> projects;
-	
-	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)  // has notes
+
+	@OneToMany(fetch = FetchType.LAZY) // has clients
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<File> notes;
 	
 	public Client() {

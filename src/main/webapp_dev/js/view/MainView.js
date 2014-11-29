@@ -1,59 +1,75 @@
-(function(win, doc, Holder, Info, api, main, bn, Card) {
+(function(win, doc, Holder, Info, api, main, bn, Card, hbel) {
 		
 	function addInfoHolder(data) {
 		var infoHolder = bn.newInfoHolder("user-info", data, -1);
+		infoHolder.onSave = function() {
+			api.users.save(this.data).execute(function(resp) {
+				console.log(resp);
+			});
+		};
 		main.container.appendChild(infoHolder.render());
 	}
 	
 	function createNewClientButton() {
-		var elem = doc.createElement("button");
-		elem.textContent = "New client";
-		elem.onclick = function() {
-			main.open("clients/new");
-		};
+		var elem = hbel("button", {
+			onclick: function() {
+				main.open("clients/new");
+			}
+		}, null, "New client");
 		return elem;
 	}
 	
 	function createNewNoteButton() {
-		var elem = doc.createElement("button");
-		elem.textContent = "New note";
-		elem.onclick = function() {
+		var elem = hbel("button", {
 			
-		};
+		}, null, "New note");
 		return elem;
 	}
 	
 	function addClientsHolder() {
-		var clientsHolder = new Holder({className: "clients"});
-		clientsHolder.tab.text("Clients");
+		var elem = new Holder();
 		
-		clientsHolder.footer.add(createNewClientButton());
+		elem.tab.set("Clients");
 		
-		main.container.appendChild(clientsHolder.render());
+		var elemBody = new hbel("div", null, null, function() {
+			this.updateList();
+		});
 		
-		api.clients.list().execute(
-			function(resp) {
-				var clients = resp.data;
-				for (var i = 0, l = clients.length; i < l; ++i) {
-					clientsHolder.body.add(bn.newClientCard(clients[i]));
-				}
-				clientsHolder.update();
-			},
-			function(){}
-		);
+		elemBody.updateList = function() {
+			var self = this;
+			
+			if (!this.data) {
+				api.clients.list().execute(
+					function(resp) {
+						self.data = resp.data;
+						self.render();
+					},
+					function(){}
+				);
+				return;
+			}
+			
+			for (var i = 0, l = this.data.length; i < l; ++i) {
+				this.add(bn.newClientCard(this.data[i]));
+			}
+		};
+		
+		elem.body.set(elemBody);
+		elem.footer.set(createNewClientButton());
+		
+		main.container.appendChild(elem.render());
 	}
 	
 	function addNotesHolder() {
-		var notesHolder = new Holder({className: "notes"});
-		notesHolder.tab.text("Notes");
-
-		for (var i = 0; i < 7; i++) {
-			notesHolder.body.add(bn.newNoteCard());
-		}
-		
-		notesHolder.footer.add(createNewNoteButton());
-
-		main.container.appendChild(notesHolder.render());
+		var elem = new Holder();
+		elem.tab.set("Notes");
+		elem.body.set(new hbel("div", null, null, function() {
+			for (var i = 0; i < 7; i++) {
+				this.add(bn.newNoteCard());
+			}
+		}));
+		elem.footer.set(createNewNoteButton());
+		main.container.appendChild(elem.render());
 	}
 	
 	function mainView(user) {
@@ -78,4 +94,4 @@
 	
 	bn.mainView = mainView;
 	
-})(window, document, bn.Holder, bn.Info, bn.api, bn.main, bn, bn.Card);
+})(window, document, bn.Holder, bn.Info, bn.api, bn.main, bn, bn.Card, hbel);

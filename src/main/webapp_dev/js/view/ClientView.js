@@ -22,11 +22,10 @@
 		};
 		
 		var notesHolder = new Holder({className: "notes"});
-		notesHolder.tab.text("Notes");
+		notesHolder.tab.set("Notes");
 
 		for (var i = 0; i < 7; i++) {
-			var card = new Card({clasName: "note"});
-			card.header.text("Muista laskutus");
+			var card = bn.newNoteCard();
 			notesHolder.body.add(card);
 		}
 		

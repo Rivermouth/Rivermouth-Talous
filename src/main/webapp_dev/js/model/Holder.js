@@ -1,21 +1,24 @@
-(function(win, doc, Element) {
+(function(win, doc, Element, hbel) {
 	
-	function Holder(params) {
-		params.className += " holder";
+	function Holder(data, props) {
+		Element.call(this, props);
 		
-		Element.call(this, params);
+		this.props.class += " holder";
 		
-		this.tab = new Element({className: "tab holder-tab"});		
-		this.header = new Element({className: "header holder-header"});
-		this.body = new Element({className: "body holder-body"});
-		this.footer = new Element({className: "footer holder-footer"});
+		var elem = hbel("div", this.props, data, null);
 		
-		this.elements = [this.tab, this.header, this.body, this.footer];
+		elem.tab = hbel("div", {"class": "tab holder-tab"}, true, null);
+		elem.header = hbel("div", {"class": "header holder-header"}, true, null);
+		elem.body = hbel("div", {"class": "body holder-body"}, true, null);
+		elem.footer = hbel("div", {"class": "footer holder-footer"}, true, null);
+		
+		elem.set(elem.tab, elem.header, elem.body, elem.footer);
+
+		return elem;
 	}
 	
-	Holder.prototype = Object.create(Element.prototype, {
-	});
+	Holder.prototype = Object.create(Element.prototype);
 	
 	window.bn.Holder = Holder;
 	
-})(window, document, bn.Element);
+})(window, document, bn.Element, hbel);

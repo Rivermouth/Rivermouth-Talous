@@ -1,4 +1,4 @@
-(function(win, doc, Holder, Info, api, main) {
+(function(win, doc, Holder, Info, api, main, hbel) {
 	
 	function loginView() {
 		var loginData = {
@@ -6,35 +6,37 @@
 			password: ""
 		};
 		
-		var holder = new Holder({className: "login"});
-		holder.tab.text("Login");
+		var holder = new Holder(loginData, {className: "login"});
+		holder.tab.set("Login");
 		
 		var form = new Info(loginData);
+		holder.body.add(form);
 		form.field.email.type = "email";
 		form.field.password.type = "password";
-		
-		var loginButton = doc.createElement("button");
-		loginButton.textContent = "Login";
-		loginButton.onclick = function() {
-			api.auth(loginData).execute(function(resp) {
+		form.save = function() {
+			api.auth(this.data).execute(function(resp) {
 				main.open("");
 			});
 		};
 		
-		var openRegisterViewButton = doc.createElement("button");
-		openRegisterViewButton.textContent = "Sign up";
-		openRegisterViewButton.onclick = function() {
-			main.open("signup");
-			main.switchView();
-		};
+		var loginButton = hbel("button", {
+			onclick: function() {
+				form.save();
+			}
+		}, null, "Login");
 		
-		holder.body.add(form);
-		holder.footer.add(loginButton);
-		holder.footer.add(openRegisterViewButton);
+		var openRegisterViewButton = hbel("button", {
+			onclick: function() {
+				main.open("signup");
+				main.switchView();
+			}
+		}, null, "Sign up");
+		
+		holder.footer.set([loginButton, openRegisterViewButton]);
 		
 		main.container.appendChild(holder.render());
 	}
 	
 	bn.loginView = loginView;
 	
-})(window, document, bn.Holder, bn.Info, bn.api, bn.main);
+})(window, document, bn.Holder, bn.Info, bn.api, bn.main, hbel);

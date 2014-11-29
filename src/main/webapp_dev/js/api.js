@@ -101,7 +101,7 @@
 				
 				if (!user.id) {
 					p = path("/users");
-					t = "PUT";
+					t = "POST";
 				}
 				else {
 					p = path("/users/" + user.id);

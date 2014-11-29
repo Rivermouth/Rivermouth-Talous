@@ -1,89 +1,60 @@
-(function(win, doc, bn, Holder, Info, Card, main) {	
+(function(win, doc, bn, Holder, Info, Card, CardEditable, main, hbel) {	
 	
 	bn.newInfoHolder = function newInfoHolderFn(className, data, deepness) {
-		var infoHolder = new Holder({className: "info " + className});
-		infoHolder.tab.text("Info");
-		
+		var infoHolder = new Holder(data, {"class": "info " + className});
 		infoHolder.onSave = function() {};
 		
-		var info = new Info(data, deepness);
+		var info = new Info(true, deepness);
 		
-		var saveButton = doc.createElement("button");
-		saveButton.textContent = "Save";
-		saveButton.onclick = function() {
-			infoHolder.onSave();
-		};
+		var saveButton = hbel("button", {
+			onclick: function() {
+				infoHolder.onSave();
+			}
+		}, null, "Save");
 		
-		infoHolder.body.add(info);
-		infoHolder.footer.add(saveButton);
+		infoHolder.tab.set("Info");
+		infoHolder.body.set(info);
+		infoHolder.footer.set(saveButton);
 		
 		return infoHolder;
 	};
 	
 	bn.newClientCard = function newClientCardFn(data) {
-		var card = new Card({
-			className: "client", 
-			onClick: function() {
+		var elem = new Card(data, {
+			"class": "client", 
+			onclick: function() {
 				main.open("clients/" + data.id);
 			}
 		});
-		card.header.text(data.name);
-		card.body.html(
-			"<div>Projects: " + data.projects.length + "</div>" +
-			"<div>Notes: " + data.notes.length + "</div>"
-		);
-		return card;
+		
+		elem.header.set("{{name}}");
+		
+		elem.body.set([
+			"<div>Projects: {{projects.length}}</div>" +
+			"<div>Notes: {{notes.length}}</div>"
+		]);
+		
+		return elem;
 	};
 	
-	bn.newNoteCard = function newClientCardFn(data) {
-		var card = new Card({
-			className: "note", 
-			getEditLink: function() {
-				var self = this;
-				var elem = doc.createElement("a");
-				elem.textContent = "Edit";
-				elem.onclick = function() {
-					self.element.classList.add("opened");
-					card.toggleEditMode();
-				};
-				return elem;
-			},
-			getSaveLink: function() {
-				var self = this;
-				var elem = doc.createElement("a");
-				elem.textContent = "Save";
-				elem.onclick = function() {
-					self.element.classList.remove("opened");
-					card.toggleEditMode();
-				};
-				return elem;
-			},
-			getCancelLink: function() {
-				var self = this;
-				var elem = doc.createElement("a");
-				elem.textContent = "Cancel";
-				elem.onclick = function() {
-					self.element.classList.remove("opened");
-					card.toggleEditMode();
-				};
-				return elem;
-			},
-			onClick: function(card, elem) {
-			},
-			onRender: function(card, data) {
-				card.header.text(data.title);
-				card.body.text(data.content);
-				card.footer.add(card.getEditLink());
-			},
-			onEdit: function(card, info) {
-				info.field.content.type = "textarea";
-				card.footer.add(card.getSaveLink());
-			}
-		}, {
+	bn.newNoteCard = function newNoteCardFn(data) {
+		data = {
 			title: "Muista muistaa",
 			content: "Moadm oa maod mawdmoawomawmoaw dawod awmdo ad w dawawawawaw awd aawd awmaio moiaw moimoimo awimoim awiomw iomaw "
-		});
-		return card;
+		};
+		
+		var elem = new CardEditable(data, {"class": "note"});
+		elem.header.set("{{title}}");
+		elem.body.set("{{content}}");
+		elem.footer.set(hbel("a", {
+			onclick: function(evt) {
+				evt.preventDefault();
+				elem.toggleEditMode();
+			},
+			href: "#"
+		}, null, "Edit..."));
+		
+		return elem;
 	};
 	
-})(window, document, bn, bn.Holder, bn.Info, bn.Card, bn.main);
+})(window, document, bn, bn.Holder, bn.Info, bn.Card, bn.CardEditable, bn.main, hbel);

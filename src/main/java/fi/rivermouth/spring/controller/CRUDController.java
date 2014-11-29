@@ -35,7 +35,7 @@ extends BaseController<T, ID> {
 	public Response createWjson(@Valid @RequestBody T entity) {
 		return super.create(entity);
 	}
-	@RequestMapping(method = RequestMethod.PUT, consumes = "application/x-www-form-urlencoded")
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response create(@Valid @ModelAttribute T entity) {
 		return super.create(entity);
 	}
