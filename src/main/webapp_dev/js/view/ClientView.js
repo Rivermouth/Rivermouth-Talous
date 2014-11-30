@@ -13,21 +13,35 @@
 		};
 	}
 	
-	function showClient(data) {
-		var infoHolder = bn.newInfoHolder("client-info", data, -1);
-		infoHolder.onSave = function() {
-			bn.api.clients.save(data).execute(function(resp) {
+	function createNotesView(client) {
+		var elem = bn.newNotesHolder();
+		
+		elem.getFiles = function(callback) {
+			api.clients.notes.list(client).execute(function(resp) {
+				callback(resp.data);
+			});
+		};
+		
+		elem.saveFile = function(data) {
+			api.clients.notes.save(client, data).execute(function(resp) {
 				console.log(resp);
 			});
 		};
 		
-		var notesHolder = new Holder({className: "notes"});
-		notesHolder.tab.set("Notes");
-
-		for (var i = 0; i < 7; i++) {
-			var card = bn.newNoteCard();
-			notesHolder.body.add(card);
-		}
+		return elem;
+	}
+	
+	function showClient(client) {
+		var infoHolder = bn.newInfoHolder("client-info", client, -1);
+		var notesHolder = createNotesView(client);
+		
+		infoHolder.tab.set("Client");
+		infoHolder.save = function() {
+			api.clients.save(this.data).execute(function(resp) {
+				console.log(resp);
+				main.open("clients/" + resp.data.id);
+			});
+		};
 		
 		main.container.appendChild(infoHolder.render());
 		main.container.appendChild(notesHolder.render());
@@ -45,7 +59,7 @@
 		
 		api.clients.get(clientId).execute(
 			function(resp) {
-				showClient(resp);
+				showClient(resp.data);
 			},
 			showError
 		);

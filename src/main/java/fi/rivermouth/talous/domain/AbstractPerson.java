@@ -1,7 +1,5 @@
 package fi.rivermouth.talous.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
@@ -10,12 +8,11 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.spring.entity.Responsable;
 import fi.rivermouth.talous.model.Address;
 
 @Entity
-public abstract class AbstractPerson<ID extends Serializable> extends BaseEntity<ID> implements Responsable {
+public abstract class AbstractPerson extends BaseEntity implements Responsable {
 
 	@Embedded
 	@NotNull

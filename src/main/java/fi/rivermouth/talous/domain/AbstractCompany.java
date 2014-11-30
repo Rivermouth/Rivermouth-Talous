@@ -1,17 +1,14 @@
 package fi.rivermouth.talous.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
-import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.spring.entity.Responsable;
 import fi.rivermouth.talous.model.Address;
 
 @Entity
-public abstract class AbstractCompany<ID extends Serializable> extends BaseEntity<ID> implements Responsable {
+public abstract class AbstractCompany extends BaseEntity implements Responsable {
 
 	@Column(unique = true)
 	private String name;

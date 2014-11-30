@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import fi.rivermouth.talous.model.Address;
 
 @Entity
-public class Company extends AbstractCompany<Long> {
+public class Company extends AbstractCompany {
 
 	public Company() {
 		super();

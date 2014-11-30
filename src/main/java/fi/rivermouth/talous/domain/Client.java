@@ -2,28 +2,20 @@ package fi.rivermouth.talous.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.validation.Validation;
-import javax.validation.executable.ExecutableType;
-import javax.validation.executable.ValidateOnExecution;
 
 import org.hibernate.annotations.Cascade;
 
 import fi.rivermouth.talous.model.Address;
 
 @Entity
-public class Client extends AbstractCompany<Long> {
+public class Client extends AbstractCompany {
 
 	@OneToMany(fetch = FetchType.LAZY) // has clients
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Project> projects;
-
-	@OneToMany(fetch = FetchType.LAZY) // has clients
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-	private List<File> notes;
 	
 	public Client() {
 		super();
@@ -43,14 +35,6 @@ public class Client extends AbstractCompany<Long> {
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
-	}
-
-	public List<File> getNotes() {
-		return notes;
-	}
-
-	public void setNotes(List<File> notes) {
-		this.notes = notes;
 	}
 	
 	@Override

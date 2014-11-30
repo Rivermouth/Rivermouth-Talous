@@ -29,12 +29,16 @@
 		label { display: block; }
 		input, textarea { display: block; width: 100%!important; box-sizing: border-box; }
 	}
-	.card-footer { position: absolute; left: 0; bottom: 0; right: 0; background: #fff; padding: 0.1em 0.8em; }
+	
+	.card-footer { opacity: 0; position: absolute; left: 0; bottom: -1em; right: 0; background: #e2e2e2; padding: 0.1em 0.6em; transition: 0.2s all; }
+	&:hover .card-footer { opacity: 1; bottom: 0; }
 }
 
-.card.note { max-height: 4.6em; overflow: hidden; 
-	&:after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0.4em; background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); }
-	&.opened { max-height: none; 
-		.card-footer { position: relative; padding: 0.1em 0; }
+.card { max-height: 4.6em; overflow: hidden; 
+	.card-body:after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0.4em; background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); }
+	
+	&.opened,
+	&.editing { max-height: none; 
+		.card-footer { opacity: 1; bottom: 0; position: relative; padding: 0.1em 0; background: none; }
 	}
 }

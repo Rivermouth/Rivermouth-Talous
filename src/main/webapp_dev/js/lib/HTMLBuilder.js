@@ -84,10 +84,10 @@
 		if (props !== null) {
 			for (var i in props) {
 				if (i.substring(0, 2) == "on") {
-					this.element[i] = props[i];
+					this.element[i] = this._parseVariables(props[i]);
 				}
 				else {
-					this.element.setAttribute(i, props[i]);
+					this.element.setAttribute(i, this._parseVariables(props[i]));
 				}
 			}
 		}
@@ -130,14 +130,16 @@
 		this.hasNewParent();
 	};
 	
-	HBElement.prototype._parseHTMLString = function(htmlElem) {
+	HBElement.prototype._parseVariables = function(str) {
+		if (!isString(str)) return str;
+		
 		var self = this;
 		function replacer(match, p1, offset, string) {
-			return getVar(self.data, p1);
+			return getVar(self.getData(), p1);
 		}
 		var reg = new RegExp("{{(.*?)}}", "g");
-		htmlElem = htmlElem.replace(reg, replacer);
-		return htmlElem;
+		str = str.replace(reg, replacer);
+		return str;
 	};
 	
 	/**
@@ -213,7 +215,7 @@
 		
 		if (this.rawElement !== null) {
 			if (isString(this.rawElement)) {
-				this.element.innerHTML = this._parseHTMLString(this.rawElement);
+				this.element.innerHTML = this._parseVariables(this.rawElement);
 			}
 		}
 		

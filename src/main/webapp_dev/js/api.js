@@ -3,6 +3,19 @@
 	var me = null;
 	var baseUrl = "http://localhost:8080";
 	
+	function isNumber(obj) {
+		return (typeof obj === "number");
+	}
+	
+	function getUserId(user) {
+		if (user == "me") {
+			return me.id;
+		}
+		else {
+			return user.id;
+		}
+	}
+	
 	function path(url) {
 		return baseUrl + url;
 	}
@@ -89,30 +102,86 @@
 				callback(resp);
 			});
 		},
-		users: {
-			get: function(userId) {
+		files: {
+			/**
+			 * @param userIdOrUser :(user:obj|userId:num|"me")
+			 * @param collectionOrFileId :(collection:str|fileId:num), if null, "files"
+			 * @param parentId :num
+			 */
+			path: function(userIdOrUser, collectionOrFileId, parentId) {
+				var userId;
+				
+				if (userIdOrUser == "me") userId = me.id;
+				else if (userIdOrUser.id) userId = userIdOrUser.id;
+				else userId = userIdOrUser;
+				
+				if (!collectionOrFileId) {
+					collectionOrFileId = "files";
+				}
+				if (!parentId) {
+					parentId = "";
+				}
+				
+				return path("/files/" + userId + "/" + collectionOrFileId + "/" + parentId);
+			},
+			list: function() {
 				return new ApiRequestBuilder({
-					url: path("/users/" + userId),
+					url: api.files.path(arguments[0], arguments[1], arguments[2] || "all"),
 					type: "GET"
 				});
 			},
-			save: function(user) {
-				var p, t;
-				
-				if (!user.id) {
-					p = path("/users");
-					t = "POST";
-				}
-				else {
-					p = path("/users/" + user.id);
-					t = "POST";
-				}
-				
+			get: function(user, fileId) {
 				return new ApiRequestBuilder({
-					url: p,
-					type: t,
+					url: api.files.path(user, fileId),
+					type: "GET"
+				});
+			},
+			save: function(userIdOrUser, file, parentId) {
+				return new ApiRequestBuilder({
+					url: api.files.path(userIdOrUser, file.collection, parentId || "root"),
+					type: "POST",
+					data: file
+				});
+			}
+		},
+		users: {
+			path: function(userId) {
+				if (!userId) userId = "";
+				else userId = "/" + userId;
+				return path("/users" + userId);
+			},
+			get: function(userId) {
+				return new ApiRequestBuilder({
+					url: api.users.path(userId),
+					type: "GET"
+				});
+			},
+			save: function(user) {				
+				return new ApiRequestBuilder({
+					url: api.users.path(user.id),
+					type: "POST",
 					data: user
 				});
+			},
+			notes: {
+				list: function(user) {
+					return api.files.list(user, "notes");
+				},
+				save: function(user, note) {
+					note.mimeType = "text/plain";
+					note.collection = "notes";
+					return api.files.save(user, note);
+				}
+			},
+			bills: {
+				list: function(user) {
+					return api.files.list(user, "bills");
+				},
+				save: function(user, bill) {
+					bill.mimeType = "application/rlk";
+					bill.collection = "bills";
+					return api.files.save(user, bill);
+				}
 			}
 		},
 		clients: {
@@ -133,23 +202,22 @@
 					type: "GET"
 				});
 			},
-			save: function(client) {
-				var p, t;
-				
-				if (!client.id) {
-					p = api.clients.path();
-					t = "POST";
-				}
-				else {
-					p = api.clients.path(client.id);
-					t = "POST";
-				}
-				
+			save: function(client) {				
 				return new ApiRequestBuilder({
-					url: p,
-					type: t,
+					url: api.clients.path(client.id),
+					type: "POST",
 					data: client
 				});
+			},
+			notes: {
+				list: function(client) {
+					return api.files.list("me", "notes", client.id);
+				},
+				save: function(client, note) {
+					note.mimeType = "text/plain";
+					note.collection = "notes";
+					return api.files.save("me", note, client.id);
+				}
 			}
 		}
 	};

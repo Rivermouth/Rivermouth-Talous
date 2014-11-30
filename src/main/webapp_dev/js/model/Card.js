@@ -18,6 +18,9 @@
 		this.props.class += " card";
 		
 		var elem = hbel("div", this.props, data, null);
+		elem.element.addEventListener("click", function() {
+			this.classList.toggle("opened");
+		}, false);
 		
 		elem.header = createHeader();
 		elem.body = createBody();
@@ -67,19 +70,22 @@
 		
 		elem.isEditMode = false;
 		elem.toggleEditMode = function() {
-			this.element.classList.toggle("opened");
 			this.isEditMode = !this.isEditMode;
 			
 			if (this.isEditMode) {
+				this.element.classList.add("editing");
 				info.data = bn.clone(this.data);
 				this.set(editElem.header, editElem.body, editElem.footer);
 			}
 			else {
+				this.element.classList.remove("editing");
 				this.set(this.header, this.body, this.footer);
 			}
 			
 			this.render();
 		};
+		
+		elem.form = info;
 		
 		return elem;
 	}

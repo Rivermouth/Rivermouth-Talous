@@ -1,5 +1,14 @@
 (function(win, doc, Element, hbel) {
 	
+	var RESTRICTED_FIELD_NAMES = {
+		"id": true,
+		"mimeType": true
+	};
+	
+	function isRestictedField(name) {
+		return (name.charAt(0) == "_" || RESTRICTED_FIELD_NAMES[name]);
+	}
+	
 	function Field(label, props) {
 		Element.call(this, props);
 		
@@ -47,9 +56,12 @@
 		elem.field = {};
 		
 		elem.hasNewParent = function() {
+			this.set();
 			var data = this.data;
 			
 			for (var k in data) {
+				if (isRestictedField(k)) continue;
+				
 				var dat = data[k];
 				var field;
 

@@ -4,30 +4,24 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.validation.executable.ValidateOnExecution;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import fi.rivermouth.spring.entity.FileHavingEntityInterface;
-import fi.rivermouth.talous.model.Address;
 
 @Entity
-public class User extends AbstractPerson<Long> implements FileHavingEntityInterface {
+public class User extends AbstractPerson implements FileHavingEntityInterface {
 	
 	public static String ROLE = "USER";
 	
@@ -43,10 +37,10 @@ public class User extends AbstractPerson<Long> implements FileHavingEntityInterf
 	@OneToMany(fetch = FetchType.LAZY) // has clients
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Client> clients;
-
-	@OneToMany(fetch = FetchType.LAZY) // has notes
+	
+	@OneToMany(fetch = FetchType.LAZY) // has clients
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-	private List<File> files;
+	private List<Employee> employees;
 
 	@Column(unique = true)
 	private String googleId;
@@ -95,13 +89,12 @@ public class User extends AbstractPerson<Long> implements FileHavingEntityInterf
 	}
 
 	@JsonIgnore
-	public List<File> getFiles() {
-		return files;
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 
-	public void setFiles(List<File> files) {
-		if (files == null) files = getFiles();
-		this.files = files;
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
 	
 	public String getGoogleId() {

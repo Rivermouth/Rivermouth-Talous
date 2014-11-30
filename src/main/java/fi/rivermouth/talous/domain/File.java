@@ -4,12 +4,15 @@ import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
-import fi.rivermouth.spring.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class File extends BaseEntity<Long> {
+public class File extends BaseEntity {
 	
+	private Long owner;
+	private Long attachedTo;
 	private String title;
 	private String mimeType;
 	private Long size;
@@ -19,6 +22,22 @@ public class File extends BaseEntity<Long> {
 	private byte[] content;
 	
 	public File() {
+	}
+
+	public Long getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Long owner) {
+		this.owner = owner;
+	}
+	
+	public Long getAttachedTo() {
+		return attachedTo;
+	}
+
+	public void setAttachedTo(Long attachedTo) {
+		this.attachedTo = attachedTo;
 	}
 	
 	public File(String title) {
@@ -41,6 +60,7 @@ public class File extends BaseEntity<Long> {
 		this.mimeType = mimeType;
 	}
 	
+	@JsonIgnore
 	public Long getSize() {
 		return size;
 	}

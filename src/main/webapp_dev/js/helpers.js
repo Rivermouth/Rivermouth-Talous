@@ -1,4 +1,4 @@
-(function(bn) {
+(function(doc, bn) {
 	
 	function AjaxBuilder() {
 		this.url = null;
@@ -205,4 +205,42 @@
 	}
 	bn.clone = clone;
 	
-})(window.bn);
+	bn.openFileFromDisk = function(accept, callback, readAsFn) {
+		if (!callback) return false;
+		
+		if (!readAsFn) readAsFn = "readAsText";
+		
+		var inp = doc.createElement("input");
+		inp.type = "file";
+		inp.setAttribute("accept", accept);
+		
+		inp.onchange = function(evt) {
+			var file = evt.target.files[0];
+			if (!file) return;
+			
+			var reader = new FileReader();
+			reader.onload = function(ev) {
+				callback(file.name.replace(".rlk", ""), ev.target.result);
+			};
+			reader[readAsFn](file);
+			
+			inp.remove();
+		};
+		
+		doc.body.appendChild(inp);
+		inp.click();
+	};
+	
+	bn.saveFileToDisk = function(fileName, mimeType, data) {
+		var a         = doc.createElement("a");
+		a.href        = "data:" + mimeType + "," + data;
+		a.target      = "_blank";
+		a.download    = fileName;
+
+		doc.body.appendChild(a);
+		a.click();
+		
+		a.remove();
+	};
+	
+})(document, window.bn);

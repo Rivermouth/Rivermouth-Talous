@@ -33,10 +33,13 @@ extends BaseController<T, ID> {
 	 */
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public Response createWjson(@Valid @RequestBody T entity) {
+		checkAuthorization(Method.CREATE, null, null);
 		return super.create(entity);
 	}
+	@Override
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response create(@Valid @ModelAttribute T entity) {
+		checkAuthorization(Method.CREATE, null, null);
 		return super.create(entity);
 	}
 	
@@ -53,10 +56,13 @@ extends BaseController<T, ID> {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/json")
 	public Response updateWjson(@Valid @PathVariable ID id, @RequestBody T entity) {
+		checkAuthorization(Method.UPDATE, id, null);
 		return super.update(id, entity);
 	}
+	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response update(@Valid @PathVariable ID id, @ModelAttribute T entity) {
+		checkAuthorization(Method.UPDATE, id, null);
 		return super.update(id, entity);
 	}
 	
@@ -72,6 +78,7 @@ extends BaseController<T, ID> {
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Response get(@PathVariable ID id) {
+		checkAuthorization(Method.GET, id, null);
 		return super.get(id);
 	}
 	
@@ -85,6 +92,7 @@ extends BaseController<T, ID> {
 	@Override
 	@RequestMapping(method = RequestMethod.GET)
 	public Response list() {
+		checkAuthorization(Method.LIST, null, null);
 		return super.list();
 	}
 	
@@ -100,6 +108,7 @@ extends BaseController<T, ID> {
 	@Override
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Response delete(@PathVariable ID id) {
+		checkAuthorization(Method.DELETE, id, null);
 		return super.delete(id);
 	}
 	

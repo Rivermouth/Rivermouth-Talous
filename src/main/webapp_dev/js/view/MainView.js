@@ -60,15 +60,41 @@
 		main.container.appendChild(elem.render());
 	}
 	
-	function addNotesHolder() {
-		var elem = new Holder();
-		elem.tab.set("Notes");
-		elem.body.set(new hbel("div", null, null, function() {
-			for (var i = 0; i < 7; i++) {
-				this.add(bn.newNoteCard());
-			}
-		}));
-		elem.footer.set(createNewNoteButton());
+	function addNotesHolder(user) {
+		var elem = bn.newNotesHolder();
+		
+		elem.getFiles = function(callback) {
+			api.users.notes.list(user).execute(function(resp) {
+				console.log(resp);
+				callback(resp.data);
+			});
+		};
+		
+		elem.saveFile = function(data) {
+			api.users.notes.save(user, data).execute(function(resp) {
+				console.log(resp);
+			});
+		};
+		
+		main.container.appendChild(elem.render());
+	}
+	
+	function addBillsHolder(user) {
+		var elem = bn.newBillsHolder();
+		
+		elem.getFiles = function(callback) {
+			api.users.bills.list(user).execute(function(resp) {
+				console.log(resp);
+				callback(resp.data);
+			});
+		};
+		
+		elem.saveFile = function(data) {
+			api.users.bills.save(user, data).execute(function(resp) {
+				console.log(resp);
+			});
+		};
+		
 		main.container.appendChild(elem.render());
 	}
 	
@@ -77,7 +103,7 @@
 			api.me().execute(
 				function(resp) {
 					console.log(resp);
-					mainView(resp);
+					mainView(resp.data);
 				},
 				function(errorResp) {
 					console.warn(errorResp);
@@ -87,9 +113,10 @@
 			return;
 		}
 		
-		addInfoHolder(user.data);
-		addClientsHolder();
-		addNotesHolder();
+		addInfoHolder(user);
+		addClientsHolder(user);
+		addNotesHolder(user);
+		addBillsHolder(user);
 	}
 	
 	bn.mainView = mainView;

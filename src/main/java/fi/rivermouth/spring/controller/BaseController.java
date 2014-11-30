@@ -3,8 +3,12 @@ package fi.rivermouth.spring.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.security.auth.AuthPermission;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.firewall.RequestRejectedException;
 import org.springframework.stereotype.Component;
+
 import fi.rivermouth.spring.entity.BaseEntity;
 import fi.rivermouth.spring.entity.Response;
 
@@ -17,7 +21,9 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	S_NOT_FOUND_WITH_ID_S = "%s not found with ID %s.",
 	S_WITH_ID_S_DELETED = "%s with ID %s deleted.",
 	ID_S_DOES_NOT_MATCH_WITH_ID_S = "ID %s does not match with ID %s",
-	FAILED_TO_UPDATE_ENTITY_WITH_ID_S = "Failed to update entity with ID %s.";
+	FAILED_TO_UPDATE_ENTITY_WITH_ID_S = "Failed to update entity with ID %s.",
+	
+	ACCESS_RESTICTED = "Access resticted.";
 	
 	protected Response defaultResponse;
 
@@ -92,6 +98,16 @@ public abstract class BaseController<T extends BaseEntity<ID>, ID extends Serial
 	
 	protected Response listResponse(List<T> entities) {
 		return new Response(HttpStatus.OK, getEntityKind(), entities);
+	}
+	
+	protected <S extends Serializable> boolean isAuthorized(Method method, ID id, S ownerId) {
+		return true;
+	}
+	
+	protected final <S extends Serializable> void checkAuthorization(Method method, ID id, S ownerId) throws RequestRejectedException {
+		if (!isAuthorized(method, id, ownerId)) {
+			throw new RequestRejectedException(ACCESS_RESTICTED);
+		}
 	}
 	
 	/**

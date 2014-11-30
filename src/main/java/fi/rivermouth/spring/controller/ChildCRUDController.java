@@ -76,6 +76,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 */
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
 	public Response createWjson(@PathVariable PARENT_ID parentId, @Valid @RequestBody T entity) {
+		checkAuthorization(Method.CREATE, null, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
 		joinEntityAndParent(parentId, entity);
@@ -83,6 +84,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	}
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response create(@PathVariable PARENT_ID parentId, @Valid @ModelAttribute T entity) {
+		checkAuthorization(Method.CREATE, null, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		Response response = super.create(entity);
 		joinEntityAndParent(parentId, entity);
@@ -104,11 +106,13 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/json")
 	public Response updateWjson(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @RequestBody T entity) {
+		checkAuthorization(Method.UPDATE, id, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.update(id, entity);
 	}
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public Response update(@PathVariable PARENT_ID parentId, @PathVariable ID id, @Valid @ModelAttribute T entity) {
+		checkAuthorization(Method.UPDATE, id, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.update(id, entity);
 	}
@@ -125,6 +129,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Response get(@PathVariable("parentId") PARENT_ID parentId, @PathVariable("id") ID id) {
+		checkAuthorization(Method.GET, id, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return super.get(id);
 	}
@@ -140,6 +145,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public Response list(@PathVariable PARENT_ID parentId) {
+		checkAuthorization(Method.LIST, null, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		return listResponse(listByParentId(parentId));
 	}
@@ -156,6 +162,7 @@ extends BaseController<T, ID> implements ChildCRUDControllerInterface<PARENT, PA
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Response delete(@PathVariable PARENT_ID parentId, @PathVariable ID id) {
+		checkAuthorization(Method.DELETE, id, parentId);
 		if (!getParentService().exists(parentId)) return parentNotFoundWithIdResponse(parentId);
 		if (!getService().exists(id)) return notFoundWithIdResponse(id);
 		return seperateEntityAndParent(parentId, id);
