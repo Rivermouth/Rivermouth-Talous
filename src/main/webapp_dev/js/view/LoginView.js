@@ -6,11 +6,11 @@
 			password: ""
 		};
 		
-		var holder = new Holder(loginData, {className: "login"});
+		var holder = new Holder(null, {"class": "login"});
 		holder.tab.set("Login");
 		
 		var form = new Info(loginData);
-		holder.body.add(form);
+		holder.body.set(form);
 		form.field.email.type = "email";
 		form.field.password.type = "password";
 		form.save = function() {
@@ -18,6 +18,7 @@
 				main.open("");
 			});
 		};
+		console.log(form);
 		
 		var loginButton = hbel("button", {
 			onclick: function() {

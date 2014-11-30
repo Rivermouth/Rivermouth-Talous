@@ -20,6 +20,9 @@
 		
 		switch (pathParts[0]) {
 			case "clients":
+				if (!IS_AUTHORIZED) {
+					open("login");
+				}
 				bn.clientView(pathParts[1]);
 				break;
 			case "login":
@@ -33,6 +36,9 @@
 				bn.signupView();
 				break;
 			default:
+				if (!IS_AUTHORIZED) {
+					open("login");
+				}
 				bn.mainView();
 				break;
 		}
@@ -55,7 +61,6 @@
 			},
 			function(errorResp) {
 				console.warn(errorResp);
-				open("login");
 				IS_AUTHORIZED = false;
 				loadDone();
 			}

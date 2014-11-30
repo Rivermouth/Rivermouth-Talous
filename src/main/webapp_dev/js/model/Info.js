@@ -8,15 +8,22 @@
 		this.props.class = "inp";
 		this.props.id = "input-" + Math.round(new Date().getTime() + Math.random() * 1000);
 		
-		var elem =  hbel("div", {"class": "field"}, true, [
-			hbel("label", {"class": "label", "for": this.props.id}, null, label),
-			hbel("input", this.props, true, function() {
-				var self = this;
-				this.element.onchange = function() {
-					self.data[this.name] = this.value;
-				}
-			})
-		]);
+		var elem =  hbel("div", {"class": "field"}, true, function() {
+			this.props.type = this.type;
+			
+			this.add(hbel("label", {"class": "label", "for": this.props.id}, null, this.label));
+			this.add(hbel("input", this.props, true, function() {
+					var self = this;
+					this.element.onchange = function() {
+						self.data[this.name] = this.value;
+					}
+				})
+			);
+		});
+		
+		elem.props = this.props;
+		elem.type = elem.props.type;
+		elem.label = label;
 			
 		return elem;
 	}
@@ -28,17 +35,18 @@
 	function Info(data, deepness) {
 		Element.call(this, {"class": "info-block"});
 		
-		var elem = hbel("form", this.props, data, function() {console.log(this);
+		var elem = hbel("form", this.props, data, function() {
 			if (this.label) {
 				this.add(hbel("div", {"class": "info-subtitle"}, null, this.label));
 			}
-			this.renderFields(this.deepness);
 		});
 		
-		if (deepness === null) elem.deepness = 0;
-		else if (deepness < 0) elem.deepness = 999;
+		if (deepness === null) deepness = 0;
+		else if (deepness < 0) deepness = 999;
 		
-		elem.renderFields = function(deepness) {
+		elem.field = {};
+		
+		elem.hasNewParent = function() {
 			var data = this.data;
 			
 			for (var k in data) {
@@ -53,20 +61,15 @@
 				}
 				else {
 					field = new Field(k, {
-						type: this.field[k].type,
+						type: "text",
 						name: k,
 						value: dat
 					});
 				}
 				
+				this.field[k] = field;
+				
 				this.add(field);
-			}
-		};
-		
-		elem.hasNewParent = function() {
-			this.field = {};
-			for (var k in this.data) {
-				this.field[k] = { type: "text" };
 			}
 		};
 		

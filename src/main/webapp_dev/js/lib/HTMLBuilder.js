@@ -64,6 +64,8 @@
 	}
 	
 	function HBElement(tag, props, data, inners) {
+		this._RENDERING = false;
+		
 		this._tag = tag;
 		this._props = clone(props);
 		this._data = clone(data);
@@ -163,7 +165,18 @@
 		return d;
 	};
 	
-	HBElement.prototype._addInner = function(obj) {		
+	HBElement.prototype._setParent = function(parent) {		
+		if (this.parent === null || this.parent._id != parent._id) {
+			this.parent = parent;
+			this.getData();
+			this._hasNewParent();
+		}
+	};
+	
+	HBElement.prototype._addInner = function(obj) {
+		if (HBElement.isHBElement(obj)) {
+			obj._setParent(this);
+		}
 		this._inners.push(obj);
 	};
 	
@@ -178,6 +191,8 @@
 	};
 	
 	HBElement.prototype.render = function(targetElement) {
+		this._RENDERING = true;
+		
 		this.onRender();
 		
 		this.elements = [];
@@ -207,17 +222,22 @@
 			targetElement.appendChild(this.element);
 		}
 		
+		this._RENDERING = false;
 		return this.element;
 	};
 	
 	HBElement.prototype.add = function(obj) {
+		if (!this._RENDERING) {
+			return this._addInner(obj);
+		}
+		
 		if (isString(obj)) {
 			this.rawElement = obj;
 			return;
 		}
 		
 		if (HBElement.isHBElement(obj)) {
-			obj.addTo(this);
+			obj._setParent(this);
 		}
 		
 		this.elements.push(obj);
@@ -227,12 +247,7 @@
 		if (!HBElement.isHBElement(parent)) {
 			throw parent.toString() + " is not HBElement";
 		}
-		
-		if (this.parent === null || this.parent._id != parent._id) {
-			this.parent = parent;
-			this.getData();
-			this._hasNewParent();
-		}
+		parent.add(this);
 	};
 	
 	/**
