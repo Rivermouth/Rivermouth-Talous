@@ -79,8 +79,24 @@
 		elem.header.set("{{name}}");
 		
 		elem.body.set([
-			"<div>Projects: {{projects.length}}</div>" +
-			"<div>Notes: {{notes.length}}</div>"
+			"<div>Projects: {{projects.length}}</div>"
+		]);
+		
+		return elem;
+	};
+	
+	bn.newEmployeeCard = function newEmployeeCardFn(data) {
+		var elem = new Card(data, {
+			"class": "employee", 
+			onclick: function() {
+				main.open("employees/" + data.id);
+			}
+		});
+		
+		elem.header.set("{{name.firstName}} {{name.lastName");
+		
+		elem.body.set([
+			"<div>{{role}}</div>"
 		]);
 		
 		return elem;
@@ -89,18 +105,13 @@
 	bn.newNoteCard = function newNoteCardFn(note, onSave) {
 		if (!note) {
 			note = {
-				title: "",
+				name: "",
 				content: ""
 			};
 		}
 		
-		if (!note._converted && note.mimeType) {
-			note.content = atob(note.content);
-			note._converted = true;
-		}
-		
 		var elem = new CardEditable(note, {"class": "note"});
-		elem.header.set("{{title}}");
+		elem.header.set("{{name}}");
 		elem.body.set("{{content}}");
 		elem.footer.set(hbel("a", {
 			onclick: function(evt) {
@@ -114,30 +125,22 @@
 		return elem;
 	};
 	
-	bn.newBillCard = function newNoteCardFn(bill, onSave) {
-		if (!bill) {
-			bill = {
-				title: "",
+	bn.newFileCard = function newNoteCardFn(data, onSave) {
+		if (!data) {
+			data = {
+				name: "",
 				content: ""
 			};
 		}
 		
 		function setFieldTypeToFile(field) {
-			field.type = "button";
-			field.props.value = "Select file";
-			field.props.onclick = function() {
-				var self = this;
-				bn.openFileFromDisk(".png", function(name, data) {
-					self.value = "[" + name + "]";
-					field.data.content = data;
-				}, "readAsDataURL");
-			};
+			field.type = "file";
 		}
 		
-		var elem = new CardEditable(bill, {"class": "bill"});
-		elem.header.set("{{title}}");
+		var elem = new CardEditable(data, {"class": "bill"});
+		elem.header.set("{{name}}");
 		elem.body.set(hbel("img", null, true, function() {
-			this.element.src = atob(this.data.content);
+			this.element.src = this.data.downloadUrl;
 		}));
 		elem.footer.set(hbel("a", {
 			onclick: function(evt) {
@@ -160,9 +163,9 @@
 		return elem;
 	};
 	
-	bn.newBillsHolder = function() {
-		var elem = bn.newFileHolder("bills", bn.newBillCard, "New bill");
-		elem.tab.set("Bills");
+	bn.newFilesHolder = function() {
+		var elem = bn.newFileHolder("files", bn.newFileCard, "New file");
+		elem.tab.set("Files");
 		return elem;
 	};
 	

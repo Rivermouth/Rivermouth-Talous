@@ -220,7 +220,7 @@
 			
 			var reader = new FileReader();
 			reader.onload = function(ev) {
-				callback(file.name.replace(".rlk", ""), ev.target.result);
+				callback(file.name, ev.target.result, file);
 			};
 			reader[readAsFn](file);
 			

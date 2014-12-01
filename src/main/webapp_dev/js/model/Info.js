@@ -2,7 +2,9 @@
 	
 	var RESTRICTED_FIELD_NAMES = {
 		"id": true,
-		"mimeType": true
+		"mimeType": true,
+		"owner": true,
+		"attachedTo": true
 	};
 	
 	function isRestictedField(name) {

@@ -55,6 +55,7 @@
 	}
 	
 	function getVar(data, string) {
+		console.log(string);
 		var parts = string.split(".");
 		var out = data;
 		for (var i = 0, l = parts.length; i < l; ++i) {

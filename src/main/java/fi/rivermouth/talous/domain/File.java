@@ -1,19 +1,25 @@
 package fi.rivermouth.talous.domain;
 
+import java.io.IOException;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class File extends BaseEntity {
 	
 	private Long owner;
 	private Long attachedTo;
-	private String title;
+	
+	private String name;
 	private String mimeType;
 	private Long size;
 	private String collection;
@@ -22,6 +28,11 @@ public class File extends BaseEntity {
 	private byte[] content;
 	
 	public File() {
+	}
+	
+	public File(String name, byte[] content) {
+		this.name = name;
+		setContent(content);
 	}
 
 	public Long getOwner() {
@@ -40,16 +51,16 @@ public class File extends BaseEntity {
 		this.attachedTo = attachedTo;
 	}
 	
-	public File(String title) {
-		this.title = title;
+	public File(String name) {
+		this.name = name;
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getMimeType() {
@@ -69,6 +80,7 @@ public class File extends BaseEntity {
 		this.size = size;
 	}
 	
+	@JsonIgnore
 	public byte[] getContent() {
 		return content;
 	}
@@ -77,6 +89,7 @@ public class File extends BaseEntity {
 	 * Set content of File and update its size
 	 * @param content
 	 */
+	@JsonProperty
 	public void setContent(byte[] content) {
 		this.content = content;
 		this.size = (long) content.length;
@@ -88,6 +101,11 @@ public class File extends BaseEntity {
 
 	public void setCollection(String collection) {
 		this.collection = collection;
+	}
+	
+	@JsonProperty
+	public String getDownloadUrl() {
+		return "http://localhost:8080/files/" + getOwner() + "/" + getId();
 	}
 
 	@Override

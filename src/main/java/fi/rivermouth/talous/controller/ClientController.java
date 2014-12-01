@@ -20,10 +20,10 @@ import fi.rivermouth.talous.service.UserService;
 public class ClientController extends ChildCRUDController<User, Long, Client, Long> {
 
 	@Autowired
-	ClientService clientService;
+	private ClientService clientService;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 
 	@Override
 	public BaseService<User, Long> getParentService() {

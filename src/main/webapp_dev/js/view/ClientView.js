@@ -13,17 +13,43 @@
 		};
 	}
 	
-	function createNotesView(client) {
+	function createNotesHolder(client) {
 		var elem = bn.newNotesHolder();
 		
 		elem.getFiles = function(callback) {
-			api.clients.notes.list(client).execute(function(resp) {
+			api.clients.notes.list("me", client).execute(function(resp) {
+				console.log(resp);
 				callback(resp.data);
 			});
 		};
 		
 		elem.saveFile = function(data) {
-			api.clients.notes.save(client, data).execute(function(resp) {
+			api.clients.notes.save("me", client, data).execute(function(resp) {
+				console.log(resp);
+			});
+		};
+		
+		return elem;
+	}
+	
+	function createFilesHolder(client) {
+		var elem = bn.newFilesHolder();
+		
+		elem.getFiles = function(callback) {
+			api.clients.files.list("me", client).execute(function(resp) {
+				console.log(resp);
+				callback(resp.data);
+			});
+		};
+		
+		elem.saveFile = function(data) {
+			this.form.element.method = "POST";
+			this.form.element.action = api.files.savePath("me", "images", client.id);
+			this.form.element.enctype = "multipart/form-data";
+			this.form.element.submit();
+			return;
+			
+			api.users.files.save(user, data).execute(function(resp) {
 				console.log(resp);
 			});
 		};
@@ -32,8 +58,7 @@
 	}
 	
 	function showClient(client) {
-		var infoHolder = bn.newInfoHolder("client-info", client, -1);
-		var notesHolder = createNotesView(client);
+		var infoHolder = bn.newInfoHolder("client-info", (client || newEmptyClientData()), -1);
 		
 		infoHolder.tab.set("Client");
 		infoHolder.save = function() {
@@ -44,7 +69,14 @@
 		};
 		
 		main.container.appendChild(infoHolder.render());
-		main.container.appendChild(notesHolder.render());
+		
+		if (client) {
+			var notesHolder = createNotesHolder(client);
+			var filesHolder = createFilesHolder(client);
+
+			main.container.appendChild(notesHolder.render());
+			main.container.appendChild(filesHolder.render());
+		}
 	}
 	
 	function showError(data) {
@@ -53,7 +85,7 @@
 	
 	function clientView(clientId) {
 		if (!clientId || clientId == "new") {
-			showClient(newEmptyClientData());
+			showClient();
 			return;
 		}
 		

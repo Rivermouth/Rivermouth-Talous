@@ -1,11 +1,27 @@
 @import "elements.less";
 
-#container { display: table; width: 100%; border-spacing: 1em; }
+#page { position: absolute; left: 0; top: 0; right: 0; bottom: 0; padding: 0 1em; overflow: auto; }
+#container { display: table; width: 100%; height: 100%; border-spacing: 0; }
 
-.holder { .Card; display: table-cell; width: 100%; min-width: 260px;
-	.holder-tab { .Card(0); display: inline-block; position: absolute; left: @CardPadding; top: -(@CardMargin * 2.4); border-bottom: 0; }
+img { max-width: 100%; height: auto; }
+
+.holder { display: table-cell; width: 100%; height: 100%; min-width: 260px;
+	.holder-tab { z-index: 2; position: relative; top: 1px; display: inline-block; width: 100px; box-sizing: border-box; border: 1px solid @CardBorderColor; padding: @CardPadding; border-bottom-width: 0; background: @CardBg; }
 	
-	.holder-inner {  }
+	.holder-content { z-index: 1; position: relative; height: 90%; box-sizing: border-box; padding: 1em 0.6em; border: 1px solid @CardBorderColor; border-right-width: 0px; }
+	&:last-child .holder-content { border-right-width: 1px; }
+}
+
+.holder.closed { min-width: 0; width: 0; 
+	.holder-tab { z-index: 0; position: absolute; top: 0; margin-left: 70px; }
+	.holder-content { display: none; }
+	
+	.generate-tabs(@n, @i:1) when (@i <= @n) {
+		&:nth-child(@{i}) .holder-tab { left: ((@i - 1) * 100px); }
+		.generate-tabs(@n, (@i + 1));
+	}
+	
+//	.generate-tabs(6);
 }
 
 .holder.login, 

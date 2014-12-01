@@ -1,18 +1,26 @@
 package fi.rivermouth.talous.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import fi.rivermouth.spring.controller.BaseController;
 import fi.rivermouth.spring.controller.CRUDController;
@@ -62,6 +70,14 @@ public class FileController extends BaseController<File, Long> {
 		return _create(ownerId, collection, parentId, entity);
 	}
 
+	@RequestMapping(value = "/{collection}/{parentId}", method = RequestMethod.POST, consumes = "multipart/form-data")
+	public Response createWform(@PathVariable("ownerId") Long ownerId, @PathVariable("collection") String collection,
+			@PathVariable("parentId") Long parentId, @RequestParam("name") String name,
+			@RequestParam("content") MultipartFile content,
+			@RequestParam(value = "mimeType", required = false) String mimeType) throws IOException {
+		return _create(ownerId, collection, ownerId, name, content, mimeType);
+	}
+
 	/**
 	 * PUT: /{ownerId}/{collection}
 	 * success: {@value HttpStatus#CREATED}
@@ -83,6 +99,22 @@ public class FileController extends BaseController<File, Long> {
 	public Response createToRoot(@PathVariable("ownerId") Long ownerId, @PathVariable("collection") String collection,
 			@Valid @ModelAttribute File entity) {
 		return _create(ownerId, collection, ownerId, entity);
+	}
+
+	@RequestMapping(value = "/{collection}/root", method = RequestMethod.POST, consumes = "multipart/form-data")
+	public Response createWformToRoot(@PathVariable("ownerId") Long ownerId,
+			@PathVariable("collection") String collection, @RequestParam("name") String name,
+			@RequestParam("content") MultipartFile content,
+			@RequestParam(value = "mimeType", required = false) String mimeType) throws IOException {
+		return _create(ownerId, collection, ownerId, name, content, mimeType);
+	}
+
+	private Response _create(Long ownerId, String collection, Long parentId, String name, MultipartFile file,
+			String mimeType) throws IOException {
+		File entity = new File(name, file.getBytes());
+		if (mimeType == null)
+			entity.setMimeType(file.getContentType());
+		return _create(ownerId, collection, parentId, entity);
 	}
 
 	private Response _create(Long ownerId, String collection, Long parentId, File entity) {
@@ -129,7 +161,7 @@ public class FileController extends BaseController<File, Long> {
 	}
 
 	/**
-	 * GET: /{ownerId}/{id}
+	 * GET: /{ownerId}/{id}/info
 	 * success: {@value HttpStatus#OK}
 	 * error  : {@value HttpStatus#NOT_FOUND}
 	 *   parent not found: {@value HttpStatus#BAD_REQUEST}
@@ -138,12 +170,36 @@ public class FileController extends BaseController<File, Long> {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Response get(@PathVariable("ownerId") Long ownerId, @PathVariable("id") Long id) {
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
+	public Response getInfo(@PathVariable("ownerId") Long ownerId, @PathVariable("id") Long id) {
 		checkAuthorization(Method.GET, id, ownerId);
 		if (!userService.exists(ownerId))
 			return parentNotFoundWithIdResponse(ownerId);
 		return super.get(id);
+	}
+
+	/**
+	 * GET: /{ownerId}/{id}
+	 * success: {@value HttpStatus#OK}
+	 * error  : {@value HttpStatus#NOT_FOUND}
+	 *   parent not found: {@value HttpStatus#BAD_REQUEST}
+	 * 
+	 * Get entity, produces file
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> get(@PathVariable("ownerId") Long ownerId, @PathVariable("id") Long id) {
+		checkAuthorization(Method.GET, id, ownerId);
+
+		File file = fileService.get(id);
+
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.parseMediaType(file.getMimeType()));
+		headers.setContentLength(file.getSize());
+		headers.add("Content-Disposition", "attachment; filename=" + file.getName());
+
+		return new ResponseEntity<byte[]>(file.getContent(), headers, HttpStatus.OK);
 	}
 
 	/**
@@ -159,15 +215,18 @@ public class FileController extends BaseController<File, Long> {
 	public Response list(@PathVariable("ownerId") Long ownerId, @PathVariable("collection") String collection) {
 		return _list(ownerId, collection, null);
 	}
+
 	@RequestMapping(value = "/{collection}/{parentId}", method = RequestMethod.GET)
-	public Response listByParentId(@PathVariable("ownerId") Long ownerId, @PathVariable("collection") String collection,
-			@PathVariable("parentId") Long parentId) {
+	public Response listByParentId(@PathVariable("ownerId") Long ownerId,
+			@PathVariable("collection") String collection, @PathVariable("parentId") Long parentId) {
 		return _list(ownerId, collection, parentId);
 	}
+
 	private Response _list(Long ownerId, String collection, Long parentId) {
 		checkAuthorization(Method.LIST, null, ownerId);
-		if (!userService.exists(ownerId))
+		if (!userService.exists(ownerId)) {
 			return parentNotFoundWithIdResponse(ownerId);
+		}
 		return listResponse(fileService.list(ownerId, collection, parentId));
 	}
 
@@ -200,11 +259,11 @@ public class FileController extends BaseController<File, Long> {
 	public String getEntityKind() {
 		return "file";
 	}
-	
+
 	@Override
 	protected <S extends Serializable> boolean isAuthorized(Method method, Long id, S ownerId) {
 		// TODO Auto-generated method stub
 		return (ownerId == userService.getAuthenticatedUser().getId());
 	}
-	
+
 }

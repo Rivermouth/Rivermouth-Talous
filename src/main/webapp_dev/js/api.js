@@ -124,6 +124,9 @@
 				
 				return path("/files/" + userId + "/" + collectionOrFileId + "/" + parentId);
 			},
+			savePath: function(userIdOrUser, collection, parentId) {
+				return api.files.path(userIdOrUser, collection, parentId || "root");
+			},
 			list: function() {
 				return new ApiRequestBuilder({
 					url: api.files.path(arguments[0], arguments[1], arguments[2] || "all"),
@@ -137,8 +140,11 @@
 				});
 			},
 			save: function(userIdOrUser, file, parentId) {
+				if (!file.collection) {
+					throw "Collection not set.";
+				}
 				return new ApiRequestBuilder({
-					url: api.files.path(userIdOrUser, file.collection, parentId || "root"),
+					url: api.files.savePath(userIdOrUser, file.collection, parentId),
 					type: "POST",
 					data: file
 				});
@@ -173,56 +179,82 @@
 					return api.files.save(user, note);
 				}
 			},
-			bills: {
+			files: {
 				list: function(user) {
-					return api.files.list(user, "bills");
+					return api.files.list(user, "!notes");
 				},
-				save: function(user, bill) {
-					bill.mimeType = "application/rlk";
-					bill.collection = "bills";
-					return api.files.save(user, bill);
+				save: function(user, file) {
+					return api.files.save(user, file);
 				}
 			}
-		},
-		clients: {
-			path: function(clientId) {
-				if (!clientId) clientId = "";
-				else clientId = "/" + clientId;
-				return path("/users/" + me.id + "/clients" + clientId);
+		}
+	};	
+	
+	function childCrudApi(parentNamePlural, parentIdFn, entityNamePlural, additionalApiEndpoints) {
+		var childApi = {
+			path: function(entityId) {
+				if (!entityId) entityId = "";
+				else entityId = "/" + entityId;
+				return path("/" + parentNamePlural + "/" + parentIdFn() + "/" + entityNamePlural + entityId);
 			},
-			get: function(clientId) {
+			get: function(entityId) {
 				return new ApiRequestBuilder({
-					url: api.clients.path(clientId),
+					url: this.path(entityId),
 					type: "GET"
 				});
 			},
 			list: function() {
 				return new ApiRequestBuilder({
-					url: api.clients.path(),
+					url: this.path(),
 					type: "GET"
 				});
 			},
-			save: function(client) {				
+			save: function(entity) {				
 				return new ApiRequestBuilder({
-					url: api.clients.path(client.id),
+					url: this.path(entity.id),
 					type: "POST",
-					data: client
+					data: entity
 				});
+			}
+		};
+		
+		for (var k in childApi) {
+			if (!additionalApiEndpoints.hasOwnProperty(k)) continue;
+			childApi[k] = additionalApiEndpoints[k];
+		}
+		
+		return childApi;
+	}
+	
+	api.clients = childCrudApi("users", function() { return me.id; }, "clients", {
+		notes: {
+			list: function(user, client) {
+				return api.files.list(user, "notes", client.id);
 			},
-			notes: {
-				list: function(client) {
-					return api.files.list("me", "notes", client.id);
-				},
-				save: function(client, note) {
-					note.mimeType = "text/plain";
-					note.collection = "notes";
-					return api.files.save("me", note, client.id);
-				}
+			save: function(user, client, note) {
+				note.mimeType = "text/plain";
+				note.collection = "notes";
+				return api.files.save(user, note, client.id);
+			}
+		},
+		files: {
+			list: function(user, client) {
+				return api.files.list(user, "!notes", client.id);
+			},
+			save: function(user, client, file) {
+				return api.files.save(user, file, client.id);
 			}
 		}
-	};
+	});
+	
+	api.employees = childCrudApi("users", function() { return me.id; }, "employees", {
+		
+	});
+	
 	
 	bn.api = api;
+	
+	
 	
 	// Example data
 	bn.user = {

@@ -43,7 +43,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	
 	private File getRandomFile() {
 		File file = new File();
-		file.setTitle(RandomStringUtils.random(8));
+		file.setName(RandomStringUtils.random(8));
 		file.setMimeType("text/plain");
 		file.setContent(RandomStringUtils.random(287).getBytes());
 		return file;

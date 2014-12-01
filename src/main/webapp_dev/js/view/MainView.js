@@ -19,6 +19,15 @@
 		return elem;
 	}
 	
+	function createNewEmployeeButton() {
+		var elem = hbel("button", {
+			onclick: function() {
+				main.open("employees/new");
+			}
+		}, null, "New employee");
+		return elem;
+	}
+	
 	function createNewNoteButton() {
 		var elem = hbel("button", {
 			
@@ -60,6 +69,40 @@
 		main.container.appendChild(elem.render());
 	}
 	
+	function addEmployeesHolder() {
+		var elem = new Holder();
+		
+		elem.tab.set("Employees");
+		
+		var elemBody = new hbel("div", null, null, function() {
+			this.updateList();
+		});
+		
+		elemBody.updateList = function() {
+			var self = this;
+			
+			if (!this.data) {
+				api.employees.list().execute(
+					function(resp) {
+						self.data = resp.data;
+						self.render();
+					},
+					function(){}
+				);
+				return;
+			}
+			
+			for (var i = 0, l = this.data.length; i < l; ++i) {
+				this.add(bn.newEmployeeCard(this.data[i]));
+			}
+		};
+		
+		elem.body.set(elemBody);
+		elem.footer.set(createNewEmployeeButton());
+		
+		main.container.appendChild(elem.render());
+	}
+	
 	function addNotesHolder(user) {
 		var elem = bn.newNotesHolder();
 		
@@ -79,18 +122,24 @@
 		main.container.appendChild(elem.render());
 	}
 	
-	function addBillsHolder(user) {
-		var elem = bn.newBillsHolder();
+	function addFilesHolder(user) {
+		var elem = bn.newFilesHolder();
 		
 		elem.getFiles = function(callback) {
-			api.users.bills.list(user).execute(function(resp) {
+			api.users.files.list(user).execute(function(resp) {
 				console.log(resp);
 				callback(resp.data);
 			});
 		};
 		
 		elem.saveFile = function(data) {
-			api.users.bills.save(user, data).execute(function(resp) {
+			this.form.element.method = "POST";
+			this.form.element.action = api.files.savePath("me", "images");
+			this.form.element.enctype = "multipart/form-data";
+			this.form.element.submit();
+			return;
+			
+			api.users.files.save(user, data).execute(function(resp) {
 				console.log(resp);
 			});
 		};
@@ -115,8 +164,9 @@
 		
 		addInfoHolder(user);
 		addClientsHolder(user);
+		addEmployeesHolder(user);
 		addNotesHolder(user);
-		addBillsHolder(user);
+		addFilesHolder(user);
 	}
 	
 	bn.mainView = mainView;
