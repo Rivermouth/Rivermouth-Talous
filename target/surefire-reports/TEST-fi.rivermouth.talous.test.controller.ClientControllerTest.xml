@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="fi.rivermouth.talous.test.controller.ClientControllerTest" time="15.889" tests="6" errors="6" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\bin"/>
+    <property name="java.vm.version" value="24.45-b08"/>
+    <property name="user.country.format" value="FI"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\asus\dev\apps\Talous"/>
+    <property name="java.runtime.version" value="1.7.0_45-b18"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\asus\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 8"/>
+    <property name="classworlds.conf" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\asus\AppData\Local\GitHub\PortableGit_054f2e797ebafd44a30203088cd3d58663c627ef\cmd;C:\Users\asus\AppData\Local\GitHub\PortableGit_054f2e797ebafd44a30203088cd3d58663c627ef\bin;C:\Users\asus\AppData\Local\Apps\2.0\ODBDMM5E.JAY\YL2VTTQO.4JK\gith..tion_317444273a93ac29_0002.0002_f44dcb2e9d4cde94;C:\WINDOWS\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\asus\dev\tools\apache-maven-3.1.1\bin;C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files\nodejs\;C:\Users\asus\npm;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools;C:\Users\asus\dev\tools\apache-ant-1.9.4\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\tools;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools\;C:\Python27\;C:\Python27\Scripts\;C:\Program Files (x86)\Windows Live\Shared;C:\MinGW\bin;C:\MinGW\MSYS\1.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\libnvvp;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\asus\dev\tools\apache-maven-3.1.1\bin;C:\Program Files\Java\jdk1.7.0_45\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Heroku\bin;C:\Program Files (x86)\git\cmd;C:\Program Files\nodejs\;C:\Users\asus\npm;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools;C:\Users\asus\dev\tools\apache-ant-1.9.4\bin;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\tools;C:\Users\asus\dev\tools\adt-bundle-windows-x86_64-20130522\sdk\platform-tools\;C:\Python27\;C:\Python27\Scripts\;C:\Program Files (x86)\Windows Live\Shared;C:\MinGW\bin;C:\MinGW\MSYS\1.0\bin;C:\google-cloud-sdk\bin;C:\Program Files (x86)\Google\google_appengine\;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.2"/>
+    <property name="user.home" value="C:\Users\asus"/>
+    <property name="user.timezone" value="Europe/Helsinki"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="asus"/>
+    <property name="java.class.path" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\..\boot\plexus-classworlds-2.5.1.jar"/>
+    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="info"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_45\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="user.language.format" value="fi"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_45"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_45\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_45\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_45\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\asus\dev\tools\apache-maven-3.1.1\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testSaveFile" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="14.768">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.ClientControllerTest.testSaveFile(ClientControllerTest.java:81)
+</error>
+    <system-out>21:49:32.759 [main] DEBUG o.s.t.c.j.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class fi.rivermouth.talous.test.controller.ClientControllerTest].
+21:49:32.837 [main] DEBUG o.s.test.context.ContextLoaderUtils - Found explicit ContextLoader class [org.springframework.boot.test.SpringApplicationContextLoader] for context configuration attributes [ContextConfigurationAttributes@162cc04e declaringClass = 'fi.rivermouth.talous.test.controller.BaseControllerTest', classes = '{class fi.rivermouth.talous.Application}', locations = '{}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.boot.test.SpringApplicationContextLoader']
+21:49:32.850 [main] DEBUG o.s.test.context.ContextLoaderUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.858 [main] DEBUG o.s.test.context.TestContextManager - @TestExecutionListeners is not present for class [fi.rivermouth.talous.test.controller.ClientControllerTest]: using defaults.
+21:49:32.903 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.904 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.906 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.907 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.918 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:32.918 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [fi.rivermouth.talous.test.controller.ClientControllerTest]
+21:49:33.147 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+21:49:33.154 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+21:49:33.154 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+21:49:33.156 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [integrationTest] PropertySource with search precedence immediately lower than [systemEnvironment]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.1.8.RELEASE)
+
+2014-12-03 21:49:40.323 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_1kvp9curq5em3mxcnpuk1s9y2
+2014-12-03 21:49:40.329 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_1kvp9curq5em3mxcnpuk1s9y2
+2014-12-03 21:49:40.329 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-12-03 21:49:40.331 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_dl4q8ankkqe47g7xoyehul3bf
+2014-12-03 21:49:40.333 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_dl4q8ankkqe47g7xoyehul3bf
+2014-12-03 21:49:40.333 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-12-03 21:49:40.333 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_htuvrp32yxivm4ovdmfk4g166
+2014-12-03 21:49:40.334 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_htuvrp32yxivm4ovdmfk4g166
+2014-12-03 21:49:40.336 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-12-03 21:49:40.336 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity drop constraint FK_84hujcvxt8hfjkw3s7mleew6a
+2014-12-03 21:49:40.337 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity drop constraint FK_84hujcvxt8hfjkw3s7mleew6a
+2014-12-03 21:49:40.338 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY
+2014-12-03 21:49:40.338 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_bank_accounts drop constraint FK_crfn9wx5111fpfytdn5a8141o
+2014-12-03 21:49:40.339 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_bank_accounts drop constraint FK_crfn9wx5111fpfytdn5a8141o
+2014-12-03 21:49:40.340 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_BANK_ACCOUNTS
+2014-12-03 21:49:40.340 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_bank_accounts drop constraint FK_1h3j0truyqqff4xhfwqyit9lk
+2014-12-03 21:49:40.341 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_bank_accounts drop constraint FK_1h3j0truyqqff4xhfwqyit9lk
+2014-12-03 21:49:40.341 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_BANK_ACCOUNTS
+2014-12-03 21:49:40.342 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients drop constraint FK_rj885gjrf0ns13mbtacyi7hle
+2014-12-03 21:49:40.343 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_clients drop constraint FK_rj885gjrf0ns13mbtacyi7hle
+2014-12-03 21:49:40.344 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_CLIENTS
+2014-12-03 21:49:40.344 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients drop constraint FK_gom5aagsfa079pn86nnfa48k1
+2014-12-03 21:49:40.344 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_clients drop constraint FK_gom5aagsfa079pn86nnfa48k1
+2014-12-03 21:49:40.344 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_CLIENTS
+2014-12-03 21:49:40.345 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_employees drop constraint FK_nb0newrin7dfg988hxjbmn1tk
+2014-12-03 21:49:40.345 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_employees drop constraint FK_nb0newrin7dfg988hxjbmn1tk
+2014-12-03 21:49:40.345 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_EMPLOYEES
+2014-12-03 21:49:40.345 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_employees drop constraint FK_kqwfqbvjx7rbki8yqtthcayby
+2014-12-03 21:49:40.346 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_employees drop constraint FK_kqwfqbvjx7rbki8yqtthcayby
+2014-12-03 21:49:40.346 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_EMPLOYEES
+2014-12-03 21:49:40.346 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects drop constraint FK_jycuintxo4dqpnsvi3j54tmcd
+2014-12-03 21:49:40.347 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_projects drop constraint FK_jycuintxo4dqpnsvi3j54tmcd
+2014-12-03 21:49:40.347 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_PROJECTS
+2014-12-03 21:49:40.347 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects drop constraint FK_66bbmem7dipv4e9dgd1qo3y0m
+2014-12-03 21:49:40.347 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table base_entity_projects drop constraint FK_66bbmem7dipv4e9dgd1qo3y0m
+2014-12-03 21:49:40.347 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BASE_ENTITY_PROJECTS
+2014-12-03 21:49:40.348 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table bill_breakdown drop constraint FK_5t05unak074v1g8861gut7rb8
+2014-12-03 21:49:40.349 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table bill_breakdown drop constraint FK_5t05unak074v1g8861gut7rb8
+2014-12-03 21:49:40.349 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BILL_BREAKDOWN
+2014-12-03 21:49:40.349 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table base_entity if exists
+2014-12-03 21:49:40.353 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table base_entity_bank_accounts if exists
+2014-12-03 21:49:40.353 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table base_entity_clients if exists
+2014-12-03 21:49:40.355 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table base_entity_employees if exists
+2014-12-03 21:49:40.355 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table base_entity_projects if exists
+2014-12-03 21:49:40.356 DEBUG 12572 --- [           main] org.hibernate.SQL                        : drop table bill_breakdown if exists
+2014-12-03 21:49:40.356 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table base_entity (dtype varchar(31) not null, id bigint generated by default as identity (start with 1), accomplished boolean, deadline timestamp, description varchar(255), name varchar(255), attached_to bigint, collection varchar(255), content blob(255), mime_type varchar(255), owner bigint, size bigint, city varchar(255), country varchar(255), street varchar(255), zip varchar(255), vat_number varchar(255), date timestamp, dates_to_pay integer, due_date timestamp, info varchar(255), interest double, invoice_number integer, reference_number integer, remarks varchar(255), total double, vat double, number varchar(255), shortcode varchar(255), email varchar(255), first_name varchar(255), last_name varchar(255), role varchar(255), tel varchar(255), facebook_id varchar(255), google_id varchar(255), password varchar(255), biller_id bigint, payer_id bigint, payment_bank_account_id bigint, company_id bigint, primary key (id))
+2014-12-03 21:49:40.373 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table base_entity_bank_accounts (base_entity_id bigint not null, bank_accounts_id bigint not null)
+2014-12-03 21:49:40.376 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table base_entity_clients (base_entity_id bigint not null, clients_id bigint not null)
+2014-12-03 21:49:40.382 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table base_entity_employees (base_entity_id bigint not null, employees_id bigint not null)
+2014-12-03 21:49:40.389 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table base_entity_projects (base_entity_id bigint not null, projects_id bigint not null)
+2014-12-03 21:49:40.394 DEBUG 12572 --- [           main] org.hibernate.SQL                        : create table bill_breakdown (bill_id bigint not null, count double, description varchar(255), price double, total double, total_vat double, unit varchar(255), vat_percentage double)
+2014-12-03 21:49:40.399 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: create table bill_breakdown (bill_id bigint not null, count double, description varchar(255), price double, total double, total_vat double, unit varchar(255), vat_percentage double)
+2014-12-03 21:49:40.401 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : unexpected token: COUNT
+2014-12-03 21:49:40.401 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint UK_r9hn0fouey3977247t445rbyx  unique (vat_number)
+2014-12-03 21:49:40.405 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint UK_qlnnn16cxm402gevcm4h60wbw  unique (email)
+2014-12-03 21:49:40.407 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint UK_ar6p4200p3tyqy5c94keww8hs  unique (facebook_id)
+2014-12-03 21:49:40.409 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint UK_dc5gix412cxqf6bo1vt7upwlu  unique (google_id)
+2014-12-03 21:49:40.411 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_bank_accounts add constraint UK_crfn9wx5111fpfytdn5a8141o  unique (bank_accounts_id)
+2014-12-03 21:49:40.413 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint UK_rj885gjrf0ns13mbtacyi7hle  unique (clients_id)
+2014-12-03 21:49:40.416 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_employees add constraint UK_nb0newrin7dfg988hxjbmn1tk  unique (employees_id)
+2014-12-03 21:49:40.417 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint UK_jycuintxo4dqpnsvi3j54tmcd  unique (projects_id)
+2014-12-03 21:49:40.418 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_1kvp9curq5em3mxcnpuk1s9y2 foreign key (biller_id) references base_entity
+2014-12-03 21:49:40.421 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_dl4q8ankkqe47g7xoyehul3bf foreign key (payer_id) references base_entity
+2014-12-03 21:49:40.423 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_htuvrp32yxivm4ovdmfk4g166 foreign key (payment_bank_account_id) references base_entity
+2014-12-03 21:49:40.424 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity add constraint FK_84hujcvxt8hfjkw3s7mleew6a foreign key (company_id) references base_entity
+2014-12-03 21:49:40.427 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_bank_accounts add constraint FK_crfn9wx5111fpfytdn5a8141o foreign key (bank_accounts_id) references base_entity
+2014-12-03 21:49:40.429 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_bank_accounts add constraint FK_1h3j0truyqqff4xhfwqyit9lk foreign key (base_entity_id) references base_entity
+2014-12-03 21:49:40.435 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint FK_rj885gjrf0ns13mbtacyi7hle foreign key (clients_id) references base_entity
+2014-12-03 21:49:40.443 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_clients add constraint FK_gom5aagsfa079pn86nnfa48k1 foreign key (base_entity_id) references base_entity
+2014-12-03 21:49:40.448 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_employees add constraint FK_nb0newrin7dfg988hxjbmn1tk foreign key (employees_id) references base_entity
+2014-12-03 21:49:40.464 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_employees add constraint FK_kqwfqbvjx7rbki8yqtthcayby foreign key (base_entity_id) references base_entity
+2014-12-03 21:49:40.467 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint FK_jycuintxo4dqpnsvi3j54tmcd foreign key (projects_id) references base_entity
+2014-12-03 21:49:40.470 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table base_entity_projects add constraint FK_66bbmem7dipv4e9dgd1qo3y0m foreign key (base_entity_id) references base_entity
+2014-12-03 21:49:40.478 DEBUG 12572 --- [           main] org.hibernate.SQL                        : alter table bill_breakdown add constraint FK_5t05unak074v1g8861gut7rb8 foreign key (bill_id) references base_entity
+2014-12-03 21:49:40.480 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000389: Unsuccessful: alter table bill_breakdown add constraint FK_5t05unak074v1g8861gut7rb8 foreign key (bill_id) references base_entity
+2014-12-03 21:49:40.481 ERROR 12572 --- [           main] org.hibernate.tool.hbm2ddl.SchemaExport  : user lacks privilege or object not found: PUBLIC.BILL_BREAKDOWN
+2014-12-03 21:49:46.602 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:47.163 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:47.201 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:47.264 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"??????","vatNumber":"VAT???????","address":{"street":"????????","zip":"85331","city":"???????","country":"?????Ù??"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Create" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.317">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Create(BaseControllerTest.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Create(BaseControllerTest.java:106)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-12-03 21:49:47.698 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:47.737 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select company0_.id as id2_0_0_, company0_.city as city13_0_0_, company0_.country as country14_0_0_, company0_.street as street15_0_0_, company0_.zip as zip16_0_0_, company0_.name as name6_0_0_, company0_.vat_number as vat_num17_0_0_ from base_entity company0_ where company0_.id=? and company0_.dtype='Company'
+2014-12-03 21:49:47.790 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-12-03 21:49:47.798 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_bank_accounts where base_entity_id=?
+2014-12-03 21:49:47.801 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_employees where base_entity_id=?
+2014-12-03 21:49:47.805 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:47.811 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:47.973 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:47.980 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:47.996 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"Vividin Oy","vatNumber":"VAT???????","address":{"street":"????????","zip":"99395","city":"????????","country":"????????"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Delete" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.189">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Delete(BaseControllerTest.java:148)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Delete(BaseControllerTest.java:148)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-12-03 21:49:48.014 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:48.017 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select company0_.id as id2_0_0_, company0_.city as city13_0_0_, company0_.country as country14_0_0_, company0_.street as street15_0_0_, company0_.zip as zip16_0_0_, company0_.name as name6_0_0_, company0_.vat_number as vat_num17_0_0_ from base_entity company0_ where company0_.id=? and company0_.dtype='Company'
+2014-12-03 21:49:48.021 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-12-03 21:49:48.023 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_bank_accounts where base_entity_id=?
+2014-12-03 21:49:48.026 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_employees where base_entity_id=?
+2014-12-03 21:49:48.027 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.029 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.169 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:48.172 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:48.185 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"???????","vatNumber":"VAT???????","address":{"street":"????????","zip":"15694","city":"??????","country":"????????"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Update" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.198">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:134)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:143)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.performCRUD_Update(BaseControllerTest.java:134)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Update(BaseControllerTest.java:143)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-12-03 21:49:48.203 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:48.209 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select company0_.id as id2_0_0_, company0_.city as city13_0_0_, company0_.country as country14_0_0_, company0_.street as street15_0_0_, company0_.zip as zip16_0_0_, company0_.name as name6_0_0_, company0_.vat_number as vat_num17_0_0_ from base_entity company0_ where company0_.id=? and company0_.dtype='Company'
+2014-12-03 21:49:48.216 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-12-03 21:49:48.217 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_bank_accounts where base_entity_id=?
+2014-12-03 21:49:48.218 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_employees where base_entity_id=?
+2014-12-03 21:49:48.220 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.225 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.374 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:48.378 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:48.387 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"???????","vatNumber":"VAT???????","address":{"street":"????????","zip":"90255","city":"????????","country":"????????"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_Read" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.215">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Read(BaseControllerTest.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createEntity(BaseControllerTest.java:91)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_Read(BaseControllerTest.java:114)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-12-03 21:49:48.402 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:48.407 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select company0_.id as id2_0_0_, company0_.city as city13_0_0_, company0_.country as country14_0_0_, company0_.street as street15_0_0_, company0_.zip as zip16_0_0_, company0_.name as name6_0_0_, company0_.vat_number as vat_num17_0_0_ from base_entity company0_ where company0_.id=? and company0_.dtype='Company'
+2014-12-03 21:49:48.415 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-12-03 21:49:48.417 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_bank_accounts where base_entity_id=?
+2014-12-03 21:49:48.418 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_employees where base_entity_id=?
+2014-12-03 21:49:48.420 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.423 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.586 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:48.589 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:48.601 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"???????","vatNumber":"VAT???????","address":{"street":"???????","zip":"23570","city":"????????","country":"????????"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+  <testcase name="testCRUD_CreateMultiply_And_List" classname="fi.rivermouth.talous.test.controller.ClientControllerTest" time="0.202">
+    <error message="Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted." type="org.springframework.web.util.NestedServletException">org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:973)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_CreateMultiply_And_List(BaseControllerTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: org.springframework.security.web.firewall.RequestRejectedException: Access resticted.
+	at fi.rivermouth.spring.controller.BaseController.checkAuthorization(BaseController.java:109)
+	at fi.rivermouth.spring.controller.ChildCRUDController.createWjson(ChildCRUDController.java:79)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:749)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:689)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:83)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:938)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:870)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:961)
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:874)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:837)
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:62)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727)
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:170)
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:137)
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:141)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.createTotallyRandomEntity(BaseControllerTest.java:84)
+	at fi.rivermouth.talous.test.controller.BaseControllerTest.testCRUD_CreateMultiply_And_List(BaseControllerTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:74)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:83)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:72)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:233)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:87)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:176)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+</error>
+    <system-out>2014-12-03 21:49:48.619 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select user0_.id as id2_0_, user0_.city as city13_0_, user0_.country as country14_0_, user0_.street as street15_0_, user0_.zip as zip16_0_, user0_.email as email30_0_, user0_.first_name as first_n31_0_, user0_.last_name as last_na32_0_, user0_.role as role33_0_, user0_.tel as tel34_0_, user0_.company_id as company41_0_, user0_.facebook_id as faceboo35_0_, user0_.google_id as google_36_0_, user0_.password as passwor37_0_ from base_entity user0_ where user0_.dtype='User'
+2014-12-03 21:49:48.621 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select company0_.id as id2_0_0_, company0_.city as city13_0_0_, company0_.country as country14_0_0_, company0_.street as street15_0_0_, company0_.zip as zip16_0_0_, company0_.name as name6_0_0_, company0_.vat_number as vat_num17_0_0_ from base_entity company0_ where company0_.id=? and company0_.dtype='Company'
+2014-12-03 21:49:48.626 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_clients where base_entity_id=?
+2014-12-03 21:49:48.628 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_bank_accounts where base_entity_id=?
+2014-12-03 21:49:48.629 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity_employees where base_entity_id=?
+2014-12-03 21:49:48.630 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.632 DEBUG 12572 --- [           main] org.hibernate.SQL                        : delete from base_entity where id=?
+2014-12-03 21:49:48.799 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, name, vat_number, dtype) values (default, ?, ?, ?, ?, ?, ?, 'Company')
+2014-12-03 21:49:48.800 DEBUG 12572 --- [           main] org.hibernate.SQL                        : insert into base_entity (id, city, country, street, zip, email, first_name, last_name, role, tel, company_id, facebook_id, google_id, password, dtype) values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')
+2014-12-03 21:49:48.807 DEBUG 12572 --- [           main] org.hibernate.SQL                        : select client0_.id as id2_0_, client0_.city as city13_0_, client0_.country as country14_0_, client0_.street as street15_0_, client0_.zip as zip16_0_, client0_.name as name6_0_, client0_.vat_number as vat_num17_0_ from base_entity client0_ where client0_.dtype='Client'
+
+
+JSON STRING: 
+{"id":null,"name":"???????","vatNumber":"VAT???????","address":{"street":"????????","zip":"81928","city":"???????","country":"???????"},"bankAccounts":null,"projects":null}
+</system-out>
+  </testcase>
+</testsuite>

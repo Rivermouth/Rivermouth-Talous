@@ -46,7 +46,7 @@ public class UserController extends CRUDController<User, Long> {
 	@Override
 	protected <S extends Serializable> boolean isAuthorized(Method method,
 			Long id, S ownerId) {
-		return (id == null || id == userService.getAuthenticatedUser().getId());
+		return userService.isAuthenticatedUserId(id);
 	}
 	
 }

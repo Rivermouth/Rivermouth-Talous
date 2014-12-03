@@ -57,6 +57,10 @@
 		
 		elem.field = {};
 		
+		elem.configFields = function() {
+			
+		};
+		
 		elem.hasNewParent = function() {
 			this.set();
 			var data = this.data;
@@ -85,6 +89,8 @@
 				
 				this.add(field);
 			}
+			
+			this.configFields();
 		};
 		
 		return elem;

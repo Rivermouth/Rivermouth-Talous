@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
@@ -13,10 +15,10 @@ import fi.rivermouth.talous.model.Address;
 @Entity
 public class Client extends AbstractCompany {
 
-	@OneToMany(fetch = FetchType.LAZY) // has clients
+	@OneToMany(fetch = FetchType.LAZY)
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Project> projects;
-	
+
 	public Client() {
 		super();
 	}

@@ -51,7 +51,12 @@
 				this.proxyCallback(resp, callback);
 			}
 			else {
-				callback(resp);
+				if (!callback) {
+					console.log(resp);
+				}
+				else {
+					callback(resp);
+				}
 			}
 		},
 		
@@ -218,7 +223,7 @@
 			}
 		};
 		
-		for (var k in childApi) {
+		for (var k in additionalApiEndpoints) {
 			if (!additionalApiEndpoints.hasOwnProperty(k)) continue;
 			childApi[k] = additionalApiEndpoints[k];
 		}
@@ -226,30 +231,32 @@
 		return childApi;
 	}
 	
-	api.clients = childCrudApi("users", function() { return me.id; }, "clients", {
-		notes: {
-			list: function(user, client) {
-				return api.files.list(user, "notes", client.id);
+	function childFileNoteApi(entityNamePlural) {
+		return {
+			notes: {
+				list: function(user, entity) {
+					return api.files.list(user, entityNamePlural, entity.id);
+				},
+				save: function(user, entity, note) {
+					note.mimeType = "text/plain";
+					note.collection = "notes";
+					return api.files.save(user, note, entity.id);
+				}
 			},
-			save: function(user, client, note) {
-				note.mimeType = "text/plain";
-				note.collection = "notes";
-				return api.files.save(user, note, client.id);
-			}
-		},
-		files: {
-			list: function(user, client) {
-				return api.files.list(user, "!notes", client.id);
-			},
-			save: function(user, client, file) {
-				return api.files.save(user, file, client.id);
+			files: {
+				list: function(user, entity) {
+					return api.files.list(user, "!notes", entity.id);
+				},
+				save: function(user, entity, file) {
+					return api.files.save(user, file, entity.id);
+				}
 			}
 		}
-	});
+	}
 	
-	api.employees = childCrudApi("users", function() { return me.id; }, "employees", {
-		
-	});
+	api.clients = childCrudApi("users", function() { return me.id; }, "clients", childFileNoteApi("clients"));
+	
+	api.employees = childCrudApi("users", function() { return me.id; }, "employees", childFileNoteApi("employees"));
 	
 	
 	bn.api = api;

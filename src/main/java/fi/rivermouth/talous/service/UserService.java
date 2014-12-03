@@ -64,4 +64,9 @@ public class UserService extends BaseService<User> {
         return getByEmail(email);
     }
 	
+	public boolean isAuthenticatedUserId(Long id) {
+		User user = getAuthenticatedUser();
+		return (user != null && id == user.getId());
+	}
+	
 }

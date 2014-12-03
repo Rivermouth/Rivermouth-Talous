@@ -42,7 +42,7 @@
 			this.render();
 		};
 		
-		elem.footer.set(createNewFileButton(buttonText, function() {
+		elem.header.set(createNewFileButton(buttonText, function() {
 			elemBody.createNewFile();
 		}));
 		
@@ -53,7 +53,7 @@
 		var infoHolder = new Holder(data, {"class": "info " + className});
 		infoHolder.save = function() {};
 		
-		var info = new Info(true, deepness);
+		infoHolder.info = new Info(true, deepness);
 		
 		var saveButton = hbel("button", {
 			onclick: function() {
@@ -61,45 +61,10 @@
 			}
 		}, null, "Save");
 		
-		infoHolder.tab.set("Info");
-		infoHolder.body.set(info);
-		infoHolder.footer.set(saveButton);
+		infoHolder.header.set(saveButton);
+		infoHolder.body.set(infoHolder.info);
 		
 		return infoHolder;
-	};
-	
-	bn.newClientCard = function newClientCardFn(data) {
-		var elem = new Card(data, {
-			"class": "client", 
-			onclick: function() {
-				main.open("clients/" + data.id);
-			}
-		});
-		
-		elem.header.set("{{name}}");
-		
-		elem.body.set([
-			"<div>Projects: {{projects.length}}</div>"
-		]);
-		
-		return elem;
-	};
-	
-	bn.newEmployeeCard = function newEmployeeCardFn(data) {
-		var elem = new Card(data, {
-			"class": "employee", 
-			onclick: function() {
-				main.open("employees/" + data.id);
-			}
-		});
-		
-		elem.header.set("{{name.firstName}} {{name.lastName");
-		
-		elem.body.set([
-			"<div>{{role}}</div>"
-		]);
-		
-		return elem;
 	};
 	
 	bn.newNoteCard = function newNoteCardFn(note, onSave) {
@@ -140,7 +105,7 @@
 		var elem = new CardEditable(data, {"class": "bill"});
 		elem.header.set("{{name}}");
 		elem.body.set(hbel("img", null, true, function() {
-			this.element.src = this.data.downloadUrl;
+			this.element.src = this.data.thumbnailUrl;
 		}));
 		elem.footer.set(hbel("a", {
 			onclick: function(evt) {
@@ -159,13 +124,11 @@
 	
 	bn.newNotesHolder = function() {
 		var elem = bn.newFileHolder("notes", bn.newNoteCard, "New note");
-		elem.tab.set("Notes");
 		return elem;
 	};
 	
 	bn.newFilesHolder = function() {
 		var elem = bn.newFileHolder("files", bn.newFileCard, "New file");
-		elem.tab.set("Files");
 		return elem;
 	};
 	

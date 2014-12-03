@@ -1,15 +1,15 @@
 fi\rivermouth\spring\entity\BaseChildEntity.class
 fi\rivermouth\talous\service\UserService.class
-fi\rivermouth\spring\entity\FileHavingEntityInterface.class
 fi\rivermouth\spring\entity\Responsable.class
+fi\rivermouth\spring\entity\FileHavingEntityInterface.class
 fi\rivermouth\spring\controller\Method.class
 fi\rivermouth\talous\config\WebConfig.class
 fi\rivermouth\talous\controller\DefaultController.class
 fi\rivermouth\talous\filter\CORSFilter.class
 fi\rivermouth\spring\controller\CRUDController.class
 fi\rivermouth\talous\service\ClientService.class
-fi\rivermouth\spring\entity\Response$Message.class
 fi\rivermouth\spring\service\BaseService.class
+fi\rivermouth\spring\entity\Response$Message.class
 fi\rivermouth\talous\repository\ClientRepository.class
 fi\rivermouth\spring\controller\ChildCRUDController.class
 fi\rivermouth\spring\entity\Response$ErrorMessage.class
@@ -23,8 +23,8 @@ fi\rivermouth\talous\Application.class
 fi\rivermouth\talous\controller\UserController.class
 fi\rivermouth\talous\domain\BaseEntity.class
 fi\rivermouth\spring\entity\ChildEntityInterface.class
-fi\rivermouth\talous\controller\ClientController.class
 fi\rivermouth\talous\domain\Project.class
+fi\rivermouth\talous\controller\ClientController.class
 fi\rivermouth\talous\controller\FileController.class
 fi\rivermouth\spring\entity\BaseEntity.class
 fi\rivermouth\talous\auth\UserAuthenticationManager.class
@@ -36,8 +36,8 @@ fi\rivermouth\spring\controller\BaseController.class
 fi\rivermouth\talous\config\SecurityConfiguration$AuthenticationConfiguration.class
 fi\rivermouth\talous\controller\AuthController.class
 fi\rivermouth\spring\controller\CRUDControllerInterface.class
-fi\rivermouth\spring\controller\BaseController$1.class
 fi\rivermouth\spring\controller\BaseController$Condition.class
+fi\rivermouth\spring\controller\BaseController$1.class
 fi\rivermouth\talous\domain\User.class
 fi\rivermouth\talous\domain\AbstractCompany.class
 fi\rivermouth\talous\config\SecurityConfiguration.class
@@ -47,8 +47,8 @@ fi\rivermouth\talous\service\UserService$1.class
 fi\rivermouth\talous\repository\UserRepository.class
 fi\rivermouth\spring\controller\EndpointDocController.class
 fi\rivermouth\talous\Utils.class
-fi\rivermouth\spring\entity\AbstractResponse.class
 fi\rivermouth\talous\auth\UserAuthenticationProvider.class
+fi\rivermouth\spring\entity\AbstractResponse.class
 fi\rivermouth\talous\domain\AbstractPerson$Name.class
 fi\rivermouth\spring\entity\ResponseBody.class
 fi\rivermouth\talous\domain\AbstractPerson.class

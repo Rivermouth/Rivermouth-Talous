@@ -262,8 +262,7 @@ public class FileController extends BaseController<File, Long> {
 
 	@Override
 	protected <S extends Serializable> boolean isAuthorized(Method method, Long id, S ownerId) {
-		// TODO Auto-generated method stub
-		return (ownerId == userService.getAuthenticatedUser().getId());
+		return userService.isAuthenticatedUserId((Long) ownerId);
 	}
 
 }

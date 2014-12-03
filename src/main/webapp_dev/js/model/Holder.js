@@ -7,14 +7,11 @@
 		
 		var elem = hbel("div", this.props, data, null);
 		
-		elem.tab = hbel("div", {"class": "tab holder-tab"}, true, null);
-		elem.content = hbel("div", {"class": "holder-content"}, true, null);
 		elem.header = hbel("div", {"class": "header holder-header"}, true, null);
 		elem.body = hbel("div", {"class": "body holder-body"}, true, null);
 		elem.footer = hbel("div", {"class": "footer holder-footer"}, true, null);
 		
-		elem.content.set(elem.header, elem.body, elem.footer);
-		elem.set(elem.tab, elem.content);
+		elem.set(elem.header, elem.body, elem.footer);
 
 		return elem;
 	}

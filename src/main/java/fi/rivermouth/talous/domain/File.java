@@ -26,7 +26,7 @@ public class File extends BaseEntity {
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] content;
-	
+
 	public File() {
 	}
 	
@@ -101,6 +101,16 @@ public class File extends BaseEntity {
 
 	public void setCollection(String collection) {
 		this.collection = collection;
+	}
+	
+	@JsonProperty
+	public String getThumbnailUrl() {
+		switch (mimeType.split("/")[0]) {
+		case "image":
+			return getDownloadUrl();
+		default:
+			return "https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/256/file.png";
+		}
 	}
 	
 	@JsonProperty

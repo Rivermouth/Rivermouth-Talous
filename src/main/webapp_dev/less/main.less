@@ -1,60 +1,71 @@
 @import "elements.less";
 
-#page { position: absolute; left: 0; top: 0; right: 0; bottom: 0; padding: 0 1em; overflow: auto; }
-#container { display: table; width: 100%; height: 100%; border-spacing: 0; }
-
-img { max-width: 100%; height: auto; }
-
-.holder { display: table-cell; width: 100%; height: 100%; min-width: 260px;
-	.holder-tab { z-index: 2; position: relative; top: 1px; display: inline-block; width: 100px; box-sizing: border-box; border: 1px solid @CardBorderColor; padding: @CardPadding; border-bottom-width: 0; background: @CardBg; }
-	
-	.holder-content { z-index: 1; position: relative; height: 90%; box-sizing: border-box; padding: 1em 0.6em; border: 1px solid @CardBorderColor; border-right-width: 0px; }
-	&:last-child .holder-content { border-right-width: 1px; }
+#page { 
+	position: absolute; 
+	left: 0; top: 0; right: 0; bottom: 0;
+	overflow: auto; 
 }
 
-.holder.closed { min-width: 0; width: 0; 
-	.holder-tab { z-index: 0; position: absolute; top: 0; margin-left: 70px; }
-	.holder-content { display: none; }
-	
-	.generate-tabs(@n, @i:1) when (@i <= @n) {
-		&:nth-child(@{i}) .holder-tab { left: ((@i - 1) * 100px); }
-		.generate-tabs(@n, (@i + 1));
-	}
-	
-//	.generate-tabs(6);
+#container { 
+	display: table;
+	width: 100%; height: 100%; 
+	border-spacing: 0; 
 }
 
-.holder.login, 
-.holder.signup, 
-.holder.info { width: 260px; 
-	.field {
-		label { display: block; }
-	}
+img { 
+	max-width: 100%; 
+	height: auto; 
 }
 
-.info-block {
-	.info-subtitle { margin-top: 1em; font-size: 1.4em; }
-	.info-block { margin-bottom: 1em; padding-left: 0.2em; border-left: 1px solid #ccc;
-		.info-subtitle { font-size: 95%; }
+.card {
+	.Card;
+}
+
+.tab-area { 
+	display: table; 
+	width: 100%; 
+	
+	.tab { 
+		display: table-cell; 
+		width: 1%; 
+		padding: 0.5em;
+		border: 1px solid @CardBorderColor;
+		border-left-width: 0px;
+		
+		&:first-child { border-left-width: 1px; }
+		&.selected { border-bottom-width: 0; }
 	}
 }
 
-
-.card { .Card;
-	.field {
-		label { display: block; }
-		input, textarea { display: block; width: 100%!important; box-sizing: border-box; }
-	}
-	
-	.card-footer { opacity: 0; position: absolute; left: 0; bottom: -1em; right: 0; background: #e2e2e2; padding: 0.1em 0.6em; transition: 0.2s all; }
-	&:hover .card-footer { opacity: 1; bottom: 0; }
+.body {
+	padding: 0.5em;
 }
 
-.card { max-height: 4.6em; overflow: hidden; 
-	.card-body:after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0.4em; background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); }
-	
-	&.opened,
-	&.editing { max-height: none; 
-		.card-footer { opacity: 1; bottom: 0; position: relative; padding: 0.1em 0; background: none; }
+.field label { 
+	display: block; 
+}
+
+
+.widget {	
+	.body {
+		border: 1px solid @CardBorderColor;
+		border-top: 0;
+		border-bottom: 0;
 	}
+	
+	.footer {
+		border-bottom: 1px solid @CardBorderColor;
+	}
+}
+
+
+.main-view {
+	height: 100%;
+	border: 1px solid @CardBorderColor;
+	
+	.header > div {
+		padding: 0.8em 0.5em;
+	}
+	
+	> .body, > .footer { border: 0; }
 }

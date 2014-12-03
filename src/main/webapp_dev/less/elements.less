@@ -11,3 +11,20 @@
 .Card(@shadowSize: 3px;) { position: relative; background: @CardBg; margin: @CardMargin 0; padding: @CardPadding; border: 1px solid @CardBorderColor; box-shadow: 0 (@shadowSize * 0.8) @shadowSize @CardShadowColor; .rounded(); }
 
 
+/* Table */
+@TableRowHoverColor: #e0e0e0;
+
+table {
+	width: 100%;
+	border-spacing: 0;
+
+	tr {
+		width: 100%;
+		
+		td {
+			padding: 0.2em;
+		}
+		
+		&:hover { background: @TableRowHoverColor; }
+	}
+}

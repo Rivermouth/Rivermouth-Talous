@@ -58,7 +58,7 @@ public class ClientController extends ChildCRUDController<User, Long, Client, Lo
 	@Override
 	protected <S extends Serializable> boolean isAuthorized(Method method,
 			Long id, S ownerId) {
-		return (ownerId == userService.getAuthenticatedUser().getId());
+		return userService.isAuthenticatedUserId((Long) ownerId);
 	}
 	
 }

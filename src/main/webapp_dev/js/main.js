@@ -2,12 +2,20 @@
 	
 	var IS_AUTHORIZED = false;
 	
+	var me = null;
+	
 	var body = doc.body;
 	
 	var container = doc.getElementById("container");
 	
 	function open(path) {
 		location.hash = "#/" + path;
+	}
+	
+	function redirectUnAuthorized() {
+		if (!IS_AUTHORIZED) {
+			open("login");
+		}
 	}
 	
 	function switchView() {
@@ -20,10 +28,12 @@
 		
 		switch (pathParts[0]) {
 			case "clients":
-				if (!IS_AUTHORIZED) {
-					open("login");
-				}
+				redirectUnAuthorized();
 				bn.clientView(pathParts[1]);
+				break;
+			case "employees":
+				redirectUnAuthorized();
+				bn.employeeView(pathParts[1]);
 				break;
 			case "login":
 				if (IS_AUTHORIZED) {
@@ -36,10 +46,8 @@
 				bn.signupView();
 				break;
 			default:
-				if (!IS_AUTHORIZED) {
-					open("login");
-				}
-				bn.mainView();
+				redirectUnAuthorized();
+				bn.mainView(me);
 				break;
 		}
 	}
@@ -57,6 +65,7 @@
 			function(resp) {
 				console.log(resp);
 				IS_AUTHORIZED = true;
+				me = resp.data;
 				loadDone();
 			},
 			function(errorResp) {
