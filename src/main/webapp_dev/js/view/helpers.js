@@ -102,7 +102,7 @@
 			field.type = "file";
 		}
 		
-		var elem = new CardEditable(data, {"class": "bill"});
+		var elem = new CardEditable(data, {"class": "file"});
 		elem.header.set("{{name}}");
 		elem.body.set(hbel("img", null, true, function() {
 			this.element.src = this.data.thumbnailUrl;

@@ -1,4 +1,4 @@
-(function(win, doc, Holder, Info, api, main, bn, Card, ClientsCard, TabSwitcher, hbel) {
+(function(win, doc, Holder, Info, api, main, bn, Card, ClientsCard, TabSwitcher, EntityView, hbel) {
 		
 	function DashBoard() {
 		var clientsCard = new ClientsCard();
@@ -100,37 +100,37 @@
 		var clientList = new ClientList();
 		var employeeList = new EmployeeList();
 		
-		var elem = new TabSwitcher([
-			{
-				title: "Home",
-				load: function(parentElem) {
-					parentElem.set(dashBoard);
-				}
-			},
-			{
-				title: "Clients",
-				load: function(parentElem) {
-					parentElem.set(clientList);
-				}
-			},
-			{
-				title: "Employees",
-				load: function(parentElem) {
-					parentElem.set(employeeList);
-				}
-			},
-			{
-				title: "Files",
-				load: function(parentElem) {
-					
-				}
+		var view = new EntityView("user", api.users);
+		
+		view.element.header.set();
+		
+		view.tab.main = {
+			title: "Home",
+			load: function(parentElem) {
+				parentElem.set(dashBoard);
 			}
-		], {"class": "main-view"});
+		};
 		
+		view.tab.clients = {
+			title: "Clients",
+			load: function(parentElem) {
+				parentElem.set(clientList);
+			}
+		};
 		
-		main.container.appendChild(elem.render());
+		view.tab.employees = {
+			title: "Employees",
+			load: function(parentElem) {
+				parentElem.set(employeeList);
+			}
+		};
+		
+		view.tabs.splice(1, 0, view.tab.clients, view.tab.employees);
+		
+		view.data = user;
+		view.openView();
 	}
 	
 	bn.mainView = mainView;
 	
-})(window, document, bn.Holder, bn.Info, bn.api, bn.main, bn, bn.Card, bn.ClientsCard, bn.TabSwitcher, hbel);
+})(window, document, bn.Holder, bn.Info, bn.api, bn.main, bn, bn.Card, bn.ClientsCard, bn.TabSwitcher, bn.EntityView, hbel);

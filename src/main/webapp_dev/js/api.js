@@ -234,21 +234,24 @@
 	function childFileNoteApi(entityNamePlural) {
 		return {
 			notes: {
-				list: function(user, entity) {
-					return api.files.list(user, entityNamePlural, entity.id);
+				list: function(entity) {
+					return api.files.list("me", entityNamePlural, entity.id);
 				},
-				save: function(user, entity, note) {
-					note.mimeType = "text/plain";
-					note.collection = "notes";
-					return api.files.save(user, note, entity.id);
+				save: function(entity, file) {
+					file.mimeType = "text/plain";
+					file.collection = "notes";
+					return api.files.save("me", file, entity.id);
 				}
 			},
 			files: {
-				list: function(user, entity) {
-					return api.files.list(user, "!notes", entity.id);
+				savePath: function(collection, entity) {
+					return api.files.path("me", collection, entity.id || "root");
 				},
-				save: function(user, entity, file) {
-					return api.files.save(user, file, entity.id);
+				list: function(entity) {
+					return api.files.list("me", "!notes", entity.id);
+				},
+				save: function(entity, file) {
+					return api.files.save("me", file, entity.id);
 				}
 			}
 		}

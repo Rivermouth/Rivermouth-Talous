@@ -43,26 +43,27 @@
 	
 	
 	
-	function Info(data, deepness) {
+	function Info(data, deepness, isChildForm) {
 		Element.call(this, {"class": "info-block"});
 		
-		var elem = hbel("form", this.props, data, function() {
+		this.element = hbel((isChildForm ? "div" : "form"), this.props, data);
+		this.element.renderLogic = function() {
 			if (this.label) {
 				this.add(hbel("div", {"class": "info-subtitle"}, null, this.label));
 			}
-		});
+		};
 		
 		if (deepness === null) deepness = 0;
 		else if (deepness < 0) deepness = 999;
 		
-		elem.field = {};
+		this.element.field = {};
 		
-		elem.configFields = function() {
+		this.element.configFields = function() {
 			
 		};
 		
-		elem.hasNewParent = function() {
-			this.set();
+		this.element.hasNewParent = function() {
+			this.set(this.renderLogic);
 			var data = this.data;
 			
 			for (var k in data) {
@@ -73,8 +74,9 @@
 
 				if (dat !== null && typeof dat === "object") {
 					if (deepness > 0) {
-						field = new Info(dat, deepness-1);
-						field.label = k;
+						var info = new Info(dat, deepness-1, true);
+						info.element.label = k;
+						field = info.element;
 					}
 				}
 				else {
@@ -92,13 +94,17 @@
 			
 			this.configFields();
 		};
-		
-		return elem;
 	}
 	
 	Info.prototype = Object.create(Element.prototype);
 	
+	
+	function InfoB(data, deepness, isChildForm) {
+		var info = new Info(data, deepness, isChildForm);
+		return info.element;
+	}
+	
 	win.bn.Field = Field;
-	win.bn.Info = Info;
+	win.bn.Info = InfoB;
 	
 })(window, document, bn.Element, hbel);

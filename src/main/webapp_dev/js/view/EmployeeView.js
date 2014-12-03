@@ -29,10 +29,11 @@
 			return this.data.name.firstName + " " + this.data.name.lastName;
 		};
 		
-		view.openView(id);
+		view.openView(id, function() {
+			view.infoHolder.info.field.email.type = "email";
+			view.infoHolder.info.render();
+		});
 		
-		view.infoHolder.info.field.email.type = "email";
-		view.infoHolder.info.render();
 	};
 	
 })(window, document, bn.Holder, bn.Info, bn.Card, bn.TabSwitcher, bn.api, bn.main, bn, hbel);

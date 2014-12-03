@@ -75,7 +75,7 @@ public class FileController extends BaseController<File, Long> {
 			@PathVariable("parentId") Long parentId, @RequestParam("name") String name,
 			@RequestParam("content") MultipartFile content,
 			@RequestParam(value = "mimeType", required = false) String mimeType) throws IOException {
-		return _create(ownerId, collection, ownerId, name, content, mimeType);
+		return _create(ownerId, collection, parentId, name, content, mimeType);
 	}
 
 	/**

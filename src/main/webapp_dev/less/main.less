@@ -45,6 +45,12 @@ img {
 	display: block; 
 }
 
+.info-block > .info-block {
+	padding-left: 0.5em;
+	margin-top: 0.2em;
+	border-left: 1px solid @CardBorderColor;
+}
+
 
 .widget {	
 	.body {
@@ -60,6 +66,7 @@ img {
 
 
 .main-view {
+	position: relative;
 	height: 100%;
 	border: 1px solid @CardBorderColor;
 	
@@ -68,4 +75,15 @@ img {
 	}
 	
 	> .body, > .footer { border: 0; }
+	
+	> .footer {
+		position: absolute;
+		left: 0; bottom: 0; right: 0;
+	}
+}
+
+.files.holder .body .file.card {
+	display: inline-block;
+	max-width: 200px;
+	margin: 0.5em;
 }

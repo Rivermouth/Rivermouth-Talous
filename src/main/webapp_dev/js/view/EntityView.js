@@ -7,7 +7,37 @@
 		this.api = api;
 		this.data = null;
 		
-		this.tabs = [];
+		this.tab = {
+			main: {
+				title: "Home",
+				load: function(parentElem) {
+				}
+			},
+			notes: {
+				title: "Notes",
+				load: function(parentElem) {
+					parentElem.set(self.notesHolder);
+				}
+			},
+			files: {
+				title: "Files",
+				load: function(parentElem) {
+					parentElem.set(self.filesHolder);
+				}
+			},
+			info: {
+				title: "Info",
+				load: function(parentElem) {
+					parentElem.set(self.infoHolder);
+				}
+			}
+		};
+		
+		this.tabs = [this.tab.main, this.tab.notes, this.tab.files, this.tab.info];
+		
+		this.element = new TabSwitcher(this.tabs, {"class": "main-view"});
+		
+		this.createHeader();
 	}
 	
 	BaseEntityView.prototype.getEmptyEntityData = function getEmptyEntityDataFn() { return {}; };
@@ -17,14 +47,14 @@
 		var elem = bn.newNotesHolder();
 		
 		elem.getFiles = function(callback) {
-			self.api.notes.list("me", self.data).execute(function(resp) {
+			self.api.notes.list(self.data).execute(function(resp) {
 				console.log(resp);
 				callback(resp.data);
 			});
 		};
 		
 		elem.saveFile = function(data) {
-			self.api.notes.save("me", self.data, data).execute(function(resp) {
+			self.api.notes.save(self.data, data).execute(function(resp) {
 				console.log(resp);
 			});
 		};
@@ -37,7 +67,7 @@
 		var elem = bn.newFilesHolder();
 		
 		elem.getFiles = function(callback) {
-			self.api.files.list("me", self.data).execute(function(resp) {
+			self.api.files.list(self.data).execute(function(resp) {
 				console.log(resp);
 				callback(resp.data);
 			});
@@ -45,12 +75,12 @@
 		
 		elem.saveFile = function(data) {
 			this.form.element.method = "POST";
-			this.form.element.action = bn.api.files.savePath("me", "images", self.data.id);
+			this.form.element.action = self.api.savePath("images", self.data);
 			this.form.element.enctype = "multipart/form-data";
 			this.form.element.submit();
 			return;
 			
-			self.api.files.save("me", data).execute(function(resp) {
+			self.api.files.save(data).execute(function(resp) {
 				console.log(resp);
 			});
 		};
@@ -72,6 +102,16 @@
 		return elem;
 	}
 	
+	BaseEntityView.prototype.createHeader = function createHeaderFn() {
+		this.element.header.set(
+			hbel("div", null, null, [
+				hbel("a", {onclick: function() {
+					main.open("");
+				}}, null, "< Back to dashboard")
+			])
+		);
+	};
+	
 	BaseEntityView.prototype.getMainTabName = function getMainTabNameFn() {
 		return this.data.name;
 	};
@@ -79,9 +119,9 @@
 	BaseEntityView.prototype.showEntity = function showEntityFn() {
 		var self = this;
 		
-		var isNewEntity = this.data ? false : true;
+		this.isNewEntity = this.data ? false : true;
 		
-		if (isNewEntity) {
+		if (this.isNewEntity) {
 			this.data = this.getEmptyEntityData();
 		}
 
@@ -89,8 +129,10 @@
 		this.notesHolder = this.newNotesHolder();
 		this.filesHolder = this.newFilesHolder();
 		
-		if (isNewEntity) {
-			this.tabs = [
+		var tabsToUser = this.tabs;
+		
+		if (this.isNewEntity) {
+			tabsToUser = [
 				{
 					title: "New client",
 					load: function(parentElem) {
@@ -99,56 +141,32 @@
 				}
 			];
 		}
-		else {
-			this.tabs = [
-				{
-					title: this.getMainTabName(),
-					load: function(parentElem) {
-					}
-				},
-				{
-					title: "Notes",
-					load: function(parentElem) {
-						parentElem.set(self.notesHolder);
-					}
-				},
-				{
-					title: "Files",
-					load: function(parentElem) {
-						parentElem.set(self.filesHolder);
-					}
-				},
-				{
-					title: "Info",
-					load: function(parentElem) {
-						parentElem.set(self.infoHolder);
-					}
-				}
-			];
-		}
+
+		this.element.tabs.data.tabs = tabsToUser;
 		
-		var elem = new TabSwitcher(this.tabs, {"class": "main-view"});
-
-		elem.header.set(
-			hbel("div", null, null, [
-				hbel("a", {onclick: function() {
-					main.open("");
-				}}, null, "< Back to dashboard")
-			])
-		);
-
-		main.container.appendChild(elem.render());
+		main.container.appendChild(this.element.render());
 	}
 	
 	BaseEntityView.prototype.showError = function showErrorFn(data) {
 		main.container.textContent = JSON.stringify(data);
 	}
 	
-	BaseEntityView.prototype.openView = function openViewFn(entityId) {
+	BaseEntityView.prototype.openView = function openViewFn(entityId, callback) {
 		var self = this;
+		
+		function callCallback() {
+			if (callback) callback();
+		}
+		
+		if (this.data) {
+			this.showEntity();
+			callCallback();
+			return;
+		}
 
 		if (!entityId || entityId == "new") {
 			this.showEntity();
+			callCallback();
 			return;
 		}
 		
@@ -156,6 +174,7 @@
 			function(resp) {
 				self.data = resp.data;
 				self.showEntity();
+				callCallback();
 			},
 			self.showError
 		);

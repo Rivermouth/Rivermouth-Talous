@@ -22,9 +22,18 @@ public abstract class AbstractCompany extends BaseEntity implements Responsable 
 	private String vatNumber;
 	@Embedded
 	private Address address;
-	@OneToMany(fetch = FetchType.LAZY)
+	
+	@OneToMany(fetch = FetchType.EAGER)
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<BankAccount> bankAccounts;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "payer")
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	private List<Bill> billsToPay;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "biller")
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	private List<Bill> billsToBill;
 
 	public AbstractCompany() {
 	}
@@ -69,6 +78,22 @@ public abstract class AbstractCompany extends BaseEntity implements Responsable 
 
 	public void setBankAccounts(List<BankAccount> bankAccounts) {
 		this.bankAccounts = bankAccounts;
+	}
+
+	public List<Bill> getBillsToPay() {
+		return billsToPay;
+	}
+
+	public void setBillsToPay(List<Bill> billsToPay) {
+		this.billsToPay = billsToPay;
+	}
+
+	public List<Bill> getBillsToBill() {
+		return billsToBill;
+	}
+
+	public void setBillsToBill(List<Bill> billsToBill) {
+		this.billsToBill = billsToBill;
 	}
 
 	@Override
