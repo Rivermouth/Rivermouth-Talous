@@ -90,7 +90,7 @@
 	
 	BaseEntityView.prototype.newInfoHolder = function newInfoHolderFn() {
 		var self = this;
-		var elem = bn.newInfoHolder("client-info", self.data, -1);
+		var elem = bn.newInfoHolder("info", self.data, -1);
 		
 		elem.save = function() {
 			self.api.save(this.data).execute(function(resp) {

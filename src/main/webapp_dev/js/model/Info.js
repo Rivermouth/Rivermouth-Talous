@@ -46,6 +46,9 @@
 	function Info(data, deepness, isChildForm) {
 		Element.call(this, {"class": "info-block"});
 		
+		this.props.method = "POST";
+		this.props.action = "/";
+		
 		this.element = hbel((isChildForm ? "div" : "form"), this.props, data);
 		this.element.renderLogic = function() {
 			if (this.label) {

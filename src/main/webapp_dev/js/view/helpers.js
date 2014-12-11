@@ -51,9 +51,10 @@
 	
 	bn.newInfoHolder = function newInfoHolderFn(className, data, deepness) {
 		var infoHolder = new Holder(data, {"class": "info " + className});
-		infoHolder.save = function() {};
 		
 		infoHolder.info = new Info(true, deepness);
+		
+		infoHolder.save = function() {};
 		
 		var saveButton = hbel("button", {
 			onclick: function() {
