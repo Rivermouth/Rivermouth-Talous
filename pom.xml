@@ -107,6 +107,10 @@
 					<agent>${maven.dependency.org.springframework.springloaded.jar.path}</agent>
 					<noverify>1</noverify>
 				</configuration> -->
+		                <configuration>
+		                    <source>1.7</source>
+		                    <target>1.7</target>
+		                </configuration>
 				<dependencies>
 					<dependency>
 						<groupId>org.springframework</groupId>
