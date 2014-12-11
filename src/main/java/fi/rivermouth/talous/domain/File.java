@@ -115,7 +115,7 @@ public class File extends BaseEntity {
 	
 	@JsonProperty
 	public String getDownloadUrl() {
-		return "http://localhost:8080/files/" + getOwner() + "/" + getId();
+		return "http://localhost:8080/api/files/" + getOwner() + "/" + getId();
 	}
 
 	@Override

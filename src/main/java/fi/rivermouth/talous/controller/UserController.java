@@ -17,7 +17,7 @@ import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController extends CRUDController<User, Long> {
 	
 	private static final String 

@@ -106,7 +106,7 @@
 		var elem = new CardEditable(data, {"class": "file"});
 		elem.header.set("{{name}}");
 		elem.body.set(hbel("img", null, true, function() {
-			this.element.src = this.data.thumbnailUrl;
+			this.element.src = this.data.thumbnailUrl || "https://cdn2.iconfinder.com/data/icons/windows-8-metro-style/256/file.png";
 		}));
 		elem.footer.set(hbel("a", {
 			onclick: function(evt) {

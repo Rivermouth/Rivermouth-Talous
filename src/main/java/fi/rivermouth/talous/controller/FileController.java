@@ -32,7 +32,7 @@ import fi.rivermouth.talous.service.FileService;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
-@RequestMapping("/files/{ownerId}")
+@RequestMapping("/api/files/{ownerId}")
 public class FileController extends BaseController<File, Long> {
 
 	protected static final String PARENT_NOT_FOUND_WITH_ID_S = "Parent not found with id %s.";

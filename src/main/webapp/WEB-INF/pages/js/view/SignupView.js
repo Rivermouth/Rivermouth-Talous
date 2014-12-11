@@ -29,10 +29,10 @@
 	
 	function signupView() {
 		var holder = new Holder(null, {"class": "signup"});
-		holder.tab.set("Register");
 		
 		var form = new Info(signupData, -1);
-		holder.body.set(form);
+		
+		holder.body.set(hbel("h1", null, null, "Register"), form);
 		
 		form.field.email.type = "email";
 		form.field.password.type = "password";
@@ -50,9 +50,18 @@
 					main.open("");
 				});
 			}
-		}, null, "Login");
+		}, null, "Register");
 		
-		holder.footer.set(button);
+		var openLoginViewButton = hbel("a", {
+			href: "#",
+			onclick: function(evt) {
+				evt.preventDefault();
+				main.open("login");
+				main.switchView();
+			}
+		}, null, "or login");
+		
+		holder.footer.set(button, openLoginViewButton);
 		
 		main.container.appendChild(holder.render());
 	}

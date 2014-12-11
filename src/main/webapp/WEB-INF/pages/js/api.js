@@ -1,7 +1,7 @@
 (function(bn) {
 	
 	var me = null;
-	var baseUrl = "http://localhost:8080";
+	var baseUrl = "http://localhost:8080/api";
 	
 	function isNumber(obj) {
 		return (typeof obj === "number");
@@ -154,46 +154,17 @@
 					data: file
 				});
 			}
-		},
-		users: {
-			path: function(userId) {
-				if (!userId) userId = "";
-				else userId = "/" + userId;
-				return path("/users" + userId);
-			},
-			get: function(userId) {
-				return new ApiRequestBuilder({
-					url: api.users.path(userId),
-					type: "GET"
-				});
-			},
-			save: function(user) {				
-				return new ApiRequestBuilder({
-					url: api.users.path(user.id),
-					type: "POST",
-					data: user
-				});
-			},
-			notes: {
-				list: function(user) {
-					return api.files.list(user, "notes");
-				},
-				save: function(user, note) {
-					note.mimeType = "text/plain";
-					note.collection = "notes";
-					return api.files.save(user, note);
-				}
-			},
-			files: {
-				list: function(user) {
-					return api.files.list(user, "!notes");
-				},
-				save: function(user, file) {
-					return api.files.save(user, file);
-				}
-			}
 		}
-	};	
+	};
+	
+	function createApi(api, additionalApiEndpoints) {
+		for (var k in additionalApiEndpoints) {
+			if (!additionalApiEndpoints.hasOwnProperty(k)) continue;
+			api[k] = additionalApiEndpoints[k];
+		}
+		
+		return api;
+	}
 	
 	function childCrudApi(parentNamePlural, parentIdFn, entityNamePlural, additionalApiEndpoints) {
 		var childApi = {
@@ -223,19 +194,14 @@
 			}
 		};
 		
-		for (var k in additionalApiEndpoints) {
-			if (!additionalApiEndpoints.hasOwnProperty(k)) continue;
-			childApi[k] = additionalApiEndpoints[k];
-		}
-		
-		return childApi;
+		return createApi(childApi, additionalApiEndpoints);
 	}
 	
-	function childFileNoteApi(entityNamePlural) {
+	function fileNoteApi() {
 		return {
 			notes: {
 				list: function(entity) {
-					return api.files.list("me", entityNamePlural, entity.id);
+					return api.files.list("me", "notes", entity.id);
 				},
 				save: function(entity, file) {
 					file.mimeType = "text/plain";
@@ -257,9 +223,33 @@
 		}
 	}
 	
-	api.clients = childCrudApi("users", function() { return me.id; }, "clients", childFileNoteApi("clients"));
+	api.users = createApi(
+		{
+			path: function(userId) {
+				if (!userId) userId = "";
+				else userId = "/" + userId;
+				return path("/users" + userId);
+			},
+			get: function(userId) {
+				return new ApiRequestBuilder({
+					url: api.users.path(userId),
+					type: "GET"
+				});
+			},
+			save: function(user) {				
+				return new ApiRequestBuilder({
+					url: api.users.path(user.id),
+					type: "POST",
+					data: user
+				});
+			}
+		},
+		fileNoteApi()
+	);
 	
-	api.employees = childCrudApi("users", function() { return me.id; }, "employees", childFileNoteApi("employees"));
+	api.clients = childCrudApi("users", function() { return me.id; }, "clients", fileNoteApi());
+	
+	api.employees = childCrudApi("users", function() { return me.id; }, "employees", fileNoteApi());
 	
 	
 	bn.api = api;

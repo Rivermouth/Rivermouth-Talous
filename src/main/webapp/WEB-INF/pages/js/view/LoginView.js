@@ -7,10 +7,11 @@
 		};
 		
 		var holder = new Holder(null, {"class": "login"});
-		holder.tab.set("Login");
 		
 		var form = new Info(loginData);
-		holder.body.set(form);
+		
+		holder.body.set(hbel("h1", null, null, "Login"), form);
+		
 		form.field.email.type = "email";
 		form.field.password.type = "password";
 		form.save = function() {
@@ -26,12 +27,14 @@
 			}
 		}, null, "Login");
 		
-		var openRegisterViewButton = hbel("button", {
-			onclick: function() {
+		var openRegisterViewButton = hbel("a", {
+			href: "#",
+			onclick: function(evt) {
+				evt.preventDefault();
 				main.open("signup");
 				main.switchView();
 			}
-		}, null, "Sign up");
+		}, null, "or sign up");
 		
 		holder.footer.set([loginButton, openRegisterViewButton]);
 		

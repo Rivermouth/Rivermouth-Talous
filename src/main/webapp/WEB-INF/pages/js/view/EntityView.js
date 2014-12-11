@@ -75,7 +75,7 @@
 		
 		elem.saveFile = function(data) {
 			this.form.element.method = "POST";
-			this.form.element.action = self.api.savePath("images", self.data);
+			this.form.element.action = self.api.files.savePath("images", self.data);
 			this.form.element.enctype = "multipart/form-data";
 			this.form.element.submit();
 			return;

@@ -16,6 +16,7 @@ import fi.rivermouth.talous.model.LoginData;
 import fi.rivermouth.talous.service.UserService;
 
 @RestController
+@RequestMapping(value = "/api")
 public class AuthController {
 	
 	@Autowired
