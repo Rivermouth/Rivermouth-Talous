@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.*;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 import org.hibernate.Hibernate;
 import org.junit.Before;
@@ -53,6 +54,7 @@ public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Se
 	
 	protected String apiPath(String url) {
 		if (url == null) return getAPIPath();
+		System.out.println("Requesting url:\n" + getAPIPath() + url);
 		return getAPIPath() + url;
 	}
 	

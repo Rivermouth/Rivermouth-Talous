@@ -34,11 +34,11 @@ public class User extends AbstractPerson implements FileHavingEntityInterface {
 	@NotNull
 	private Company company;
 
-	@OneToMany(fetch = FetchType.LAZY) // has clients
+	@OneToMany(fetch = FetchType.LAZY)
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Client> clients;
 	
-	@OneToMany(fetch = FetchType.LAZY) // has clients
+	@OneToMany(fetch = FetchType.LAZY)
 	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private List<Employee> employees;
 

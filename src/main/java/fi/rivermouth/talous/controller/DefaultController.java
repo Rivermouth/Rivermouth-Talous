@@ -19,4 +19,9 @@ public class DefaultController {
 		return new AppInfo();
 	}
 	
+	@RequestMapping(value = "/")
+	public String index() {
+		return "index.html";
+	}
+	
 }

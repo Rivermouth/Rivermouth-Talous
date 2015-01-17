@@ -1,4 +1,4 @@
-package fi.rivermouth.talous.test.controller;
+package fi.rivermouth.talous.test.controller.api;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -11,6 +11,7 @@ import fi.rivermouth.talous.domain.File;
 import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.service.UserService;
+import fi.rivermouth.talous.test.controller.BaseControllerTest;
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -51,7 +52,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	
 	@Override
 	public String getAPIPath() {
-		return "/users";
+		return "/api/users";
 	}
 
 	@Override
@@ -79,7 +80,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 		User user = userService.create(getRandomEntity());
 		
 		mockMvc.perform(
-				put("/users/" + user.getId() + "/files")
+				put("/api/users/" + user.getId() + "/files")
 				.content(asJsonString(getRandomFile())).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.data.id").exists());

@@ -1,4 +1,4 @@
-package fi.rivermouth.talous.test.controller;
+package fi.rivermouth.talous.test.controller.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -16,6 +16,7 @@ import fi.rivermouth.talous.domain.User;
 import fi.rivermouth.talous.model.Address;
 import fi.rivermouth.talous.service.ClientService;
 import fi.rivermouth.talous.service.UserService;
+import fi.rivermouth.talous.test.controller.BaseChildControllerTest;
 
 public class ClientControllerTest extends BaseChildControllerTest<User, Long, Client, Long> {
 	
@@ -68,7 +69,7 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 
 	@Override
 	public String getAPIPath() {
-		return "/users/{parentId}/clients";
+		return "/api/users/{parentId}/clients";
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class ClientControllerTest extends BaseChildControllerTest<User, Long, Cl
 		Client client = createEntity();
 		
 		mockMvc.perform(
-				put("/users/" + parent.getId() + "/clients/" + client.getId() + "/files")
+				put("/api/users/" + parent.getId() + "/clients/" + client.getId() + "/files")
 				.content(asJsonString(getRandomFile())).contentType(MediaType.APPLICATION_JSON))
 			.andExpect(status().isCreated())
 			.andExpect(jsonPath("$.data.id").exists());

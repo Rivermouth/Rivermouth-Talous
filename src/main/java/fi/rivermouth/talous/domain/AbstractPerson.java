@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -11,7 +12,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import fi.rivermouth.spring.entity.Responsable;
 import fi.rivermouth.talous.model.Address;
 
-@Entity
+@MappedSuperclass
 public abstract class AbstractPerson extends BaseEntity implements Responsable {
 
 	@Embedded

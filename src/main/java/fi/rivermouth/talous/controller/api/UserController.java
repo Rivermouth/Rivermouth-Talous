@@ -1,4 +1,4 @@
-package fi.rivermouth.talous.controller;
+package fi.rivermouth.talous.controller.api;
 
 import java.io.Serializable;
 

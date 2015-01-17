@@ -22,7 +22,7 @@ public abstract class BaseChildControllerTest
 T extends BaseEntity<ID>, ID extends Serializable>  					// Child (this)
 extends BaseControllerTest<T, ID> implements BaseChildControllerTestInterface<PARENT, PARENT_ID, T, ID> {
 	
-	PARENT parent;
+	protected PARENT parent;
 //	
 //	@Override
 //	protected String apiPath(String url) {
