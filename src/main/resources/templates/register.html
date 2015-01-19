@@ -7,6 +7,13 @@
 	</head>
 	<body>
 		<div th:fragment="content">
+			<div th:each="field : ${user.classInfo.fields}">
+				<div>
+					<field for="" th:text="${field.name}"></field>
+					<input type="text" th:min="${field.minLength}" th:maxlength="${field.maxLength}" />
+				</div>
+			</div>
+			
 			<form method="POST" action="#" th:action="@{/register}">
 				<input name="username" type="text" />
 				<input name="password" type="password" />

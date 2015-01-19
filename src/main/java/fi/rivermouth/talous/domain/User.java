@@ -30,8 +30,9 @@ public class User extends AbstractPerson implements FileHavingEntityInterface {
 	//@Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")
 	private String password;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@NotNull
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Company company;
 
 	@OneToMany(fetch = FetchType.LAZY)
