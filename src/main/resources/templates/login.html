@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+	  th:include="pagelet/layout::page">
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<form method="POST" action="#" th:action="@{/authenticate}">
+				<input name="username" type="text" />
+				<input name="password" type="password" />
+				<button type="submit">Kirjaudu sisään</button>
+			</form>
+			<a th:href="@{/register}">Luo tunnus</a>
+		</div>
+	</body>
+</html>

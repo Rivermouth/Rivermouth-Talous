@@ -1,4 +1,4 @@
-package fi.rivermouth.talous.controller;
+package fi.rivermouth.talous.controller.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,19 +11,20 @@ import fi.rivermouth.spring.controller.EndpointDocController;
 import fi.rivermouth.talous.model.AppInfo;
 
 /**
- * This controller takes requests that no other controller takes 
- * care of.
+ * This controller takes requests that no other api controller 
+ * take care of.
  * 
  * @author Karri Rasinmäki
- *
+ * 
  */
 
 @Controller
-@RequestMapping(value = "*")
-public class DefaultController {
+@RequestMapping(value = "/api/**", method = RequestMethod.GET)
+public class ApiDefaultController {
 	
-	public String index() {
-		return "index";
+	@ResponseBody
+	public AppInfo appInfo() {
+		return new AppInfo();
 	}
 	
 }

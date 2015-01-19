@@ -19,7 +19,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				.defaultContentType(MediaType.APPLICATION_JSON)
 				.mediaType("json", MediaType.APPLICATION_JSON)
 				.mediaType("x-www-form-urlencoded", MediaType.APPLICATION_FORM_URLENCODED)
-				.mediaType("form-data", MediaType.MULTIPART_FORM_DATA).mediaType("html", MediaType.TEXT_HTML);
+				.mediaType("form-data", MediaType.MULTIPART_FORM_DATA)
+				.mediaType("html", MediaType.TEXT_HTML);
 	}
 
 	@Override

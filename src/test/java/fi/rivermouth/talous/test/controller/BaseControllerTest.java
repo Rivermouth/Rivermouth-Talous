@@ -31,6 +31,7 @@ import fi.rivermouth.talous.Application;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
+@Transactional
 public abstract class BaseControllerTest<T extends BaseEntity<ID>, ID extends Serializable> implements BaseControllerTestInterface<T, ID> {
 	
 	@Autowired

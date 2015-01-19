@@ -17,7 +17,7 @@ import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping(value = "/api")
-public class AuthController {
+public class ApiAuthController {
 	
 	@Autowired
 	private UserService userService;

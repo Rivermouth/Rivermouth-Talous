@@ -2,11 +2,7 @@ package fi.rivermouth.talous.domain;
 
 import javax.persistence.Entity;
 
-import net.wimpi.telnetd.io.terminal.ansi;
-
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class FileText extends File {

@@ -70,7 +70,7 @@ public class UserControllerTest extends BaseControllerTest<User, Long> {
 	public void testGetUserByEmail() throws Exception {
 		User user = userService.create(getRandomEntity());
 		
-		mockMvc.perform(get("/users/findBy/email/" + user.getEmail()))
+		mockMvc.perform(get("/api/users/findBy/email/" + user.getEmail()))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.data.email", is(user.getEmail())));
 	}

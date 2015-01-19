@@ -18,7 +18,7 @@ import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController extends CRUDController<User, Long> {
+public class ApiUserController extends CRUDController<User, Long> {
 	
 	private static final String 
 	USER_NOT_FOUND_WITH_EMAIL_S = "User not found with email %s.";

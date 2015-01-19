@@ -115,7 +115,7 @@ extends BaseController<T, ID> {
 	@ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public Response handleException(MethodArgumentNotValidException exception) {
-        return new Response(HttpStatus.BAD_REQUEST, "error", exception.getBindingResult());
+        return new Response(HttpStatus.BAD_REQUEST, "error", exception);
     }
 	
 }

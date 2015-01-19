@@ -17,7 +17,7 @@ import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping("/api/users/{parentId}/clients")
-public class ClientController extends ChildCRUDController<User, Long, Client, Long> {
+public class ApiClientController extends ChildCRUDController<User, Long, Client, Long> {
 
 	@Autowired
 	private ClientService clientService;

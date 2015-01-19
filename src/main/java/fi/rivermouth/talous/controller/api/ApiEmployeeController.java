@@ -15,7 +15,7 @@ import fi.rivermouth.talous.service.UserService;
 
 @RestController
 @RequestMapping("/api/users/{parentId}/employees")
-public class EmployeeController extends ChildCRUDController<User, Long, Employee, Long> {
+public class ApiEmployeeController extends ChildCRUDController<User, Long, Employee, Long> {
 	
 	@Autowired
 	private EmployeeService employeeService;
