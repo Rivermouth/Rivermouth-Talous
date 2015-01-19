@@ -1,0 +1,9 @@
+.fieldset								{ padding: 12px; margin: 12px 0; border: 1px solid #ccc; border-radius: 3px; }
+	.fieldset .tbody > .row 				{ padding: 4px 0; } 							
+
+.fieldset field, 
+.fieldset .input-group					{ display: inline-block; box-sizing: border-box; }
+.fieldset field 						{ width: 29%; }
+.fieldset .input-group 					{ width: 70%; }
+
+.fieldset .input-group > * 				{ width: 100%; box-sizing: border-box; }

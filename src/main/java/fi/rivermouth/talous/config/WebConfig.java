@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+	/*
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		super.configureContentNegotiation(configurer);
@@ -33,5 +34,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**").addResourceLocations("/WEB-INF/pages/");
 	}
+	*/
 
 }

@@ -84,8 +84,8 @@ public abstract class AbstractPerson extends BaseEntity implements Responsable {
 	@Embeddable
 	public static class Name {
 		
-		String firstName;
-		String lastName;
+		private String firstName;
+		private String lastName;
 		
 		public Name() {}
 		
